@@ -1312,7 +1312,7 @@ const tiles = [];
 	for (let xOffset = -1; xOffset <= 1; xOffset++){
 		for (let yOffset = -1; yOffset <= 1; yOffset++){
 //			if (0 < y+yOffset <= boardSizey && 0 <x + xOffset <= boardSizex){
-			var tile = board[x + xOffset]?.[y + yOffset];
+//			var tile = board[x + xOffset]?.[y + yOffset];
 				if (tile) {tiles.push(tile);}
 //				}
 		}

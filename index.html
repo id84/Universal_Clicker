@@ -1604,7 +1604,7 @@ function saveGame(){
 	localStorage.setItem("internets", internets);
 	
 	//save poster counts
-	for (let i= 0; i < allposters.length, i++){
+	for (let i= 0; i < allposters.length; i++){
 		localStorage.setItem(allposters[i].name, allposters[i].count);
 	}
 }
@@ -1620,7 +1620,7 @@ function loadGame(){
 	 scie = localStorage.getItem("scie");
 	
 	//load poster counts
-	for (let i= 0; i < allposters.length, i++){
+	for (let i= 0; i < allposters.length; i++){
 		allposters[i].count = localStorage.getItem(allposters[i].name);
 	}
 	

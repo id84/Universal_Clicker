@@ -1,4 +1,3 @@
-//Variables
 /*jshint esversion: 6 */
 var totaltime = 0;
 var internets = 10000;
@@ -1140,6 +1139,427 @@ function sunglasschbx(){
 		document.getElementById("maincontainer").style.background = "#FFFFFF";
 	}
 	rendertown();
+}
+
+
+const TILE_STATUSES={
+	HIDDEN: 'hidden',
+	MINE: 'mine',
+	NUMBER: 'number',
+	MARKED: 'marked'
+};
+
+var TOTAL_MINES = 0;
+var board = [];
+var row = [];
+var boardSizex = 0;
+var boardSizey = 0;
+var totaltiles = 0;
+	var minePositions = [];
+		var positions = [];
+var mfgameon = false;
+
+function createBoardclick(){
+	
+	if (!mfgameon){
+		
+	
+	var x = parseInt(document.getElementById("mfxrange").value);
+	var y = parseInt(document.getElementById("mfyrange").value);
+	var m = parseInt(document.getElementById("mfmrange").value);
+	
+	m = parseInt((x*y)*(m/100));
+	
+	
+	if (m>=x*y){
+		var c = confirm("I'm not judging but you have " + (x*y) + " tiles and they are all mines. Is that you rolling?");
+		if (c){m = x*y;} else {return;}
+	}
+	
+	createBoard(x, y, m);
+	}
+	document.getElementById("minepop").style.display = "flex";
+
+}
+
+//https://www.youtube.com/watch?v=kBMnD_aElCQ
+function createBoard(boardSizex, boardSizey, numMines) {
+	board = [];
+	TOTAL_MINES = numMines;
+	totaltiles = boardSizex*boardSizey;
+	minePositions = getMinePositions(boardSizex, boardSizey, numMines);
+	for (let x=0; x <boardSizex; x++){
+	row =[];
+		for (let y=0; y <boardSizey; y++){
+			var element = document.createElement("div");
+			element.dataset.status = TILE_STATUSES.HIDDEN;
+			var tile ={
+				element,
+				x,
+				y,
+				mine: minePositions.some(positionMatch.bind(null, {x,y})),
+				get status() {
+					return this.element.dataset.status;
+					},
+				set status(value) {
+					this.element.dataset.status = value;
+				}
+			};	
+				row.push(tile);
+		}
+		board.push(row);
+	}
+		
+		renderBoard(boardSizex, boardSizey, board);
+		mfgameon = true;
+}
+	
+function getMinePositions(boardSizex, boardSizey, numMines){
+
+	positions = [];
+	while(positions.length < numMines){
+		const position = {
+			x : getRandomInt(boardSizex),
+			y : getRandomInt(boardSizey)
+		};
+		
+		if (!positions.some(positionMatch.bind(null, position))){
+			positions.push(position);
+		}
+		
+	}
+	return positions;
+}
+
+function positionMatch(a,b){
+	return a.x === b.x && a.y === b.y;
+}
+
+function renderBoard(boardSizex, boardSizey, board) {
+
+	boardElement = document.getElementById("mfboard");
+	boardElement.innerHTML = "";
+	
+	board.forEach(row => {
+		row.forEach(tile => {
+			boardElement.append(tile.element);
+			tile.element.addEventListener("click", () => {
+				 revealtile(tile);
+			});
+			tile.element.addEventListener("contextmenu", e => {
+				e.preventDefault();
+				marktile(tile);
+			});
+	});
+});
+console.log(boardElement);
+boardElement.style.setProperty("--sizex", boardSizex);
+boardElement.style.setProperty("--sizey", boardSizey);
+}
+
+
+function marktile(tile){
+	if (mfgameon){
+	if (tile.status !== TILE_STATUSES.HIDDEN && tile.status !== TILE_STATUSES.MARKED){
+		return;
+	}
+	if (tile.status === TILE_STATUSES.MARKED){
+			tile.status = TILE_STATUSES.HIDDEN;
+			tile.element.textContent = "";
+	} else {
+			tile.status = TILE_STATUSES.MARKED;
+			tile.element.textContent = emojify("RedFlag");
+			
+	}
+	}
+	CheckMFWin();
+}
+
+
+function revealtile(tile){
+	if (mfgameon){
+	if (tile.status !== TILE_STATUSES.HIDDEN){return;}
+	if (tile.mine){
+		tile.status = TILE_STATUSES.MINE;
+		CheckMFLose();
+				if (mfgameon){
+				mfgameon = false;
+				alert("loss");
+				}
+		return;
+	}
+	
+	tile.status = TILE_STATUSES.NUMBER;
+	const neighbours = nearbytiles(tile.x, tile.y);
+	const mines = neighbours.filter(t => t.mine);
+	
+	if (mines.length === 0){
+		neighbours.forEach(revealtile.bind(null));
+		tile.element.textContent = emojify("Random");
+	} else {
+		tile.element.textContent = mines.length;
+	}
+	
+	}
+	CheckMFWin();
+}
+
+
+function nearbytiles (x,y){
+const tiles = [];
+
+	for (let xOffset = -1; xOffset <= 1; xOffset++){
+		for (let yOffset = -1; yOffset <= 1; yOffset++){
+//			if (0 < y+yOffset <= boardSizey && 0 <x + xOffset <= boardSizex){
+			var tile = board[x + xOffset]?.[y + yOffset];
+				if (tile) {tiles.push(tile);}
+//				}
+		}
+	}
+
+	return tiles;
+	
+}
+
+function CheckMFWin(){
+var tt = totaltiles;
+	for (let i = 0; i < board.length; i++){
+		var x = board[i];
+		for (let j = 0; j < x.length; j++){
+			var tile = x[j];
+			if (tile.status === TILE_STATUSES.NUMBER ||
+			(tile.mine && (tile.status === TILE_STATUSES.HIDDEN ||tile.status === TILE_STATUSES.MARKED))) {
+				tt--;
+				if (mfgameon && (tt === 0)){
+				mfgameon = false;
+				alert("won");
+				}
+			}
+		}
+	}
+
+}
+
+function CheckMFLose() {
+	for (let i = 0; i < board.length; i++){
+		var x = board[i];
+		for (let j = 0; j < x.length; j++){
+		if (x[j].mine) {
+			revealtile(x[j]);
+			}
+		}
+	}
+
+}
+
+document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    var isEscape = false;
+    if ("key" in evt) {
+        isEscape = (evt.key === "Escape" || evt.key === "Esc");
+    } else {
+        isEscape = (evt.keyCode === 27);
+    }
+    if (isEscape) {
+       	document.getElementById("minepop").style.display = "none";
+		document.getElementById("popup").style.display = "none";
+    }
+};
+
+
+
+
+setInterval( function(){
+	var s = "";
+
+	for (let i = 0; i < 15; i++){
+			var r = getRandomInt(15);
+		switch (r){
+			case 0 : s+= emojify("Car") + '<span style="opacity: 0.1;">__</span>'; break;
+			case 1 : s+= emojify("Truck") + '<span style="opacity: 0.1;">__</span>'; break;
+			case 2 : s+= emojify("Bus") + '<span style="opacity: 0.1;">__</span>'; break;
+			case 3 : s+= emojify("Minibus")+  '<span style="opacity: 0.1;">__</span>'; break;
+			case 4 : s+= emojify("Taxi") + '<span style="opacity: 0.1;">__</span>'; break;
+			case 5 : s+= emojify("Ambulance") + '<span style="opacity: 0.1;">__</span>'; break;
+			case 6 : s+= emojify("Fireengine") + '<span style="opacity: 0.1;">__</span>'; break;
+			case 7 : s+= emojify("PoliceCar") + '<span style="opacity: 0.1;">__</span>'; break;
+			case 8 : s+= emojify("Suv") + '<span style="opacity: 0.1;">__</span>'; break;
+			case 9 : s+= emojify("Lorry") + '<span style="opacity: 0.1;">__</span>'; break;			
+			default : s+= '<span style="opacity: 0.1;">__</span>'; break;
+			
+		}
+	}
+	
+	document.getElementById("traffic").innerHTML = s;
+}, 15000);
+
+
+
+function asd(){
+	alert("asd");
+}
+
+var VChild = {
+	happiness : 100,
+	hunger : 100,
+	discipline : 50,
+	hp : 25,
+	
+	age : 0,
+	birth : 0,
+	alive : false,
+	emojidiv : "",
+	emoji: emojify("Baby"),
+	quality : 100,
+	
+	obesity : 0,
+	shitmeter : 0,
+	shits : 0,
+	
+	slack : 0,
+	
+	
+};
+
+var vchildtimelast = 0;
+var vchildtimenext = 0;
+
+
+function dateInt(){
+	//retuns in minutes since January 1, 1970
+  var d = new Date();
+  var n = parseInt(d.getTime()/60000);
+  return n;
+}
+
+function vpneedbtnclick (a){
+	switch (a){
+		case "new" :
+			rollnewvchild();
+		break;
+		case "clean" :
+			if(VChild.alive){
+				VChild.shits--;
+			}
+		break;
+		case "feed" :
+			if(VChild.alive && VChild.discipline > 0){
+				VChild.hunger += 30;
+				if(VChild.hunger > 100){
+					VChild.obesity = parseInt((VChild.hunger - 100)/2);
+				}
+			}
+		break;
+		case "wrestle" :
+			if(VChild.alive && VChild.discipline > 0){
+				VChild.hunger -= 15;
+				VChild.obesity -= 5;
+				VChild.discipline += 5;
+				VChild.slack -= 5;
+				if (VChild.age < 7){
+					VChild.alive = false;
+					alert("You crush VChilds tiny body with a spectacular Greco-Roman headlock. It explodes into tiny bits of code. Maybe it was too young for this.");
+				}
+			}
+		break;
+	}	
+}
+
+
+var vfamily=[];
+
+
+function rollnewvchild() {
+	VChild.happiness = 100;
+	VChild.hunger = 100;
+	VChild.discipline = 50;
+	VChild.hp = 25;
+	
+	VChild.age = 0;
+	VChild.birth = dateInt();
+	VChild.alive = true;
+	VChild.emojidiv = document.getElementById("vchildemoji");
+	VChild.emoji= emojify("Baby");
+	VChild.quality = 100;
+	
+	VChild.obesity = 0;
+	VChild.shitmeter = 0;
+	VChild.shits = 0;
+	
+	VChild.slack = 0;
+	VChild.emojidiv.innerHTML = VChild.emoji;
+	document.getElementById("vchildemoji2").innerHTML = "";
+}
+
+setInterval( function(){
+	if (VChild.alive){
+		
+	VChild.clean -= 1;
+	VChild.hunger -= 1;
+	//Livefeed
+	document.getElementById("vchappy").innerHTML = "Happiness: " + VChild.happiness;
+	document.getElementById("vchunger").innerHTML = "Hunger: " + VChild.hunger;
+	document.getElementById("vcdscpln").innerHTML = "Discipline: " + VChild.discipline;
+	
+	document.getElementById("vchp").innerHTML = "Health: " + VChild.hp;
+	document.getElementById("vcobesity").innerHTML = "Obesity: " + VChild.obesity;
+	document.getElementById("vcslack").innerHTML = "Psychopathy: " + VChild.slack;
+	
+	//VChild.emojidiv.innerHTML = emojify(VChild.emoji);
+	
+	//Starve Note: Skipping a meal should not instantly kill a baby
+	if (VChild.hunger < 0 ){
+		VChild.obesity -= 2;
+		VChild.happiness -= 1;
+	}
+	
+	if (VChild.hunger > 0 ){
+		VChild.shitmeter += 1;
+	}
+	
+	if (VChild.shitmeter > 30){
+		VChild.shitmeter = 0;
+		VChild.shits++;
+	}
+	
+	if (VChild.shits > 0){
+		VChild.happiness -= 1;
+		VChild.hp -= 1;
+		VChild.slack += 1;
+	}
+	
+	if (VChild.hunger <= 100 && VChild.obesity > 0){
+		VChild.obesity -= 0.5;
+		VChild.hp += 0.5;
+	}
+	
+	if (VChild.obesity > 99){
+		
+		addVChildtoTown(CBlob);
+	}	
+	if (VChild.obesity < -99){
+		addVChildtoTown(CSkeleton);
+
+	}
+	if (VChild.happiness < -99){
+		addVChildtoTown(CEdgey);
+	}
+	if (VChild.shits > 4){
+		addVChildtoTown(CRevolutionary);
+	}
+	}
+	
+	document.getElementById("vchildemoji2").innerHTML = "";
+	for (let i = 0; i < VChild.shits; i++)
+		document.getElementById("vchildemoji2").innerHTML += emojify("Poo");
+}, 10);
+
+function addVChildtoTown(c){
+		VChild.emojidiv.innerHTML = emojify(c.name);
+		document.getElementById("popuptext").innerHTML = c.birth + "<br><br>Added to Network:<br>" + emojify(c.name) + " " + c.tooltip;
+		document.getElementById("popup").style.display = "block";
+		VChild.alive = false;
+		addInterloper(c);
 }
 
 function init(){

@@ -798,16 +798,16 @@ sadd = 0;
 					madd += allposters[i].p1rate * allposters[i].count;
 				break;
 				case ("heat") :
-					heat += allposters[i].p1rate * allposters[i].count;
+					hadd += allposters[i].p1rate * allposters[i].count;
 				break;
 				case ("drama") :
-					heat += allposters[i].p1rate * allposters[i].count;
+					dadd += allposters[i].p1rate * allposters[i].count;
 				break;
 				case ("memes") :
-					heat += allposters[i].p1rate * allposters[i].count;
+					meadd += allposters[i].p1rate * allposters[i].count;
 				break;
 				case ("sadd") :
-					heat += allposters[i].p1rate * allposters[i].count;
+					scie += allposters[i].p1rate * allposters[i].count;
 				break;
 			}
 			switch (allposters[i].p2type){
@@ -824,13 +824,13 @@ sadd = 0;
 					hadd += allposters[i].p2rate * allposters[i].count;
 				break;
 				case ("drama") :
-					heat += allposters[i].p2rate * allposters[i].count;
+					dadd += allposters[i].p2rate * allposters[i].count;
 				break;
 				case ("memes") :
-					heat += allposters[i].p2rate * allposters[i].count;
+					meadd += allposters[i].p2rate * allposters[i].count;
 				break;
 				case ("scie") :
-					heat += allposters[i].p2rate * allposters[i].count;
+					sadd += allposters[i].p2rate * allposters[i].count;
 				break;
 			}
 		}
@@ -842,6 +842,7 @@ sadd = 0;
 	heat += hadd;
 	drama += dadd ;
 	memes += meadd;
+	scie += sadd;
 
 	redrawscoreboard();
 	redrawpop();

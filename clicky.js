@@ -1143,47 +1143,6 @@ function sunglasschbx(){
 }
 
 
-const TILE_STATUSES={
-	HIDDEN: 'hidden',
-	MINE: 'mine',
-	NUMBER: 'number',
-	MARKED: 'marked'
-};
-
-var TOTAL_MINES = 0;
-var board = [];
-var row = [];
-var boardSizex = 0;
-var boardSizey = 0;
-var totaltiles = 0;
-	var minePositions = [];
-		var positions = [];
-var mfgameon = false;
-
-function createBoardclick(){
-	
-	if (!mfgameon){
-		
-	
-	var x = parseInt(document.getElementById("mfxrange").value);
-	var y = parseInt(document.getElementById("mfyrange").value);
-	var m = parseInt(document.getElementById("mfmrange").value);
-	
-	m = parseInt((x*y)*(m/100));
-	
-	
-	if (m>=x*y){
-		var c = confirm("I'm not judging but you have " + (x*y) + " tiles and they are all mines. Is that you rolling?");
-		if (c){m = x*y;} else {return;}
-	}
-	
-	createBoard(x, y, m);
-	}
-	document.getElementById("minepop").style.display = "flex";
-
-}
-
-
 document.onkeydown = function(evt) {
     evt = evt || window.event;
     var isEscape = false;

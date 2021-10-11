@@ -13,6 +13,8 @@
 <script type="text/javascript">
 
 var totaltime = 0;
+
+
 var internets = 10000;
 var heat = 0;
 var fame = 0;
@@ -20,6 +22,13 @@ var money = 0;
 var drama = 0;
 var memes = 0;
 var scie = 0;
+
+
+
+
+
+
+
 
 var iadd = 0;
 var fadd = 0;
@@ -1583,6 +1592,41 @@ function addVChildtoTown(c){
 		addInterloper(c);
 }
 
+
+function saveGame(){
+	//save resources
+	localStorage.setItem("heat", heat);
+	localStorage.setItem("fame", fame);
+	localStorage.setItem("money", money);
+	localStorage.setItem("drama", drama);
+	localStorage.setItem("memes", memes);
+	localStorage.setItem("scie", scie);
+	localStorage.setItem("internets", internets);
+	
+	//save poster counts
+	for (let i= 0; i < allposters.length, i++){
+		localStorage.setItem(allposters[i].name, allposters[i].count);
+	}
+}
+
+function loadGame(){
+	
+	 internets = localStorage.getItem(internets);
+	 heat = localStorage.getItem("heat");
+	 fame = localStorage.getItem("fame");
+	 money = localStorage.getItem("money");
+	 drama = localStorage.getItem("drama");
+	 memes = localStorage.getItem("memes");
+	 scie = localStorage.getItem("scie");
+	
+	//load poster counts
+	for (let i= 0; i < allposters.length, i++){
+		allposters[i].count = localStorage.getItem(allposters[i].name);
+	}
+	
+}
+
+
 function init(){
 setresearchtree();
 
@@ -1776,6 +1820,8 @@ document.getElementById("neetrange").style.display = "none";
 			<h3>Test stuff and caches</h3>
 			<button class="btn" id="glowie" onmouseout="cleartooltip()" onmouseover="tooltips('glowie')" onClick="addInterloper('Glowie')">👨🏼‍💼</button>
 			<button class="btn" id="lizard" onmouseout="cleartooltip()" onmouseover="tooltips('lizard')" onClick="addInterloper('Lizard')">👨🏼‍💼</button>
+			<button class="btn" onClick="saveGame()">Save</button>
+			<button class="btn" onClick="loadGame()">Load</button>
 		</div>
 		
 	</div>	

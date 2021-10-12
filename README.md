@@ -7,4 +7,5 @@ Get all half implemented stuff working before adding more stuff.
 
 Credits things;
 Minefield; Largely based on "How To Build A Minesweeper Clone With JavaScript" from Web Dev Simplified; https://www.youtube.com/watch?v=kBMnD_aElCQ
+
 Tons of CSS from W3 Schools; https://www.w3schools.com/

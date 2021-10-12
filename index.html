@@ -1802,10 +1802,16 @@ document.getElementById("neetrange").style.display = "none";
 
 
 		<div id="MinefieldTab" class="tabcontent">
-		<button class="btn" onClick="createBoardclick()"  onmouseout="cleartooltip()" onmouseover="tooltip('mfstart')">Toggle Minefield</button>
+		<label>Number of Rows<br>
 		<input type="range" id="mfxrange"  onmouseout="cleartooltip()" onmouseover="tooltiprange('mfrange')" oninput="tooltiprange('mfrange')" min="10" max="30" value="10">
+		</label><br>
+		<label>Number of Columns<br>
 		<input type="range" id="mfyrange"  onmouseout="cleartooltip()" onmouseover="tooltiprange('mfrange')" oninput="tooltiprange('mfrange')" min="10" max="30" value="10">
+		</label><br>
+		<label>Mine Percentage<br>
 		<input type="range" id="mfmrange"  onmouseout="cleartooltip()" onmouseover="tooltiprange('mfrange')" oninput="tooltiprange('mfrange')" min="1" max="10" value="1">
+		</label><br>
+		<button class="btn" onClick="createBoardclick()"  onmouseout="cleartooltip()" onmouseover="tooltip('mfstart')">Toggle Minefield</button>
 		</div>
 
 

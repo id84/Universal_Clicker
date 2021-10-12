@@ -915,15 +915,16 @@ function redrawshoponrequest(){
 }
 
 function redrawresearchonrequest(){
+	var str = "";
 	document.getElementById("research").innerHTML = "";
 	document.getElementById("tnormie").innerHTML = "";
 	document.getElementById("tneet").innerHTML = "";
-	
 	for (let i = 0; i < allresearch.length; i++){
 		if(allresearch[i].revealed == true){
-			document.getElementById(allresearch[i].type).innerHTML +=  '<td><button class="btn" id=' + allresearch[i].name + 'onmouseout="cleartooltip()" onmouseover="tooltips(' + allresearch[i].name + ')" onClick="resbtnclick(' + allresearch[i].name + ')">' + allresearch[i].prettyname + "</button></td>";
-		} else {
+		if (allresearch[i].researched == true){str = "✔️";}
+			document.getElementById(allresearch[i].type).innerHTML +=  '<td><button class="btn" id=' + allresearch[i].name + 'onmouseout="cleartooltip()" onmouseover="tooltips(' + allresearch[i].name + ')" onClick="resbtnclick(' + allresearch[i].name + ')">' + allresearch[i].prettyname + str + "</button></td>";
 		}
+		str = "";
 	}
 	
 }
@@ -1020,13 +1021,21 @@ function resbtnclick(a){
 			case "fame" : fame -= c2c; break;
 			case "money" : money -= c2c; break;
 		}	
+			workResearch(a,true)
+		}
+	}	
+}
+
+function workResearch(a,b){
 			for (i = 0; i < a.unlocks.length; i++) {
 				a.unlocks[i].revealed = true;
 			}
 			a.researched = true;
-			a.prettyname += "✔️";
+			if (b){
+			//
 			document.getElementById("popuptext").innerHTML = a.html;
 			document.getElementById("popup").style.display = "block";
+			}
 			redrawresearchonrequest();
 			switch (a.name){
 				case "NormiesResearch":
@@ -1038,8 +1047,7 @@ function resbtnclick(a){
 					document.getElementById("neetrange").style.display = "block";
 				break;
 			}
-		}
-	}	
+
 }
 
 
@@ -1603,27 +1611,40 @@ function saveGame(){
 	localStorage.setItem("scie", scie);
 	localStorage.setItem("internets", internets);
 	
-	//save poster counts
+	//save posters
 	for (let i= 0; i < allposters.length; i++){
-		localStorage.setItem(allposters[i].name, allposters[i].count);
+		localStorage.setItem("postercount" + i, allposters[i].count);
 	}
+	//save research
+	for (let i= 0; i < allresearch.length; i++){
+		localStorage.setItem(allresearch[i].name, allresearch[i].researched);
+	}
+	
 }
 
 function loadGame(){
 	
-	 internets = localStorage.getItem(internets);
-	 heat = localStorage.getItem("heat");
-	 fame = localStorage.getItem("fame");
-	 money = localStorage.getItem("money");
-	 drama = localStorage.getItem("drama");
-	 memes = localStorage.getItem("memes");
-	 scie = localStorage.getItem("scie");
+	 internets = parseInt(localStorage.getItem("internets"));
+	 heat = parseInt(localStorage.getItem("heat"));
+	 fame = parseInt(localStorage.getItem("fame"));
+	 money = parseInt(localStorage.getItem("money"));
+	 drama = parseInt(localStorage.getItem("drama"));
+	 memes = parseInt(localStorage.getItem("memes"));
+	 scie = parseInt(localStorage.getItem("scie"));
 	
 	//load poster counts
 	for (let i= 0; i < allposters.length; i++){
-		allposters[i].count = localStorage.getItem(allposters[i].name);
+		allposters[i].count = parseInt(localStorage.getItem("postercount" + i));
 	}
 	
+	//do research
+	for (let i= 0; i < allresearch.length; i++){
+		allresearch[i].researched = localStorage.getItem(allresearch[i].name);
+		if (allresearch[i].researched == "true"){ allresearch[i].researched = true; workResearch(allresearch[i], false);}
+		else {allresearch[i].researched = false;}
+		if (allresearch[i].revealed == "true"||allresearch[i].revealed){ allresearch[i].revealed = true;}
+		else {allresearch[i].revealed = false;}
+	}
 }
 
 

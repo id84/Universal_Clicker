@@ -694,6 +694,12 @@ function tooltip(a){
 			document.getElementById("hovertext").innerHTML = "Teach your VChild a book. This button does nothing.";
 		break;
 		
+		
+		
+		case "mfstart" :
+			document.getElementById("hovertext").innerHTML = "Start a new minefield, or resume the one still incomplete.";
+		break;
+		
 	}
 }
 
@@ -1231,6 +1237,7 @@ function createBoard(boardSizex, boardSizey, numMines) {
 		for (let y=0; y <boardSizey; y++){
 			var element = document.createElement("div");
 			element.dataset.status = TILE_STATUSES.HIDDEN;
+
 			var tile ={
 				element,
 				x,
@@ -1291,6 +1298,7 @@ function renderBoard(boardSizex, boardSizey, board) {
 	});
 });
 console.log(boardElement);
+
 boardElement.style.setProperty("--sizex", boardSizex);
 boardElement.style.setProperty("--sizey", boardSizey);
 }
@@ -1755,6 +1763,9 @@ document.getElementById("neetrange").style.display = "none";
 			Right hand
 			</div>
 		</div>
+		
+		
+		
 		<div id="ResearchTab" class="tabcontent">
 			<table style="width=100%" class="nicetext"><tr><span id="research">t</span></tr></table>
 			<table style="width=100%" class="nicetext"><tr><span id="tnormie">t</span></tr></table>
@@ -1788,10 +1799,10 @@ document.getElementById("neetrange").style.display = "none";
 							<span id="townspan" class="townemojis"></span>		
 						</div>
 		</div>
-<br>
+
 
 		<div id="MinefieldTab" class="tabcontent">
-		<button onClick="createBoardclick()"> new mf </button>
+		<button class="btn" onClick="createBoardclick()"  onmouseout="cleartooltip()" onmouseover="tooltip('mfstart')">Toggle Minefield</button>
 		<input type="range" id="mfxrange"  onmouseout="cleartooltip()" onmouseover="tooltiprange('mfrange')" oninput="tooltiprange('mfrange')" min="10" max="30" value="10">
 		<input type="range" id="mfyrange"  onmouseout="cleartooltip()" onmouseover="tooltiprange('mfrange')" oninput="tooltiprange('mfrange')" min="10" max="30" value="10">
 		<input type="range" id="mfmrange"  onmouseout="cleartooltip()" onmouseover="tooltiprange('mfrange')" oninput="tooltiprange('mfrange')" min="1" max="10" value="1">
@@ -1850,10 +1861,10 @@ document.getElementById("neetrange").style.display = "none";
 </div>
 
 
-		<div id="popup" class="popup">
+		<div id="popup" class="popup" onclick="popupclose()">
 		<div class="popup-content ">
-		<button class="popupclosebtn" onClick="popupclose()">❌</button><br>
 		<div><span id="popuptext" class="nicetext"></span></div>
+		<div style="text-align: center;">(click anywhere to close)</div>
 		</div></div>
 		
 		<div id="minepop" class="mfpopup">

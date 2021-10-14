@@ -9,3 +9,7 @@ Credits things;
 Minefield; Largely based on "How To Build A Minesweeper Clone With JavaScript" from Web Dev Simplified; https://www.youtube.com/watch?v=kBMnD_aElCQ
 
 Tons of CSS from W3 Schools; https://www.w3schools.com/
+
+Sound encoding, because it sounds like cool idea to have more stuff than linking actual sound files; https://base64.guru/converter/encode/audio
+
+Minefield - NightWolfCFM (music); https://freesound.org/people/NightWolfCFM/sounds/439343/

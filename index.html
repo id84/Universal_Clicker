@@ -914,7 +914,7 @@ function redrawshoponrequest(){
 	document.getElementById("neet").innerHTML = "";
 	for (let i = 0; i < allposters.length; i++){
 		if(allposters[i].revealed == true){
-			document.getElementById(allposters[i].type).innerHTML +=  '<button class="btn" id=' + allposters[i].name + 'onmouseout="cleartooltip()" onmouseover="tooltips(' + allposters[i].name + ')" onClick="buybtnclick(' + allposters[i].name + ')">Recruit' + emojify(allposters[i].name) + "</button>";
+			document.getElementById(allposters[i].type).innerHTML +=  '<button class="btn" id="' + allposters[i].name + '"onmouseout="cleartooltip()" onmouseover="tooltips(' + allposters[i].name + ')" onClick="buybtnclick(' + allposters[i].name + ')">Recruit' + emojify(allposters[i].name) + "</button>";
 		} else {
 		}
 	}
@@ -929,14 +929,14 @@ function redrawresearchonrequest(){
 	for (let i = 0; i < allresearch.length; i++){
 		if(allresearch[i].revealed == true){
 		if (allresearch[i].researched == true){str = "✔️";}
-			document.getElementById(allresearch[i].type).innerHTML +=  '<td><button class="btn" id=' + allresearch[i].name + 'onmouseout="cleartooltip()" onmouseover="tooltips(' + allresearch[i].name + ')" onClick="resbtnclick(' + allresearch[i].name + ')">' + allresearch[i].prettyname + str + "</button></td>";
+			document.getElementById(allresearch[i].type).innerHTML +=  '<td><button class="btn" id="' + allresearch[i].name + '"onmouseout="cleartooltip()" onmouseover="tooltips(' + allresearch[i].name + ')" onClick="resbtnclick(' + allresearch[i].name + ')">' + allresearch[i].prettyname + str + "</button></td>";
 		}
 		str = "";
 	}
 	
 }
 
-function rendertown(){
+function rendertown(r){
 	var s = "";
 	townarr = [];
 	document.getElementById("townspan").innerHTML = "";
@@ -965,18 +965,19 @@ function rendertown(){
 					default :
 					if (allposters[i].type === "interloper"){}
 					s = "<span onmouseout=\"cleartooltip()\" onmouseover=\"tooltip(\'"+ allposters[i].name+ "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify(allposters[i].name) + "</span>";
+					x += 49; /*1 in fifty*/
 					break;
 				}
 				townarr.push(s);
 			}
 		}
 	}
-
+	if(r){
 		for (let i = townarr.length - 1; i > 0; i--) {
 			const j = getRandomInt(townarr.length);
 			[townarr[i], townarr[j]] = [townarr[j], townarr[i]];
 		}
-
+	}
 	document.getElementById("townspan").innerHTML = townarr.join("");
 
 }
@@ -984,7 +985,7 @@ function rendertown(){
 function removefromtown(a){
 	var i = parseInt(a);
 	allposters[i].count -= 1;
-	rendertown();
+	rendertown(true);
 	
 }
 
@@ -1141,7 +1142,7 @@ function addInterloper(a){
 function opentab(evt, tab) {
 redrawshoponrequest();
 redrawresearchonrequest();
-rendertown();
+rendertown(true);
 
 	var cb = document.getElementById("snglschbx");
 	if (cb.checked == true){
@@ -1185,7 +1186,7 @@ function sunglasschbx(){
 	else  {
 		document.getElementById("maincontainer").style.background = "#FFFFFF";
 	}
-	rendertown();
+	rendertown(true);
 }
 
 
@@ -1417,7 +1418,7 @@ document.onkeydown = function(evt) {
 
 
 
-
+/*
 setInterval( function(){
 	var s = "";
 
@@ -1441,7 +1442,7 @@ setInterval( function(){
 	
 	document.getElementById("traffic").innerHTML = s;
 }, 15000);
-
+*/
 
 
 function asd(){
@@ -1679,51 +1680,36 @@ document.getElementById("neetrange").style.display = "none";
 <div id="maincontainer" class="centerpanel">
 	<div id="leftpanel" class="leftpanel">
 		<div class="logpanel">
-			<span id="text">text</span><br>
+			<span id="text"><p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text</p></span><br>
 
 
 		</div>
-		<div class="scorepanel" id="scorepanel">
+		<div class="scorepanel nicetext" id="scorepanel">
 		</div>
-		<div class="windowpanel">
+		<div id="rightpanel" class="rightpanel"> nothing here </div>
+		<div id="rightpanel" class="rightpanel"> nothing here </div>
+		<div id="rightpanel" class="rightpanel">
+			<table class="poptable nicetext" style="table-layout: fixed;">
+			<tr id="networkpop">
+			</tr>
+			<tr id="normiepop1">
+			</tr>
+			<tr id="normiepop2">
+			</tr>
+			<tr id="neetpop1">
+			</tr>
+			<tr id="neetpop2">
+			</tr>
+			</table>
 			
-			<div class="windowpanel" style="font-size : 250px; letter-spacing: -101px; line-height: 200px; background: linear-gradient(to bottom,  rgba(208,228,247,1) 0%,rgba(127,221,249,1) 21%,rgba(127,221,249,1) 74%,rgba(51,95,117,1) 87%,rgba(13,25,63,1) 100%); ">
-	
-			<span style="letter-spacing: -75px;"></span>🏙🏙🏙🏙
-			</div>
-			<div class="windowpanel"style="font-size : 48px; letter-spacing: -12px; bottom : 0;">
-			<br>
-			<br>
-			<br><span onclick="asd()">🏢</span><span onclick="asd()">🏣</span>🏨🏩🏬🏟️🏛️🏭🏦🚏
-			<!-- <div class="windowpanel" ><div class="marquee" id="train" style="font-size : 36px;  letter-spacing: -12px; z-index=0;   margin-top: 10px; ">🚈🚃🚃🚃🚃🚃🚃🚃🚃🚃🚃🚃🚃🚃🚃🚃</div></div> -->
 			</div>
 
-			<div class="windowanimpanel">
-			
-			<div class="marquee" id="traffic" style="font-size:48px; line-height: 420px; color: #0d193f;">🚗</div>
-			</div>
-		</div>
-		
 		<div id="tooltippanel" class="tooltippanel">
 		<span id="hovertext" class="nicetext"><span>
 
 		</div>
 	</div>
-	<div id="rightpanel" class="rightpanel">
-		<table class="poptable nicetext" style="table-layout: fixed;">
-		<tr id="networkpop">
-		</tr>
-		<tr id="normiepop1">
-		</tr>
-		<tr id="normiepop2">
-		</tr>
-		<tr id="neetpop1">
-		</tr>
-		<tr id="neetpop2">
-		</tr>
-		</table>
-		
-		</div>
+
 
 	
 	
@@ -1750,15 +1736,20 @@ document.getElementById("neetrange").style.display = "none";
 	
 		<div id="BuyTab" class="tabcontent">
 			<div class="verticalpanel">
-				<label id="networkrangelbl" for="networkrange">Network<label><br>
+				<fieldset><legend>Network</legend>
 				<input type="range" id="networkrange"  onmouseout="cleartooltip()" onmouseover="tooltiprange('network')" oninput="tooltiprange('network')" min="1" max="100" value="1"><br>
 				<span id="network"></span><br>
-				<br><label id="normierangelbl" for="normierange">Normies<label><br>
+				</fieldset>
+
+				<fieldset id="normierangelbl"><legend>Normies</legend>
 				<input type="range" id="normierange"  onmouseout="cleartooltip()" onmouseover="tooltiprange('normie')" oninput="tooltiprange('normie')" min="1" max="100" value="1"><br>
 				<span id="normie"></span><br>
-				<br><label id="neetrangelbl" for="neetrange">NEETs<label>
+				</fieldset>
+
+				<fieldset id="neetrangelbl"><legend>NEETs</legend>
 				<input type="range" id="neetrange"  onmouseout="cleartooltip()" onmouseover="tooltiprange('neet')" oninput="tooltiprange('neet')" min="1" max="100" value="1"><br>
 				<span id="neet"></span><br>
+			</fieldset>
 			</div>
 			
 			<div class="verticalpanel">

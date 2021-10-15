@@ -580,7 +580,7 @@
 					var rv2 = document.getElementById("mfyrange").value;
 					var rv3 = document.getElementById("mfmrange").value;
 					document.getElementById("hovertext").innerHTML = "Minefield will be " + rv1 + " rows and " + rv2 + " columns and " + rv3 + "% will be mines.<br>You will be rewarded with " +
-					((rv1 * rv2)/100) * rv3 + " posters if you win!" ;
+					Math.floor(((rv1 * rv2)/100) * rv3) + " posters if you win!" ;
 					break;
 			}
 
@@ -1417,17 +1417,14 @@
 							var n = Math.floor((board.length * board[1].length) / 100);
 							var m = parseInt(document.getElementById("mfmrange").value);
 							var rwrd = n * m;
-
-							var s = "Impressed by your manevouring "+ rwrd + " posters joined your Network;<br>";
-							var gc = 0;
-							var pc = 0;
+							var s = "Impressed by your manevouring some posters joined your Network;<br>";
+							
 							for (let i = 0; i < rwrd; i++) {
 								var c = rewardposters[getRandomInt(rewardposters.length)];
-								if (c.name == "Glowie" && gc < 3){
+								//minefields with less 4% mines will add glowies silently
+								if (c.name == "Glowie" && m < 4){
 									i--;
-									gc++;
-									c.count++;
-									s += emojify(c.name);									
+									c.count++;									
 								}
 								if (c.name != "Glowie") {
 									c.count++;

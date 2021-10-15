@@ -863,6 +863,36 @@ sadd = 0;
 }, 1000);
 
 
+
+
+
+
+/*minute ticker*/
+setInterval( function(){
+	loggerize();
+}, 60000);
+
+
+
+function loggerize() {
+	var now = new Date();
+	var ds = now.getDay() + "." + now.getMonth() + "." + now.getFullYear() + " " + now.getHours() + ":" + now.getMinutes() +": ";
+	var tlog = ds + "1 Minute Passed" + "<p>";
+	document.getElementById("logpanel").innerHTML = tlog + document.getElementById("logpanel").innerHTML;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 function townzoom(){
 	var f = parseFloat(document.getElementById("townrange").value);
 	document.getElementById("townspan").style.fontSize = f.toString() +"%";
@@ -961,7 +991,7 @@ function rendertown(r){
 					}					
 					break;
 					default :
-					if (allposters[i].type === "interloper"){}
+					if (allposters[i].type === "interloper"){s = "<span onmouseout=\"cleartooltip()\" onmouseover=\"tooltip(\'"+ allposters[i].name+ "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify(allposters[i].name) + "</span>"; break;}
 					s = "<span onmouseout=\"cleartooltip()\" onmouseover=\"tooltip(\'"+ allposters[i].name+ "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify(allposters[i].name) + "</span>";
 					x += 49; /*1 in 50*/
 					break;
@@ -984,7 +1014,8 @@ function removefromtown(a){
 	var i = parseInt(a);
 	allposters[i].count -= 1;
 	rendertown(true);
-	
+	redrawscoreboard();
+	redrawpop();
 }
 
 function resbtnclick(a){
@@ -1103,6 +1134,7 @@ function buybtnclick(a){
 			a.count += rv;
 		for (let i = 0; i < rv; i++) {
 			redrawscoreboard();
+			redrawpop();
 		}
 	}
 	
@@ -1138,16 +1170,23 @@ function addInterloper(a){
 
 
 function opentab(evt, tab) {
-redrawshoponrequest();
-redrawresearchonrequest();
-rendertown(true);
-
 	var cb = document.getElementById("snglschbx");
-	if (cb.checked == true){
+	if (cb.checked == true && tab != "TownTab"){
 		cb.checked = false;
 		sunglasschbx();
 	}
-
+/*Do target tabs stuff:  SocializeTab VParentTab Teststuff*/
+switch (tab) {
+	case "BuyTab":
+		redrawshoponrequest();
+	break;
+	case "ResearchTab":
+		redrawresearchonrequest();
+	break;
+	case "TownTab":
+		rendertown(true);
+	break;
+}
 	var i, tabcontent, tablinks;
 	tabcontent = document.getElementsByClassName("tabcontent");
 	for (i = 0; i < tabcontent.length; i++) {
@@ -1159,6 +1198,11 @@ rendertown(true);
 	}
 	document.getElementById(tab).style.display = "block";
 	evt.currentTarget.className += " active";
+
+
+
+
+
 }
 
 function popupclose(){
@@ -1297,7 +1341,6 @@ function renderBoard(boardSizex, boardSizey, board) {
 			});
 	});
 });
-console.log(boardElement);
 
 boardElement.style.setProperty("--sizex", boardSizex);
 boardElement.style.setProperty("--sizey", boardSizey);
@@ -1660,8 +1703,10 @@ function init(){
 setresearchtree();
 
 document.getElementById("snglschbx").checked = false;
-document.getElementById("townrange").value = 100;
-  
+document.getElementById("townrange").value = 200;
+townzoom();  
+
+
 document.getElementById("normierangelbl").style.display = "none";
 document.getElementById("neetrangelbl").style.display = "none";
   
@@ -1676,7 +1721,7 @@ document.getElementById("neetrange").style.display = "none";
 <div id="maincontainer" class="centerpanel">
 	<div id="leftpanel" class="leftpanel">
 		<div class="logpanel">
-			<span id="text"><p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text<p>text</p></span><br>
+		<span id ="logpanel" class="logtext"></span>
 
 
 		</div>
@@ -1715,7 +1760,7 @@ document.getElementById("neetrange").style.display = "none";
 	
 	
 	
-	
+
 	
 	
 	<div id="tabspanel" class="tabspanel">
@@ -1769,7 +1814,7 @@ document.getElementById("neetrange").style.display = "none";
 			<input type="checkbox" onClick="sunglasschbx()" checked="false" id="snglschbx" >
 			<span class="slider round"></span>
 		</label>
-		<input type="range" id="townrange"  onmouseout="cleartooltip()" onmouseover="tooltiprange('townrange')" oninput="townzoom()" min="100" max="1000" value="100">
+		<input type="range" id="townrange"  onmouseout="cleartooltip()" onmouseover="tooltiprange('townrange')" oninput="townzoom()" min="200" max="1000" value="200">
 		</table>
 		</tr>
 		
@@ -1791,7 +1836,7 @@ document.getElementById("neetrange").style.display = "none";
 				<input type="range" id="mfmrange"  onmouseout="cleartooltip()" onmouseover="tooltiprange('mfrange')" oninput="tooltiprange('mfrange')" min="1" max="10" value="1">
 				</label><br>
 				<button class="btn" onClick="createBoardclick()"  onmouseout="cleartooltip()" onmouseover="tooltip('mfstart')">Toggle Minefield</button>
-				<button class="emobtn" onClick=""  onmouseout="" onmouseover="">🔈</button>
+				
 			</fieldset>
 
 		</div>
@@ -1841,6 +1886,7 @@ document.getElementById("neetrange").style.display = "none";
 			<button class="btn" id="lizard" onmouseout="cleartooltip()" onmouseover="tooltips('lizard')" onClick="addInterloper('Lizard')">👨🏼‍💼</button>
 			<button class="btn" onClick="saveGame()">Save</button>
 			<button class="btn" onClick="loadGame()">Load</button>
+			<button class="btn" onClick="loggerize()">Log</button>
 		</div>
 		
 	</div>	

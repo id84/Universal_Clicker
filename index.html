@@ -225,10 +225,10 @@
 			c1rate: 250,
 			c2type: 0,
 			c2rate: 0,
-			p1rate: 1,
-			p1type: "drama",
+			p1rate: 25,
+			p1type: "internets",
 			p2rate: 1,
-			p2type: "memes",
+			p2type: "drama",
 			count: 0,
 		};
 
@@ -267,7 +267,7 @@
 		var Dramatist = {
 			name: "Dramatist",
 			type: "neet",
-			tooltip: "An offshoot of common Trolls of the yore, they finance people to watch them ruin their lifes online.",
+			tooltip: "An offshoot of common Trolls of the yore, they finance people to watch them ruin their lifes online",
 			revealed: false,
 			c1type: "internets",
 			c1rate: 500,
@@ -429,6 +429,7 @@
 		var mishappenVChildren = [CRevolutionary, CEdgey, CBlob, CSkeleton];
 
 		var allposters = [Bot, NPC, Shill, Philosopher, Scientist, Artist, Wagie, Politician, Expert, DIY, Patron, Alphabet, Wizard, Photoshopper, Dramatist, Somethingist, Detective, Scriptkiddie, Veteran, Devout, Glowie, Lizard, CRevolutionary, CEdgey, CBlob, CSkeleton];
+		var rewardposters = [NPC, Philosopher, Scientist, Artist, Alphabet, Wizard, Photoshopper, Glowie]
 		var disguises = [NPC, Philosopher, Scientist, Artist, Wagie, Politician, Expert, DIY, Patron, Alphabet, Wizard, Photoshopper, Dramatist, Somethingist, Detective, Scriptkiddie, Veteran, Devout];
 
 		//researches
@@ -578,7 +579,8 @@
 					var rv1 = document.getElementById("mfxrange").value;
 					var rv2 = document.getElementById("mfyrange").value;
 					var rv3 = document.getElementById("mfmrange").value;
-					document.getElementById("hovertext").innerHTML = "Minefield will be " + rv1 + " rows and " + rv2 + " columns and " + rv3 + "% will be mines. (Currently has no win/lose rewards)";
+					document.getElementById("hovertext").innerHTML = "Minefield will be " + rv1 + " rows and " + rv2 + " columns and " + rv3 + "% will be mines.<br>You will be rewarded with " +
+					((rv1 * rv2)/100) * rv3 + " posters if you win!" ;
 					break;
 			}
 
@@ -685,7 +687,7 @@
 
 
 				case "mfstart":
-					document.getElementById("hovertext").innerHTML = "Start a new minefield, or resume the one still incomplete.";
+					document.getElementById("hovertext").innerHTML = "Start a new minefield, or resume current one.";
 					break;
 
 			}
@@ -733,7 +735,7 @@
 				case "Devout": emoji = "👳"; break;
 
 				case "Lizard": emoji = "🦎"; break;
-
+				case "Glowie":
 				case "Random":
 					emoji = emojify(disguises[getRandomInt(disguises.length)].name);
 					break;
@@ -912,7 +914,7 @@
 				prettypoptable(neetposters, "neetpop1");
 			}
 			if (AdvNeetResearch.researched) {
-				prettypoptable(neetposters, "neetpop2");
+				prettypoptable(advancedneetposters, "neetpop2");
 			}
 		}
 
@@ -1356,8 +1358,9 @@
 			if (mfgameon) {
 				if (tile.status !== TILE_STATUSES.HIDDEN) { return; }
 				if (tile.mine) {
-					document.getElementById("popuptext").innerHTML = "You have lost the game!";
+					document.getElementById("popuptext").innerHTML = "You have lost the game!<br>You said the wrong thing! You got lots of Heat!<br>(Not that it does anything yet)";
 					document.getElementById("popup").style.display = "block";
+					heat += 1000;
 					tile.status = TILE_STATUSES.MINE;
 					CheckMFLose();
 					if (mfgameon) {
@@ -1409,8 +1412,30 @@
 						tt--;
 						if (mfgameon && (tt === 0)) {
 							mfgameon = false;
-							//document.getElementById("minepop").style.display = "none";
-							document.getElementById("popuptext").innerHTML = "You have won the game!";
+
+							//var n = getRandomInt(boardSizex*boardSizey-(TOTAL_MINES*9));
+							var n = Math.floor((board.length * board[1].length) / 100);
+							var m = parseInt(document.getElementById("mfmrange").value);
+							var rwrd = n * m;
+
+							var s = "Impressed by your manevouring "+ rwrd + " posters joined your Network;<br>";
+							var gc = 0;
+							var pc = 0;
+							for (let i = 0; i < rwrd; i++) {
+								var c = rewardposters[getRandomInt(rewardposters.length)];
+								if (c.name == "Glowie" && gc < 3){
+									i--;
+									gc++;
+									c.count++;
+									s += emojify(c.name);									
+								}
+								if (c.name != "Glowie") {
+									c.count++;
+									s += emojify(c.name);
+								}
+							}
+
+							document.getElementById("popuptext").innerHTML = "You have won the game! <br>" + s;
 							document.getElementById("popup").style.display = "block";
 						}
 					}

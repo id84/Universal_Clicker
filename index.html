@@ -876,19 +876,13 @@ setInterval( function(){
 
 function loggerize() {
 	var now = new Date();
-	var ds = now.getDay() + "." + now.getMonth() + "." + now.getFullYear() + " " + now.getHours() + ":" + now.getMinutes() +": ";
-	var tlog = ds + "1 Minute Passed" + "<p>";
+	var m = now.getMinutes();
+	if (m < 10){m = "0" + m;}
+	var ds = now.getDay() + "." + now.getMonth() + "." + now.getFullYear() + " " + now.getHours() + ":" + m +" - ";
+
+	var tlog = ds + "1 Minute Passed <p>";
 	document.getElementById("logpanel").innerHTML = tlog + document.getElementById("logpanel").innerHTML;
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1137,9 +1131,7 @@ function buybtnclick(a){
 			redrawpop();
 		}
 	}
-	
-	//redraweverythig();
-	//alert(rv + " " + town.toString());
+
 }
 
 
@@ -1373,7 +1365,10 @@ function revealtile(tile){
 		CheckMFLose();
 				if (mfgameon){
 				mfgameon = false;
-				alert("loss");
+
+				//document.getElementById("minepop").style.display = "none";
+				document.getElementById("popuptext").innerHTML = "You have lost the game!";
+				document.getElementById("popup").style.display = "block";
 				}
 		return;
 	}
@@ -1421,7 +1416,9 @@ var tt = totaltiles;
 				tt--;
 				if (mfgameon && (tt === 0)){
 				mfgameon = false;
-				alert("won");
+				//document.getElementById("minepop").style.display = "none";
+				document.getElementById("popuptext").innerHTML = "You have won the game!";
+				document.getElementById("popup").style.display = "block";
 				}
 			}
 		}
@@ -1899,6 +1896,7 @@ document.getElementById("neetrange").style.display = "none";
 		<div><span id="popuptext" class="nicetext"></span></div>
 		<div style="text-align: center;">(click anywhere to close)</div>
 		</div></div>
+
 		
 		<div id="minepop" class="mfpopup">
 		<div><button class="popupclosebtn" onClick="minepopclose()">❌</button></div><br>

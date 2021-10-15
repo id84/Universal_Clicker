@@ -446,8 +446,8 @@ width : 100%;
 .board {
 display:inline-grid;
 padding: 10px;
-grid-template-columns: repeat(var(--sizey), 20px);
-grid-template-rows: repeat(var(--sizex), 20px);
+grid-template-columns: repeat(var(--sizey), 26px);
+grid-template-rows: repeat(var(--sizex), 26px);
 gap: 4px;
 background-color: #777;
 margin: auto;
@@ -463,7 +463,7 @@ align-items: center;
 color: white;
 border: 2px solid #BBB;
 user-select: none;
-
+font-size:x-large;
 }
 
 .board >  [data-status="hidden"] {

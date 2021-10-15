@@ -33,8 +33,6 @@ fieldset {
 		box-sizing: border-box;
 		margin:0;
 		padding:0;	
-		border-radius: 15px;
-		border: solid #1f628d 2px;
 	}
 	.rightpanel{
 		height: 100%;
@@ -44,7 +42,7 @@ fieldset {
 		box-sizing: border-box;
 		margin:0;
 		border-radius: 15px;
-		border: solid #1f628d 2px;
+		border: solid #1f628d 1px;
 	}
 	.centerpanel{
 		width:100%;
@@ -186,18 +184,23 @@ display:block;
 		font-size: 26px;
 		padding: 7px 14px 7px 14px;
 		}
+		.emobtn:hover {
+			transform: scale(1.5);
+		}
+
 	.btn {
 		background: #3498db;
 		border-radius: 16px;
 		text-shadow: 2px 2px 3px #666666;
 		box-shadow: 1px 1px 3px #666666;
 		color: #ffffff;
-		font-size: 14px;
+		font-size: 16px;
 		padding: 7px 14px 7px 14px;
 		border: solid #1f628d 2px;
 		transition: all ease-in-out 0.2s;
 		cursor: pointer;
 		}
+
 	.btnwin {
 		background: #3498db;
 		border-radius: 12px;
@@ -222,9 +225,11 @@ display:block;
 	}
 	
 	.townemojis{
-		font-size : 8px;
+		font-size : 12px;
 	}
-	
+	.townemojis:hover {
+		transform: scale(1.2);
+	}
 	.nicetext {
 		
 		color: #000000;
@@ -237,7 +242,8 @@ display:block;
 	
 	.logtext {
 		color: #000000;
-		font-size: 18px;
+		font-size: 16px;
+
 	}
 	.largertext {
 		color: #000000;
@@ -355,13 +361,13 @@ text-align: center;
 animation: glow 1s ease-in-out infinite alternate;
 }
 
-@-webkit-keyframes glow {
+@keyframes glow {
 from {
-text-shadow: 0 0 10px #FFEBCD, 0 0 20px #FFFFE0, 0 0 30px #FFEBCD, 0 0 40px #FFFFE0, 0 0 50px #FFEBCD, 0 0 60px #FFFFE0, 0 0 70px #FFEBCD;
+text-shadow: 0 0 2px #FFEBCD, 0 0 4px #FFFFE0, 0 0 6px #FFEBCD, 0 0 8px #FFFFE0, 0 0 10px #FFEBCD, 0 0 12px #FFFFE0, 0 0 14px #FFEBCD;
 }
 
 to {
-text-shadow: 0 0 20px #F5FFFA, 0 0 30px #FFFAFA, 0 0 40px ##FFDEAD, 0 0 50px #FFFAFA, 0 0 60px ##FFDEAD, 0 0 70px #FFFAFA, 0 0 80px ##FFDEAD;
+text-shadow: 0 0 6px #F5FFFA, 0 0 8px #FFFAFA, 0 0 10px #FFDEAD, 0 0 12px #FFFAFA, 0 0 16px #FFDEAD, 0 0 18px #FFFAFA, 0 0 20px #FFDEAD;
 }
 }
 	
@@ -500,7 +506,6 @@ padding:3px;
 	.vparentpanel{
 		width:75%;
 		display:inline-block;
-		float:left;
 		box-sizing: border-box;
 		text-align: left;
 		overflow-y: hidden;

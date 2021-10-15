@@ -12,4 +12,6 @@ Tons of CSS from W3 Schools; https://www.w3schools.com/
 
 Sound encoding, because it sounds like a cool idea to have more stuff than linking actual sound files; https://base64.guru/converter/encode/audio
 
+
+(removed music from now)
 Minefield - NightWolfCFM (music); https://freesound.org/people/NightWolfCFM/sounds/439343/

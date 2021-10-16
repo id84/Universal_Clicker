@@ -957,9 +957,18 @@
 
 		function rendertown(r) {
 			var s = "";
+			var nskip = 0;
+			var tpop = 0;
 			townarr = [];
 			document.getElementById("townspan").innerHTML = "";
 			document.getElementById("townspan").innerHTML = "";
+			for (let i = 0; i < allposters.length; i++) {
+				if (allposters[i].name === "Bot" || allposters[i].name === "NPC" || allposters[i].name === "Shill" ){continue;}
+					tpop += allposters[i].count;
+			}
+
+			nskip = Math.floor(tpop/100);
+
 			for (let i = 0; i < allposters.length; i++) {
 				if (allposters[i].count >= 1) {
 
@@ -984,7 +993,7 @@
 							default:
 								if (allposters[i].type === "interloper") { s = "<span onmouseout=\"cleartooltip()\" onmouseover=\"tooltip(\'" + allposters[i].name + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify(allposters[i].name) + "</span>"; break; }
 								s = "<span onmouseout=\"cleartooltip()\" onmouseover=\"tooltip(\'" + allposters[i].name + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify(allposters[i].name) + "</span>";
-								x += 49; /*1 in 50*/
+								x += nskip;
 								break;
 						}
 						townarr.push(s);
@@ -998,7 +1007,9 @@
 				}
 			}
 			document.getElementById("townspan").innerHTML = townarr.join("");
-
+			var s = "You can click on a poster to remove one from network.";
+			if (nskip>1){s = "Each character represents up to " + nskip + " posters. " + s;}
+			document.getElementById("networkdata").innerHTML =  s;
 		}
 
 		function removefromtown(a) {
@@ -1103,11 +1114,17 @@
 				case ("internets"): if ((a.c1rate * rv) <= internets) { c1 = true; c1c = (a.c1rate * rv); } break;
 				case ("fame"): if ((a.c1rate * rv) <= fame) { c1 = true; c1c = (a.c1rate * rv); } break;
 				case ("money"): if ((a.c1rate * rv) <= money) { c1 = true; c1c = (a.c1rate * rv); } break;
+				case ("drama"): if ((a.c1rate * rv) <= drama) { c1 = true; c1c = (a.c1rate * rv); } break;
+				case ("memes"): if ((a.c1rate * rv) <= memes) { c1 = true; c1c = (a.c1rate * rv); } break;
+				case ("scie"): if ((a.c1rate * rv) <= scie) { c1 = true; c1c = (a.c1rate * rv); } break;
 			}
 			switch (a.c2type) {
-				case ("internets"): if ((a.c2rate * rv) <= internets) { c2 = true; c1c = (a.c2rate * rv); } break;
-				case ("fame"): if ((a.c2rate * rv) <= fame) { c2 = true; c1c = (a.c2rate * rv); } break;
-				case ("money"): if ((a.c2rate * rv) <= money) { c2 = true; c1c = (a.c2rate * rv); } break;
+				case ("internets"): if ((a.c2rate * rv) <= internets) { c2 = true; c2c = (a.c2rate * rv); } break;
+				case ("fame"): if ((a.c2rate * rv) <= fame) { c2 = true; c2c = (a.c2rate * rv); } break;
+				case ("money"): if ((a.c2rate * rv) <= money) { c2 = true; c2c = (a.c2rate * rv); } break;
+				case ("drama"): if ((a.c2rate * rv) <= drama) { c2 = true; c2c = (a.c2rate * rv); } break;
+				case ("memes"): if ((a.c2rate * rv) <= memes) { c2 = true; c2c = (a.c2rate * rv); } break;
+				case ("scie"): if ((a.c2rate * rv) <= scie) { c2 = true; c2c = (a.c2rate * rv); } break;
 				case (0): c2 = true; break;
 			}
 
@@ -1116,17 +1133,23 @@
 					case ("internets"): internets -= c1c; break;
 					case ("fame"): fame -= c1c; break;
 					case ("money"): money -= c1c; break;
+					case ("drama"): drama -= c1c; break;
+					case ("memes"): memes -= c1c; break;
+					case ("scie"): scie -= c1c; break;
 				}
 				switch (a.c2type) {
 					case ("internets"): internets -= c2c; break;
 					case ("fame"): fame -= c2c; break;
 					case ("money"): money -= c2c; break;
+					case ("drama"): drama -= c2c; break;
+					case ("memes"): memes -= c2c; break;
+					case ("scie"): scie -= c2c; break;
 				}
 				a.count += rv;
-				for (let i = 0; i < rv; i++) {
+
 					redrawscoreboard();
 					redrawpop();
-				}
+
 			}
 
 		}
@@ -1842,7 +1865,7 @@
 
 			<div id="TownTab" class="tabcontent">
 				<table>
-					<tr>
+					<tr><tb>
 						<label class="switch" onmouseover="tooltip('sunglass')" onmouseout="tooltip('clear')">
 							<input type="checkbox" onClick="sunglasschbx()" checked="false" id="snglschbx">
 							<span class="slider round"></span>
@@ -1850,6 +1873,9 @@
 						<input type="range" id="townrange" onmouseout="cleartooltip()"
 							onmouseover="tooltiprange('townrange')" oninput="townzoom()" min="200" max="1000"
 							value="200">
+						</tb>
+					<tb><span id="networkdata" class="logtext"></span></tb>
+					</tr>
 				</table>
 				</tr>
 

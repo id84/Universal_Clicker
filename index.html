@@ -295,7 +295,7 @@
 			c2rate: 100,
 			p1rate: 500,
 			p1type: "internets",
-			p2rate: 5,
+			p2rate: 10,
 			p2type: "heat",
 			count: 0,
 		};
@@ -314,6 +314,7 @@
 			p2rate: -500,
 			p2type: "internets",
 			count: 0,
+			power: 5,
 		};
 
 		var Scriptkiddie = {
@@ -430,7 +431,7 @@
 
 		var allposters = [Bot, NPC, Shill, Philosopher, Scientist, Artist, Wagie, Politician, Expert, DIY, Patron, Alphabet, Wizard, Photoshopper, Dramatist, Somethingist, Detective, Scriptkiddie, Veteran, Devout, Glowie, Lizard, CRevolutionary, CEdgey, CBlob, CSkeleton];
 		var rewardposters = [NPC, Philosopher, Scientist, Artist, Alphabet, Wizard, Photoshopper, Glowie]
-		var disguises = [NPC, Philosopher, Scientist, Artist, Wagie, Politician, Expert, DIY, Patron, Alphabet, Wizard, Photoshopper, Dramatist, Somethingist, Detective, Scriptkiddie, Veteran, Devout];
+		var disguises = [NPC, Philosopher, Scientist, Artist, Wagie, Politician, Expert, DIY, Patron, Alphabet, Wizard, Photoshopper, Dramatist, Somethingist, Detective, Scriptkiddie, Veteran];
 
 		//researches
 		var Research = {
@@ -538,7 +539,27 @@
 			c2type: 0,
 			c2rate: 0,
 		};
+		//CRevolutionary, CEdgey, CBlob, CSkeleton
 
+		var CRevolutionaryResearch = {
+			name: "CRevolutionaryResearch",
+			prettyname: "Non-Politics",
+			tooltip: "Why are they screaming constantly?",
+			html: '<span style="font-weight: bold;">' + emojify(CRevolutionary.name) + "Cyber Revolutionary" + emojify(CRevolutionary.name) + "</span><br>" +
+				CSkeleton.tooltip + "<br><br>" +
+				"Cyber Revolutionary are generally results of frameworks that were left to consume \"Political\" content without any scrubbing.<br>" +
+				"Being constantly bombarded with out of touch and inane socio-political buzzwords, Cyber Revolutionaries work towards some manner of Utopia one moment an insane Dystopia the next. " +
+				"Not so different from their human counterparts, they are not sure what they want and what they are working for.<br><br>" +
+				"Revolutionaries will convert Normies into" + emojify(Somethingist.name) + " Somethingists and NEETs into " + emojify(Veteran.name) + " Veterans at an alarming rate. You better remove them whenever they show up!",
+			type: "intrlpr",
+			revealed: false,
+			researched: false,
+			unlocks: [],
+			c1type: "internets",
+			c1rate: 10000,
+			c2type: "scie",
+			c2rate: 1000,
+		}
 		var CSkeletonResearch = {
 			name: "CSkeletonResearch",
 			prettyname: "Cyber Skeletons",
@@ -559,9 +580,52 @@
 			c2type: "scie",
 			c2rate: 1000,
 		}
+		var GlowieResearch = {
+			name: "GlowieResearch",
+			prettyname: "Glowing Agents",
+			tooltip: "They glow in the dark, they glow in the light. But why?",
+			html: '<span class ="glow">' + emojify("Random") + emojify("Random") + emojify("Random") + "Glowies" + emojify("Random") + emojify("Random") + emojify("Random") + "</span><br>" +
+				Glowie.tooltip + "<br><br>" +
+				"Agent Provocateurs had been a useful tool for internal defence for ages, agitating groups that might grow to be real danger, forcing them to act to in order to use lawful power. " +
+				"Over the centuries Agent Provovateurs evolved to a point they can perfectly mimic any group the inflitrate but this came at a cost; under slightest inspection they will start " +
+				"glowing with the virtues of the group they pretend to be a part of, they embody those ideals so much they will also glow physically and digitally.<br>" +
+				"Likewise it could be used against extrenal threats too. Or suspected probably-maybe-but-really-threats. Or just to get a promotion or to fill a quota. Such is power of \"THE MAN\". " +
+				"Not just \"THE MAN\" but most civillian organizations will try to fill any other organization with Glowies. Just because you are paranoid doesn't here is a Glowie just outside your door.<br><br>" +
+				"Glowies are attracted to large Networks. They will start generating " + emojify("heat") + " Heat and eventually convert Normies into NEETS and cause NEETs to mutate.<br>" +
+				"You can spot Glowies with close inspection or with Sunglasses in Network. Remove Glowies, they are not good news!",
+			type: "intrlpr",
+			revealed: false,
+			researched: false,
+			unlocks: [],
+			c1type: "internets",
+			c1rate: 10000,
+			c2type: "scie",
+			c2rate: 1000,
+		}
+
+		var LizardResearch = {
+			name: "LizardResearch",
+			prettyname: "Shifty People",
+			tooltip: "They look wierd when you put the sunglasses on.",
+			html: '<span style="font-weight: bold;">' + emojify("Random") + "Lizard People" + emojify(Lizard.name) + "</span><br>" +
+				Lizard.tooltip + "<br><br>" +
+				"Humans are not the only sentient spieces on Earth. As a matter of fact they are not the brightest beings on Earth. There are others. Many others.<br>" +
+				"Lizard people, Saurians to ones in the know, can change their appearance, they came to Earth on... huh... well nobody knows but we know they came from another stellar system. " +
+				"One thing is certain, they are here to replace your posters, they will not rest until all of Network is clogged with Lizards!<br><br>" +
+				"Lizards are attracted to" + emojify("heat") + " Heat and " + emojify("drama") + " Drama as a part of their plan to dominate your Network!<br>" +
+				"Lizards can be caught by " + emojify("Detective") + " Detectives, but it is better to monitor your Network and remove them manually!",
+			type: "intrlpr",
+			revealed: false,
+			researched: false,
+			unlocks: [],
+			c1type: "internets",
+			c1rate: 10000,
+			c2type: "scie",
+			c2rate: 1000,
+		}
 
 
-		var allresearch = [Research, PostersResearch, SocialResearch, NormiesResearch, AdvNormiesResearch, NeetResearch, AdvNeetResearch, CSkeletonResearch];
+		var allresearch = [Research, PostersResearch, SocialResearch, NormiesResearch, AdvNormiesResearch, NeetResearch, AdvNeetResearch, CRevolutionaryResearch, CSkeletonResearch, GlowieResearch, LizardResearch];
 
 
 		function setresearchtree() {
@@ -903,7 +967,7 @@
 				var en = [];
 				en = findexistingnormies();
 
-				
+
 				var log = "";
 				var nspk = 0;
 				//pick a random existing normie
@@ -911,11 +975,12 @@
 				if (en.length > 0) {
 					for (let i = 0; i < sklpwr; i++) {
 						var r = getRandomInt(en.length);
-						if (en[r].count > 0) { en[r].count = en[r].count - 1; nspk++; log += emojify(en[r].name);}
+						if (en[r].count > 0) { en[r].count = en[r].count - 1; nspk++; log += emojify(en[r].name); }
 					}
 					log = "Skeletons are out doing spooky things!<br>" + log + " left your Network!";
 					popalert(log);
-					loggerize("Skeletons have spooked " + nspk + " away from Network!");
+					var bts = '<button class="emobtn" onclick="popalert(' + "'" + log + "'" + ')">⚠️</button>';
+					loggerize(bts + "Skeletons have spooked " + nspk + " away from Network!");
 					redrawscoreboard();
 					redrawpop();
 					rendertown(true);
@@ -932,21 +997,60 @@
 				var lizd = 0;
 				var ec = [];
 				ec = en.concat(ent);
-				if (ec.length>0){
+				if (ec.length > 0) {
 					for (let i = 0; i < Lizard.count; i++) {
 						var r = getRandomInt(ec.length);
-						if (ec[r].count > 0){ec[r].count--;}
+						if (ec[r].count > 0) { ec[r].count--; }
 					}
-				Lizard.count += lizd;
-				redrawscoreboard();
-				redrawpop();
-				rendertown(true);
+					Lizard.count += lizd;
+					if (Detective.count > 1) {
+						//Detectives have 5% (default) chance to expose lizards after replacement and autoban them
+						var dt = Math.floor((Detective.count * Detective.power) / 100);
+						if (dt >= 1) {
+							Lizard.count -= dt * 2;
+							var log = emojify("Detective") + "Detectives spotted " + dt * 2 + " Lizards replacing your Posters with Lizards!</span><br><br>" +
+								"Once spotted Lizards fled your Network, sadly fate of " + dt + "posters they were trying to replace is unknown.";
+							popalert(log);
+							var bts = '<button class="emobtn" onclick="popalert(' + "'" + log + "'" + ')">⚠️</button>';
+
+
+							loggerize(bts + dt * 2 + " Lizards were exposed!");
+						}
+					}
+					redrawscoreboard();
+					redrawpop();
+					rendertown(true);
 				}
 
 			}
 
 
 		}, 10000);
+
+
+		setInterval(() => {
+			if (CRevolutionary.count > 0) {
+				var en = findexistingnormies();
+				if (en.length > 0) {
+					for (let i = 0; i < CRevolutionary.count; i++) {
+						var r = getRandomInt(en.length);
+						if (en[r].count > 0) { en[r].count = en[r].count - 1; Somethingist.count += 1; }
+						
+					}
+				}
+				var ent = findexistingneets();
+				if (ent.length > 0) {
+					for (let i = 0; i < CRevolutionary.count; i++) {
+						var r = getRandomInt(ent.length);
+						if (ent[r].count > 0) { ent[r].count = ent[r].count - 1; Veteran.count += 1; }
+
+						
+					}
+				}
+		
+			}
+		}, 10000);
+
 
 
 		function fillposters() {
@@ -988,16 +1092,7 @@
 		}
 
 
-		function loggerize(tlog) {
-			var now = new Date();
-			var m = now.getMinutes();
-			if (m < 10) { m = "0" + m; }
 
-			var ds = now.getDay() + "." + now.getMonth() + "." + now.getFullYear() + " " + now.getHours() + ":" + m + " - ";
-
-			tlog = ds + tlog + "<p>";
-			document.getElementById("logpanel").innerHTML = tlog + document.getElementById("logpanel").innerHTML;
-		}
 
 
 
@@ -1112,9 +1207,9 @@
 							default:
 								if (allposters[i].type === "interloper") { s = "<span onmouseout=\"cleartooltip()\" onmouseover=\"tooltip(\'" + allposters[i].name + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify(allposters[i].name) + "</span>"; break; }
 								s = "<span onmouseout=\"cleartooltip()\" onmouseover=\"tooltip(\'" + allposters[i].name + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify(allposters[i].name) + "</span>";
-								x += nskip;
 								break;
 						}
+						x += nskip;
 						townarr.push(s);
 					}
 				}
@@ -1139,19 +1234,32 @@
 			var sn = allposters[i].name;
 			switch (sn) {
 				case "Glowie":
-					if (CSkeletonResearch.researched) { workremovefromtown(a); }
-					else { popalert("You are too fascinated by the glow to remove!<br>Research " + '<span style="font-weight: bold;">' + '"Intelligence"' + "</span> to withstand the glow!"); }
+					if (GlowieResearch.researched) { workremovefromtown(a); }
+					else {
+						popalert("You are too fascinated by the glow to remove!<br>Research " + '<span style="font-weight: bold;">' + GlowieResearch.prettyname + "</span> to withstand the glow!");
+						GlowieResearch.revealed = true;
+					}
 					break;
 				case "Lizard":
-					if (CSkeletonResearch.researched) { workremovefromtown(a); }
-					else { popalert("You are just not sure about banning this one!<br>Research " + '<span style="font-weight: bold;">' + '"Lizard People"' + "</span> to understand why!"); }
+					if (LizardResearch.researched) { workremovefromtown(a); }
+					else {
+						popalert("You are just not sure about banning this one!<br>Research " + '<span style="font-weight: bold;">' + LizardResearch.prettyname + "</span> to understand why!");
+						LizardResearch.revealed = true;
+					}
+					break;
+				case "Cyber Revolutionary":
+				if (CRevolutionaryResearch.researched) { workremovefromtown(a); }
+					else {
+						popalert("You are too baffled by the slogans to ban this!<br>Research " + '<span style="font-weight: bold;">' + CRevolutionaryResearch.prettyname + "</span> to learn non-politics.");
+						CRevolutionaryResearch.revealed = true;
+					}
 					break;
 				case "Cyber Skeleton":
 					if (CSkeletonResearch.researched) { workremovefromtown(a); }
 					else {
-						popalert("You are too spooked to do that!<br>Research " + '<span style="font-weight: bold;">' + '"Cyber Skeletons"' + "</span> to face your fears!")
+						popalert("You are too spooked to do that!<br>Research " + '<span style="font-weight: bold;">' + CSkeletonResearch.prettyname + "</span> to face your fears!")
 						CSkeletonResearch.revealed = true;
-						;
+
 					}
 					break;
 
@@ -1833,6 +1941,19 @@
 			document.getElementById("popuptext").innerHTML = s + "<br><br>";
 			document.getElementById("popup").style.display = "block";
 		}
+
+		function loggerize(tlog) {
+			var now = new Date();
+			var m = now.getMinutes();
+			if (m < 10) { m = "0" + m; }
+
+			var ds = now.getDay() + "." + now.getMonth() + "." + now.getFullYear() + " " + now.getHours() + ":" + m + " - ";
+
+			tlog = ds + tlog + "<p>";
+			document.getElementById("logpanel").innerHTML = tlog + document.getElementById("logpanel").innerHTML;
+		}
+
+
 
 		function init() {
 			setresearchtree();

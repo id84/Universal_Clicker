@@ -543,12 +543,12 @@
 
 		var CRevolutionaryResearch = {
 			name: "CRevolutionaryResearch",
-			prettyname: "Non-Politics",
+			prettyname: "Schizo-Politics",
 			tooltip: "Why are they screaming constantly?",
 			html: '<span style="font-weight: bold;">' + emojify(CRevolutionary.name) + "Cyber Revolutionary" + emojify(CRevolutionary.name) + "</span><br>" +
-				CSkeleton.tooltip + "<br><br>" +
+				CRevolutionary.tooltip + "<br><br>" +
 				"Cyber Revolutionary are generally results of frameworks that were left to consume \"Political\" content without any scrubbing.<br>" +
-				"Being constantly bombarded with out of touch and inane socio-political buzzwords, Cyber Revolutionaries work towards some manner of Utopia one moment an insane Dystopia the next. " +
+				"Being constantly bombarded with out of touch and inane schizo-political buzzwords, Cyber Revolutionaries work towards some manner of Utopia one moment an insane Dystopia the next. " +
 				"Not so different from their human counterparts, they are not sure what they want and what they are working for.<br><br>" +
 				"Revolutionaries will convert Normies into" + emojify(Somethingist.name) + " Somethingists and NEETs into " + emojify(Veteran.name) + " Veterans at an alarming rate. You better remove them whenever they show up!",
 			type: "intrlpr",
@@ -589,8 +589,8 @@
 				"Agent Provocateurs had been a useful tool for internal defence for ages, agitating groups that might grow to be real danger, forcing them to act to in order to use lawful power. " +
 				"Over the centuries Agent Provovateurs evolved to a point they can perfectly mimic any group the inflitrate but this came at a cost; under slightest inspection they will start " +
 				"glowing with the virtues of the group they pretend to be a part of, they embody those ideals so much they will also glow physically and digitally.<br>" +
-				"Likewise it could be used against extrenal threats too. Or suspected probably-maybe-but-really-threats. Or just to get a promotion or to fill a quota. Such is power of \"THE MAN\". " +
-				"Not just \"THE MAN\" but most civillian organizations will try to fill any other organization with Glowies. Just because you are paranoid doesn't here is a Glowie just outside your door.<br><br>" +
+				"Later these Agents were used against extrenal threats too. Or suspected probably-maybe-but-really-threats. Or just to get a promotion or to fill a quota. Such is power of \"THE MAN\". " +
+				"Not just \"THE MAN\" but most civillian organizations will try to fill any other organization with Glowies. Just because you are paranoid doesn't here is not a Glowie just outside your door.<br><br>" +
 				"Glowies are attracted to large Networks. They will start generating " + emojify("heat") + " Heat and eventually convert Normies into NEETS and cause NEETs to mutate.<br>" +
 				"You can spot Glowies with close inspection or with Sunglasses in Network. Remove Glowies, they are not good news!",
 			type: "intrlpr",
@@ -713,7 +713,7 @@
 			switch (i) {
 				case "BuyTab": s = "Add more posters to your Network"; break;
 				case "ResearchTab": s = "Research stuff by Googling them"; break;
-				case "TownTab": s = "View your Network of posters<br>" + emojify("Bot") + "," + emojify("NPC") + "," + emojify("Shill") + " are excluded."; break;
+				case "TownTab": s = "View your Network of posters."; break;
 				case "SocializeTab": s = "Carefully participate in society. For some reason."; break;
 				case "VParentTab": s = "Virtual Parentage. Make sure your digital lineage is not dead."; break;
 				case "Teststuff": s = "Solo amateur developer pls understand"; break;
@@ -837,6 +837,8 @@
 				case "PoliceCar": emoji = "🚓"; break;
 				case "Suv": emoji = "🚙"; break;
 				case "Lorry": emoji = "🚛"; break;
+
+				case "Alert": emoji = "⚠️"; break;
 
 				case "Shower": emoji = "🚿"; break;
 				case "Food": emoji = "🥫"; break;
@@ -979,7 +981,7 @@
 					}
 					log = "Skeletons are out doing spooky things!<br>" + log + " left your Network!";
 					popalert(log);
-					var bts = '<button class="emobtn" onclick="popalert(' + "'" + log + "'" + ')">⚠️</button>';
+					var bts = '<button class="emobtn" onclick="popalert(' + "'" + log + "'" + ')">'+ emojify("Alert") +"</button>";
 					loggerize(bts + "Skeletons have spooked " + nspk + " away from Network!");
 					redrawscoreboard();
 					redrawpop();
@@ -1009,9 +1011,9 @@
 						if (dt >= 1) {
 							Lizard.count -= dt * 2;
 							var log = emojify("Detective") + "Detectives spotted " + dt * 2 + " Lizards replacing your Posters with Lizards!</span><br><br>" +
-								"Once spotted Lizards fled your Network, sadly fate of " + dt + "posters they were trying to replace is unknown.";
+								"Once spotted Lizards fled your Network, sadly fate of " + dt + " posters they were replacing is unknown.";
 							popalert(log);
-							var bts = '<button class="emobtn" onclick="popalert(' + "'" + log + "'" + ')">⚠️</button>';
+							var bts = '<button class="emobtn" onclick="popalert(' + "'" + log + "'" + ')">'+ emojify("Alert") + "</button>";
 
 
 							loggerize(bts + dt * 2 + " Lizards were exposed!");
@@ -1035,7 +1037,7 @@
 					for (let i = 0; i < CRevolutionary.count; i++) {
 						var r = getRandomInt(en.length);
 						if (en[r].count > 0) { en[r].count = en[r].count - 1; Somethingist.count += 1; }
-						
+
 					}
 				}
 				var ent = findexistingneets();
@@ -1044,10 +1046,10 @@
 						var r = getRandomInt(ent.length);
 						if (ent[r].count > 0) { ent[r].count = ent[r].count - 1; Veteran.count += 1; }
 
-						
+
 					}
 				}
-		
+
 			}
 		}, 10000);
 
@@ -1177,7 +1179,6 @@
 			document.getElementById("townspan").innerHTML = "";
 			document.getElementById("townspan").innerHTML = "";
 			for (let i = 0; i < allposters.length; i++) {
-				if (allposters[i].name === "Bot" || allposters[i].name === "NPC" || allposters[i].name === "Shill") { continue; }
 				tpop += allposters[i].count;
 			}
 
@@ -1189,10 +1190,6 @@
 					for (let x = 0; x < allposters[i].count; x++) {
 
 						switch (allposters[i].name) {
-							case "Bot":
-							case "NPC":
-							case "Shill":
-								break;
 							case "Glowie":
 								s = "<span class=\"glow\" onmouseout=\"cleartooltip()\" onmouseover=\"tooltip(\'" + allposters[i].name + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify("Random") + "</span>";
 								break;
@@ -1248,7 +1245,7 @@
 					}
 					break;
 				case "Cyber Revolutionary":
-				if (CRevolutionaryResearch.researched) { workremovefromtown(a); }
+					if (CRevolutionaryResearch.researched) { workremovefromtown(a); }
 					else {
 						popalert("You are too baffled by the slogans to ban this!<br>Research " + '<span style="font-weight: bold;">' + CRevolutionaryResearch.prettyname + "</span> to learn non-politics.");
 						CRevolutionaryResearch.revealed = true;
@@ -1424,6 +1421,9 @@
 					break;
 				case "TownTab":
 					rendertown(true);
+					break;
+				case "WikiTab":
+
 					break;
 			}
 			var i, tabcontent, tablinks;
@@ -1955,6 +1955,51 @@
 
 
 
+		function wikiarticle(s) {
+			var ele = document.getElementById("wikitext");
+			switch (s) {
+				case "Wiki":
+					ele.innerHTML = "<br><span class=\"largertext\" style =\"font-weight: bold;\">Welcome to Wiki!</span><br><br>Where all your edits will be reverted and you will be banned!";
+					break;
+				case "Log":
+					ele.innerHTML = "<br><span style=\"font-weight: bold\";>Log</span><br><br>"+
+					"Log keeps track of events that you should keep an eye on with timestamp. Logger keeps track of alerts too, if you see " + emojify("Alert") + " you can click on it to review the Alert.";
+					break;
+				case "Resources":
+				ele.innerHTML = "<br><span style=\"font-weight: bold\";>Resources</span><br><br>"+
+					"Resources represent abstract requirements to take certain actions and more importantly add more posters to your Network. !!NOT FULLY IMPLEMENTED!!<br>"+
+					emojify("internets")+ "Internets<br> Internets represents general \"being in the know\" and general experience interacting with it.<br>"+
+					emojify("heat")+ "Heat<br> Being on Internets and doing certain things on will attract attention, sometime unwanted attention. You don't want too much of it.<br>"+
+					emojify("fame")+ "Fame<br> Fame is mostly positive attention you draw. A key resources to get out of dodge and have a large Network.<br>"+
+					emojify("money")+ "Money<br> Digital Money makes the Digital World go around... at least one day. This resource can be used to pay Shills or buy later upgrades (at some point in future).<br>"+
+					emojify("drama")+ "Drama<br> Remember Reality Shows? Remember people debasing themselves for fame. Yeah, they are on Internets. Numbering in millions.<br>"+
+					emojify("memes")+ "Memes<br> A transmission medium for ideas, emotions, jokes and propaganda. But mostly thinly veiled propaganda as jokes and looking for propaganda in every joke<br>"+
+					emojify("scie")+ "Science<br> Social sciences, hard sciences, soft sciences, long sciences, tight sciences... all sorts of Science. It is not like it is a safe harbour in a mad world, but closest thing to one.<br>"+
+					"";
+					break;
+				case "Population":
+				ele.innerHTML = "<br><span style=\"font-weight: bold\";>Population</span><br><br>"+
+					"This panel shows the number of Posters you have identified. Interlopers can also be scanned but you won't see exact numbers.";
+					break;
+				case "Community":
+				ele.innerHTML = "<br><span style=\"font-weight: bold\";>Community</span><br><br>"+
+					"Community tab lists Posters you can add to your Network. You will need certain Researches done in order to unlock most Posters. Use sliders to set how many Posters you want but be careful some Posters have up keep!";
+					break;
+					case "Research":
+				ele.innerHTML = "<br><span style=\"font-weight: bold\";>Research</span><br><br>"+
+					"Research tab lists available or already Researched items. You can clik on an already researched item to read the results. Researches cost resources. Some of them will be revealed after certain events, others will be follow ups to previous ones.";
+					break;
+					case "Network":
+				ele.innerHTML = "<br><span style=\"font-weight: bold\";>Network</span><br><br>"+
+					"Network tab shows all the Posters related to you. Network is a place where you can view and more importantly remove Posters from your Network by clicking on them. You will kick only one Poster at a time, while each may represent more then one Poster. While kicking some Poster with upkeep is tempting, you should find and ban Interlopers which are detrimental, even fatal, in long run.";
+					break;
+			}
+
+		}
+
+/* */
+
+
 		function init() {
 			setresearchtree();
 
@@ -2034,6 +2079,8 @@
 					onmouseover="tooltipstabs('VParentTab')">VParentage</button>
 				<button class="tablinks" onclick="opentab(event, 'Teststuff')" onmouseout="cleartooltip()"
 					onmouseover="tooltipstabs('Teststuff')">Test</button>
+				<button class="tablinks" onclick="opentab(event, 'WikiTab')" onmouseout="cleartooltip()"
+					onmouseover="tooltipstabs('Teststuff')">Wiki</button>
 			</div>
 
 
@@ -2045,7 +2092,7 @@
 							onmouseover="tooltiprange('network')" oninput="tooltiprange('network')" min="1" max="100"
 							value="1"><br>
 						<span id="network"></span><br>
-					</fieldset>
+					</fieldset><br>
 
 					<fieldset id="normierangelbl">
 						<legend>Normies</legend>
@@ -2053,7 +2100,7 @@
 							onmouseover="tooltiprange('normie')" oninput="tooltiprange('normie')" min="1" max="100"
 							value="1"><br>
 						<span id="normie"></span><br>
-					</fieldset>
+					</fieldset><br>
 
 					<fieldset id="neetrangelbl">
 						<legend>NEETs</legend>
@@ -2061,7 +2108,7 @@
 							onmouseover="tooltiprange('neet')" oninput="tooltiprange('neet')" min="1" max="100"
 							value="1"><br>
 						<span id="neet"></span><br>
-					</fieldset>
+					</fieldset><br>
 				</div>
 
 				<div class="verticalpanel">
@@ -2172,7 +2219,7 @@
 
 						<div id="vchildemoji"
 							style="font-size: 96px; display: flex; justify-content: center; align-items: center;">
-							🧬💿<br>🖥️</div><br>
+							In super fast test mode! Not playable!</div><br>
 						<div id="vchildemoji2"
 							style="font-size:36px; display: flex; justify-content: center; align-items: center;"></div>
 						<br>
@@ -2219,6 +2266,25 @@
 				<button class="btn" onClick="loggerize()">Log</button>
 			</div>
 
+			<div id="WikiTab" class="tabcontent">
+				<div class="verticalpanel nicetext"><span onclick="wikiarticle('Wiki')">📚 Wiki!</span>
+					<ul id="wikipanels" class="wkul">
+						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Log')">Log</button></li>
+						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Resources')">Resources</button></li>
+						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Population')">Population</button></li>
+					</ul>
+					<ul id="wikitabs" class="wkul">
+						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Community')">Community</button></li> 
+						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Research')">Research</button></li>
+						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Network')">Network</button></li>
+					</ul>
+					<ul id="wikievents" class="wkul"></ul>
+					<ul id="wikiresearch" class="wkul"></ul>
+					<ul id="wikiposters" class="wkul"></ul>
+
+				</div>
+				<div id="wikitext" class="verticalpanel nicetext"><br><span class="largertext" style ="font-weight: bold;">Welcome to Wiki!</span><br><br>Where all your edits will be reverted and you will be banned!</div>
+			</div>
 		</div>
 
 	</div>

@@ -27,37 +27,6 @@
 
 
 
-		//Bad naming convention ahead, not gonna merge them.
-		function tooltiprange(range) {
-			var rv = 0;
-			switch (range) {
-				case "network":
-					rv = document.getElementById("networkrange").value;
-					document.getElementById("hovertext").innerHTML = "Network Buy Multiplier <strong>x" + rv + "</strong>";
-					break;
-				case "normie":
-					rv = document.getElementById("normierange").value;
-					document.getElementById("hovertext").innerHTML = "Normie Buy Multiplier <strong>x" + rv + "</strong>";
-					break;
-				case "neet":
-					rv = document.getElementById("neetrange").value;
-					document.getElementById("hovertext").innerHTML = "Neet Buy Multiplier <strong>x" + rv + "</strong>";
-					break;
-				case "townrange":
-					rv = document.getElementById("townrange").value;
-					document.getElementById("hovertext").innerHTML = "Zoom into your Network";
-					break;
-				case "mfrange":
-					var rv1 = document.getElementById("mfxrange").value;
-					var rv2 = document.getElementById("mfyrange").value;
-					var rv3 = document.getElementById("mfmrange").value;
-					document.getElementById("hovertext").innerHTML = "Minefield will be " + rv1 + " rows and " + rv2 + " columns and " + rv3 + "% will be mines.<br>You will be rewarded up to " +
-						Math.floor(((rv1 * rv2) / 100) * rv3) + " random posters if you win!";
-					break;
-			}
-
-		}
-
 		//Heartbeat
 		setInterval(function () {
 
@@ -338,6 +307,7 @@
 			document.getElementById("network").innerHTML = "";
 			document.getElementById("normie").innerHTML = "";
 			document.getElementById("neet").innerHTML = "";
+			document.getElementById("neet").innerHTML = "";
 			for (let i = 0; i < allposters.length; i++) {
 				if (allposters[i].revealed == true) {
 					document.getElementById(allposters[i].type).innerHTML += '<button class="btn" id="' + allposters[i].name + '"onmouseout="cleartooltip()" onmouseover="tooltips(' + allposters[i].name + ')" onClick="buybtnclick(' + allposters[i].name + ')">Recruit' + emojify(allposters[i].name) + "</button>";
@@ -352,7 +322,7 @@
 			document.getElementById("research").innerHTML = "";
 			document.getElementById("tnormie").innerHTML = "";
 			document.getElementById("tneet").innerHTML = "";
-			document.getElementById("intrlpr").innerHTML = "";
+			document.getElementById("tintrlpr").innerHTML = "";
 			for (let i = 0; i < allresearch.length; i++) {
 				if (allresearch[i].revealed == true) {
 					if (allresearch[i].researched == true) { str = "✔️"; }

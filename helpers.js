@@ -75,6 +75,7 @@ function opentab(evt, tab) {
 }
 
 function saveGame() {
+    localStorage.clear();
     //save resources
     localStorage.setItem("heat", heat);
     localStorage.setItem("fame", fame);
@@ -91,6 +92,7 @@ function saveGame() {
     //save research
     for (let i = 0; i < allresearch.length; i++) {
         localStorage.setItem(allresearch[i].name, allresearch[i].researched);
+        localStorage.setItem("researchreveal" + i, allresearch[i].revealed);
     }
 
 }
@@ -113,9 +115,10 @@ function loadGame() {
     //do research
     for (let i = 0; i < allresearch.length; i++) {
         allresearch[i].researched = localStorage.getItem(allresearch[i].name);
-        if (allresearch[i].researched == "true") { allresearch[i].researched = true; workResearch(allresearch[i], false); }
+        allresearch[i].revealed = localStorage.getItem("researchreveal" + i);
+        if (allresearch[i].researched === "true") { allresearch[i].researched = true; workResearch(allresearch[i], false); }
         else { allresearch[i].researched = false; }
-        if (allresearch[i].revealed == "true" || allresearch[i].revealed) { allresearch[i].revealed = true; }
+        if (allresearch[i].revealed === "true") { allresearch[i].revealed = true; }
         else { allresearch[i].revealed = false; }
     }
 }

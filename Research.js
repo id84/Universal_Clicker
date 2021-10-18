@@ -108,7 +108,7 @@ var CRevolutionaryResearch = {
         "Being constantly bombarded with out of touch and inane schizo-political buzzwords, Cyber Revolutionaries work towards some manner of Utopia one moment an insane Dystopia the next. " +
         "Not so different from their human counterparts, they are not sure what they want and what they are working for.<br><br>" +
         "Revolutionaries will convert Normies into" + emojify(Somethingist.name) + " Somethingists and NEETs into " + emojify(Veteran.name) + " Veterans at an alarming rate. You better remove them whenever they show up!",
-    type: "intrlpr",
+    type: "tintrlpr",
     revealed: false,
     researched: false,
     unlocks: [],
@@ -128,7 +128,7 @@ var CSkeletonResearch = {
         "It is estimated they result in hundreds of Normies leaving Internets forever. Don't let them linger in your Network for long!<br><br>" +
         "Skeletons spooking powers are increased by" + emojify("drama") + " Drama, " + emojify("heat") + " Heat, " + emojify("Wizard") + " Wizards, " + emojify("Lizard") + " Lizards and " + emojify("Dramatist") + " Dramatists.<br>" +
         "Skeletons themselves are spooked by " + emojify("scie") + " Science and " + emojify("Scientist") + " Scientists, also " + emojify("Veteran") + " Veterans will prevent Normies from being spooked.",
-    type: "intrlpr",
+    type: "tintrlpr",
     revealed: false,
     researched: false,
     unlocks: [],
@@ -150,7 +150,7 @@ var GlowieResearch = {
         "Not just \"THE MAN\" but most civillian organizations will try to fill any other organization with Glowies. Just because you are paranoid doesn't here is not a Glowie just outside your door.<br><br>" +
         "Glowies are attracted to large Networks. They will start generating " + emojify("heat") + " Heat and eventually convert Normies into NEETS and cause NEETs to mutate.<br>" +
         "You can spot Glowies with close inspection or with Sunglasses in Network. Remove Glowies, they are not good news!",
-    type: "intrlpr",
+    type: "tintrlpr",
     revealed: false,
     researched: false,
     unlocks: [],
@@ -170,7 +170,7 @@ var LizardResearch = {
         "One thing is certain, they are here to replace your posters, they will not rest until all of Network is clogged with Lizards!<br><br>" +
         "Lizards are attracted to" + emojify("heat") + " Heat and " + emojify("drama") + " Drama as a part of their plan to dominate your Network!<br>" +
         "Lizards can be caught by " + emojify("Detective") + " Detectives, but it is better to monitor your Network and remove them manually!",
-    type: "intrlpr",
+    type: "tintrlpr",
     revealed: false,
     researched: false,
     unlocks: [],

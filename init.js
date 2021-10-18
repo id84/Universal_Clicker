@@ -12,5 +12,6 @@ function init() {
 
     document.getElementById("normierange").style.display = "none";
     document.getElementById("neetrange").style.display = "none";
-
+    document.getElementById("popalertschkbx").checked = true;
+    
 }

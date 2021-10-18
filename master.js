@@ -9,7 +9,7 @@
 		var money = 0;
 		var drama = 0;
 		var memes = 0;
-		var scie = 0;
+		var science = 0;
 
 		var iadd = 0;
 		var fadd = 0;
@@ -19,7 +19,7 @@
 		var meadd = 0;
 		var sadd = 0;
 
-		var glowies = 0;
+
 
 		var townarr = [];
 
@@ -65,7 +65,7 @@
 						case ("memes"):
 							meadd += allposters[i].p1rate * allposters[i].count;
 							break;
-						case ("scie"):
+						case ("science"):
 							sadd += allposters[i].p1rate * allposters[i].count;
 							break;
 					}
@@ -88,7 +88,7 @@
 						case ("memes"):
 							meadd += allposters[i].p2rate * allposters[i].count;
 							break;
-						case ("scie"):
+						case ("science"):
 							sadd += allposters[i].p2rate * allposters[i].count;
 							break;
 					}
@@ -101,7 +101,7 @@
 			heat += hadd;
 			drama += dadd;
 			memes += meadd;
-			scie += sadd;
+			science += sadd;
 
 			redrawscoreboard();
 			redrawpop();
@@ -112,147 +112,10 @@
 
 
 
-		/*minute ticker*/
-		setInterval(function () {
-			loggerize("minute!");
-			if (CSkeleton.count > 0) {
-				var sklpwr = Math.floor(drama / 1000); //drama increases skeleton power
-				sklpwr += Math.floor(heat / 1000); //more heat on you more spookier
-				sklpwr += Math.floor(Wizard.count * 10); //wizards amplify skeleton power
-				sklpwr += Math.floor(Lizard.count * 10); //lizards also amplify skeleton power
-				sklpwr += Math.floor(Dramatist.count * 10); //Dramatist too
-				sklpwr -= Math.floor(scie / 1000); //skeletons fear science
-				sklpwr -= Math.floor(Scientist.count * 5); //so scientists
-				sklpwr -= Math.floor(Veteran.count * 10); //Veterans won't let anyone fall for skeletons cheap tricks
-
-
-				if (sklpwr < 0) { sklpwr = CSkeleton.count * (getRandomInt(2) + 1); }  //however skeletons will still scare some if skelepower is negative
-				var en = [];
-				en = findexistingnormies();
-
-
-				var log = "";
-				var nspk = 0;
-				//pick a random existing normie
-
-				if (en.length > 0) {
-					for (let i = 0; i < sklpwr; i++) {
-						var r = getRandomInt(en.length);
-						if (en[r].count > 0) { en[r].count = en[r].count - 1; nspk++; log += emojify(en[r].name); }
-					}
-					log = "Skeletons are out doing spooky things! They scared away " + nspk + " Posters! <br>" + log;
-					popalert(log);
-					var bts = '<button class="emobtn" onclick="popalert(' + "'" + log + "'" + ')">'+ emojify("Alert") +"</button>";
-					loggerize(bts + "Skeletons have spooked " + nspk + " away from Network!");
-					redrawscoreboard();
-					redrawpop();
-					rendertown(true);
-				}
-
-			}
-
-			if (Lizard.count > 0) {
-				//lizards will slowly and silently replace posters they won't contribute anything
-				var en = [];
-				en = findexistingnormies();
-				var ent = [];
-				ent = findexistingneets();
-				var lizd = 0;
-				var ec = [];
-				ec = en.concat(ent);
-				if (ec.length > 0) {
-					for (let i = 0; i < Lizard.count; i++) {
-						var r = getRandomInt(ec.length);
-						if (ec[r].count > 0) { ec[r].count--; }
-					}
-					Lizard.count += lizd;
-					if (Detective.count > 1) {
-						//Detectives have 5% (default) chance to expose lizards after replacement and autoban them
-						var dt = Math.floor((Detective.count * Detective.power) / 100);
-						if (dt >= 1) {
-							Lizard.count -= dt * 2;
-							var log = emojify("Detective") + "Detectives spotted " + dt * 2 + " Lizards replacing your Posters with Lizards!</span><br><br>" +
-								"Once spotted Lizards fled your Network, sadly fate of " + dt + " posters they were replacing is unknown.";
-							popalert(log);
-							var bts = '<button class="emobtn" onclick="popalert(' + "'" + log + "'" + ')">'+ emojify("Alert") + "</button>";
-
-
-							loggerize(bts + dt * 2 + " Lizards were exposed!");
-						}
-					}
-					redrawscoreboard();
-					redrawpop();
-					rendertown(true);
-				}
-
-			}
-
-
-		}, 10000);
-
-
-		setInterval(() => {
-			if (CRevolutionary.count > 0) {
-				var en = findexistingnormies();
-				if (en.length > 0) {
-					for (let i = 0; i < CRevolutionary.count; i++) {
-						var r = getRandomInt(en.length);
-						if (en[r].count > 0) { en[r].count = en[r].count - 1; Somethingist.count += 1; }
-
-					}
-				}
-				var ent = findexistingneets();
-				if (ent.length > 0) {
-					for (let i = 0; i < CRevolutionary.count; i++) {
-						var r = getRandomInt(ent.length);
-						if (ent[r].count > 0) { ent[r].count = ent[r].count - 1; Veteran.count += 1; }
-
-
-					}
-				}
-
-			}
-		}, 10000);
 
 
 
-		function fillposters() {
-			for (let i = 0; i < allposters.length; i++) {
-				allposters[i].count += 100;
 
-			}
-
-		}
-
-		function findexistingnormies() {
-			var en = [];
-			for (let i = 0; i < normieposters.length; i++) {
-				if (normieposters[i].count > 0) {
-					en.push(normieposters[i]);
-				}
-			}
-			for (let i = 0; i < advancednormieposters.length; i++) {
-				if (advancednormieposters[i].count > 0) {
-					en.push(advancednormieposters[i]);
-				}
-			}
-			return en;
-		}
-
-		function findexistingneets() {
-			var en = [];
-			for (let i = 0; i < neetposters.length; i++) {
-				if (neetposters[i].count > 0) {
-					en.push(neetposters[i]);
-				}
-			}
-			for (let i = 0; i < advancedneetposters.length; i++) {
-				if (advancedneetposters[i].count > 0) {
-					en.push(advancedneetposters[i]);
-				}
-			}
-			return en;
-		}
 
 
 
@@ -266,6 +129,29 @@
 
 		}
 
+
+
+		function redrawwiki() {
+			document.getElementById("wikiposters").innerHTML = "";
+			for (let i = 0; i < allregularposters.length; i++) {
+				const element = allregularposters[i];
+				//wiki is full of spoilers
+				var s = "<li class=\"wkli\"><button class=\"wkbtn\" onclick=\"staticposterarticle("+i+")\">" + emojify(element.name,1) + "</button></li>";
+				document.getElementById("wikiposters").innerHTML += s;
+			}
+			document.getElementById("wikiinterlopers").innerHTML = "";
+			for (let i = 0; i < interlopers.length; i++) {
+				const element = interlopers[i];
+				//wiki is full of spoilers
+				var s = "<li class=\"wkli\"><button class=\"wkbtn\" onclick=\"interloperarticle("+i+")\">" + emojify(element.name,1) + "</button></li>";
+				document.getElementById("wikiinterlopers").innerHTML += s;
+			}
+
+
+
+		}
+
+
 		function redrawscoreboard() {
 			document.getElementById("scorepanel").innerHTML = "<table class=" + '"scoretext"' + ">" +
 				"<tr><th  style=" + '"width:70%"' + ">" + internets.toLocaleString('en-GB') + "</th><th  style=" + '"width:10%"' + "> " + emojify("internets") + "</th><th  style=" + '"width:20%"' + ">" + iadd.toLocaleString('en-GB') + "/s</th></tr>" +
@@ -274,7 +160,7 @@
 				"<tr><th  style=" + '"width:70%"' + ">" + money.toLocaleString('en-GB') + "</th><th  style=" + '"width:10%"' + "> " + emojify("money") + "</th><th  style=" + '"width:20%"' + ">" + madd.toLocaleString('en-GB') + "/s</th></tr>" +
 				"<tr><th  style=" + '"width:70%"' + ">" + drama.toLocaleString('en-GB') + "</th><th  style=" + '"width:10%"' + "> " + emojify("drama") + "</th><th  style=" + '"width:20%"' + ">" + dadd.toLocaleString('en-GB') + "/s</th></tr>" +
 				"<tr><th  style=" + '"width:70%"' + ">" + memes.toLocaleString('en-GB') + "</th><th  style=" + '"width:10%"' + "> " + emojify("memes") + "</th><th  style=" + '"width:20%"' + ">" + meadd + "/s</th></tr>" +
-				"<tr><th  style=" + '"width:70%"' + ">" + scie.toLocaleString('en-GB') + "</th><th  style=" + '"width:10%"' + "> " + emojify("scie") + "</th><th  style=" + '"width:20%"' + ">" + sadd.toLocaleString('en-GB') + "/s</th></tr>" +
+				"<tr><th  style=" + '"width:70%"' + ">" + science.toLocaleString('en-GB') + "</th><th  style=" + '"width:10%"' + "> " + emojify("science") + "</th><th  style=" + '"width:20%"' + ">" + sadd.toLocaleString('en-GB') + "/s</th></tr>" +
 				"</table>";
 		}
 
@@ -323,6 +209,7 @@
 			document.getElementById("tnormie").innerHTML = "";
 			document.getElementById("tneet").innerHTML = "";
 			document.getElementById("tintrlpr").innerHTML = "";
+			document.getElementById("tevent").innerHTML = "";
 			for (let i = 0; i < allresearch.length; i++) {
 				if (allresearch[i].revealed == true) {
 					if (allresearch[i].researched == true) { str = "✔️"; }
@@ -388,50 +275,77 @@
 		function removefromtown(a) {
 			//a is index from allposters!
 			//interloper must be researched first!
-			//[Glowie, Lizard, CRevolutionary, CEdgey, CBlob, CSkeleton];
+			
+
 			var i = parseInt(a);
 			var sn = allposters[i].name;
+			var n = 1;
+			if(MassBans.researched) {n=50};
 			switch (sn) {
 				case "Glowie":
-					if (GlowieResearch.researched) { workremovefromtown(a); }
+					if (GlowieResearch.researched) { workremovefromtown(a,n); }
 					else {
 						popalert("You are too fascinated by the glow to remove!<br>Research " + '<span style="font-weight: bold;">' + GlowieResearch.prettyname + "</span> to withstand the glow!");
 						GlowieResearch.revealed = true;
 					}
 					break;
 				case "Lizard":
-					if (LizardResearch.researched) { workremovefromtown(a); }
+					if (LizardResearch.researched) { workremovefromtown(a,n); }
 					else {
 						popalert("You are just not sure about banning this one!<br>Research " + '<span style="font-weight: bold;">' + LizardResearch.prettyname + "</span> to understand why!");
 						LizardResearch.revealed = true;
 					}
 					break;
+					case "Shitposter":
+						if (ShiposterResearch.researched) { workremovefromtown(a,n); }
+						else {
+							popalert("There has to be a way to get rid of these!<br>Research " + '<span style="font-weight: bold;">' + ShiposterResearch.prettyname + "</span> to remove them without getting some on yourself!");
+							ShiposterResearch.revealed = true;
+						}
+						break;
+
+
+					
 				case "Cyber Revolutionary":
-					if (CRevolutionaryResearch.researched) { workremovefromtown(a); }
+					if (CRevolutionaryResearch.researched) { workremovefromtown(a,n); }
 					else {
 						popalert("You are too baffled by the slogans to ban this!<br>Research " + '<span style="font-weight: bold;">' + CRevolutionaryResearch.prettyname + "</span> to learn non-politics.");
 						CRevolutionaryResearch.revealed = true;
 					}
 					break;
 				case "Cyber Skeleton":
-					if (CSkeletonResearch.researched) { workremovefromtown(a); }
+					if (CSkeletonResearch.researched) { workremovefromtown(a,n); }
 					else {
 						popalert("You are too spooked to do that!<br>Research " + '<span style="font-weight: bold;">' + CSkeletonResearch.prettyname + "</span> to face your fears!")
 						CSkeletonResearch.revealed = true;
-
 					}
 					break;
-
+					case "Cyber Edgey":
+						if (CEdgeyResearch.researched) { workremovefromtown(a,n); }
+						else {
+							popalert("You don't know how to approach this one it is too edgy!<br>Research " + '<span style="font-weight: bold;">' + CEdgeyResearch.prettyname + "</span> to avoid further cuts!")
+							CEdgeyResearch.revealed = true;
+						}
+						break;
+						case "Cyber Blob":
+							if (CBlobResearch.researched) { workremovefromtown(a,n); }
+							else {
+								popalert("It just grows when you click on it! How can this be contained?<br>Research " + '<span style="font-weight: bold;">' + CBlobResearch.prettyname + "</span> to deal with it!")
+								CBlobResearch.revealed = true;
+							}
+							break;
 				default:
-					workremovefromtown(a);
+					workremovefromtown(a,n);
 					break;
 			}
 
 		}
 
-		function workremovefromtown(a) {
+		function workremovefromtown(a,n) {
 			var i = parseInt(a);
-			allposters[i].count -= 1;
+			allposters[i].count -= n;
+			if (allposters[i].count < 0){allposters[i].count = 0;}
+			
 			rendertown(true);
 			redrawscoreboard();
 			redrawpop();
@@ -505,7 +419,7 @@
 				case ("money"): if ((a.c1rate * rv) <= money) { c1 = true; c1c = (a.c1rate * rv); } break;
 				case ("drama"): if ((a.c1rate * rv) <= drama) { c1 = true; c1c = (a.c1rate * rv); } break;
 				case ("memes"): if ((a.c1rate * rv) <= memes) { c1 = true; c1c = (a.c1rate * rv); } break;
-				case ("scie"): if ((a.c1rate * rv) <= scie) { c1 = true; c1c = (a.c1rate * rv); } break;
+				case ("science"): if ((a.c1rate * rv) <= science) { c1 = true; c1c = (a.c1rate * rv); } break;
 			}
 			switch (a.c2type) {
 				case ("internets"): if ((a.c2rate * rv) <= internets) { c2 = true; c2c = (a.c2rate * rv); } break;
@@ -513,7 +427,7 @@
 				case ("money"): if ((a.c2rate * rv) <= money) { c2 = true; c2c = (a.c2rate * rv); } break;
 				case ("drama"): if ((a.c2rate * rv) <= drama) { c2 = true; c2c = (a.c2rate * rv); } break;
 				case ("memes"): if ((a.c2rate * rv) <= memes) { c2 = true; c2c = (a.c2rate * rv); } break;
-				case ("scie"): if ((a.c2rate * rv) <= scie) { c2 = true; c2c = (a.c2rate * rv); } break;
+				case ("science"): if ((a.c2rate * rv) <= science) { c2 = true; c2c = (a.c2rate * rv); } break;
 				case (0): c2 = true; break;
 			}
 
@@ -524,7 +438,7 @@
 					case ("money"): money -= c1c; break;
 					case ("drama"): drama -= c1c; break;
 					case ("memes"): memes -= c1c; break;
-					case ("scie"): scie -= c1c; break;
+					case ("science"): science -= c1c; break;
 				}
 				switch (a.c2type) {
 					case ("internets"): internets -= c2c; break;
@@ -532,7 +446,7 @@
 					case ("money"): money -= c2c; break;
 					case ("drama"): drama -= c2c; break;
 					case ("memes"): memes -= c2c; break;
-					case ("scie"): scie -= c2c; break;
+					case ("science"): science -= c2c; break;
 				}
 				return true;
 			} else {

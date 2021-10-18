@@ -12,6 +12,10 @@ var Bot = {
     p2rate: 0,
     p2type: 0,
     count: 0,
+    power1: 25,
+    power2: 25,
+    level: 0,
+    maxlevel: 25,
 };
 
 var NPC = {
@@ -28,6 +32,10 @@ var NPC = {
     p2rate: 0,
     p2type: 0,
     count: 0,
+    power1: 500,
+    power2: 50,
+    level: 0,
+    maxlevel: 50,
 };
 
 var Shill = {
@@ -61,6 +69,7 @@ var Philosopher = {
     p2rate: 1,
     p2type: "heat",
     count: 0,
+    extratext: false,
 };
 
 var Scientist = {
@@ -73,10 +82,12 @@ var Scientist = {
     c2type: 0,
     c2rate: 0,
     p1rate: 1,
-    p1type: "scie",
+    p1type: "science",
     p2rate: 0,
     p2type: 0,
     count: 0,
+    power1: 5,
+    extratext: "Scientist are immune to Skeleton spooking and will reduce their spooking power.",
 };
 
 var Artist = {
@@ -93,6 +104,7 @@ var Artist = {
     p2rate: 1,
     p2type: "memes",
     count: 0,
+    extratext: "Artists may devolve and become Critics.",
 };
 
 var Wagie = {
@@ -109,6 +121,7 @@ var Wagie = {
     p2rate: 1,
     p2type: "money",
     count: 0,
+    extratext: "Wagies may get promoted into bigger spenders, like Simps.",
 };
 
 //Advanced Normies
@@ -126,6 +139,7 @@ var Politician = {
     p2rate: 5,
     p2type: "heat",
     count: 0,
+    extratext: "Politicians may cause events or used as currency during events.",
 };
 
 var Expert = {
@@ -140,8 +154,9 @@ var Expert = {
     p1rate: 5,
     p1type: "drama",
     p2rate: 5,
-    p2type: "scie",
+    p2type: "science",
     count: 0,
+    extratext: false,
 };
 
 var DIY = {
@@ -151,13 +166,14 @@ var DIY = {
     revealed: false,
     c1type: "internets",
     c1rate: 500,
-    c2type: "scie",
+    c2type: "science",
     c2rate: 50,
     p1rate: 5,
     p1type: "fame",
     p2rate: 5,
-    p2type: "scie",
+    p2type: "science",
     count: 0,
+    extratext: false,
 };
 
 var Patron = {
@@ -174,6 +190,7 @@ var Patron = {
     p2rate: 5,
     p2type: "money",
     count: 0,
+    extratext: false,
 };
 
 
@@ -192,6 +209,7 @@ var Alphabet = {
     p2rate: 1,
     p2type: "drama",
     count: 0,
+    extratext: "Alphabets may cause events or used as currency during events. They will also evolve into many different Posters.",
 };
 
 var Wizard = {
@@ -208,6 +226,7 @@ var Wizard = {
     p2rate: 250,
     p2type: "internets",
     count: 0,
+    extratext: "Wizards may evolve into better or worse Posters, cause event and increase Skeletons spooking powers",
 };
 
 var Photoshopper = {
@@ -224,6 +243,7 @@ var Photoshopper = {
     p2rate: 5,
     p2type: "fame",
     count: 0,
+    extratext: false,
 };
 
 var Dramatist = {
@@ -240,6 +260,7 @@ var Dramatist = {
     p2rate: 5,
     p2type: "money",
     count: 0,
+    extratext: "Dramatists increase Skeletons Spooking powers. Will contribute Posters to evolve into other kinds."
 };
 
 
@@ -259,6 +280,7 @@ var Somethingist = {
     p2rate: 10,
     p2type: "heat",
     count: 0,
+    extratext: "Somethingists may cause events or used as currency during events.",
 };
 
 var Detective = {
@@ -275,7 +297,8 @@ var Detective = {
     p2rate: -500,
     p2type: "internets",
     count: 0,
-    power: 5,
+    power1: 5,
+    extratext: "Detectives may evolve into better kinds. Detectives are immune to Lizard attacks and may spot Lizards as they are replacing Posters and scare them away. But they won't be able stop them from making Posters disappear."
 };
 
 var Scriptkiddie = {
@@ -292,6 +315,7 @@ var Scriptkiddie = {
     p2rate: 5,
     p2type: "money",
     count: 0,
+    extratext: false,
 };
 
 var Veteran = {
@@ -308,6 +332,8 @@ var Veteran = {
     p2rate: -5,
     p2type: "memes",
     count: 0,
+    power1: 5,
+    extratext: "Veterans will decrease the number of Normies Cyber Skeletons can scare away.",
 };
 
 
@@ -327,12 +353,16 @@ var Devout = {
     count: 0,
 };
 
+
+
+
 //Interlopers
 var Glowie = {
     name: "Glowie",
     type: "interloper",
     tooltip: "This person is glowing in dark!",
     count: 0,
+    extratext: "",
 };
 
 var Lizard = {
@@ -340,6 +370,20 @@ var Lizard = {
     type: "interloper",
     tooltip: "This person is suspicious.",
     count: 0,
+    extratext: "",
+};
+
+var Shitposter = {
+    name: "Shitposter",
+    type: "interloper",
+    tooltip: "You can see the quality of posts from here.",
+    revealed: false,
+    p1rate: -10,
+    p1type: "memes",
+    p2rate: -50,
+    p2type: "internets",
+    count: 0,
+    extratext: "",
 };
 
 
@@ -351,6 +395,7 @@ var CSkeleton = {
     tooltip: "A spooky skeleton! Spooks spooks.",
     birth: "Your starved VChild cannot contain the skeleton hiding inside anymore. It is now free to roam the Internets.",
     count: 0,
+    extratext: "",
 };
 
 var CBlob = {
@@ -359,6 +404,7 @@ var CBlob = {
     tooltip: "A mass of sentient datablock spewing random self-aggrandizing stuff. Will consume Bots.",
     birth: "Your VChild becomes an amorphous blob of code, losing last of its persona to feature bloat. It rolls out of your control, free to consume more Internets.",
     count: 0,
+    extratext: "",
 };
 
 var CEdgey = {
@@ -367,6 +413,7 @@ var CEdgey = {
     tooltip: "Has unresovled issues with its parents, this Cyber Ghost is self destructive and edg-eeey.",
     birth: "Your VChild became so sad it just left for Internets. Damaged, alone and forever condemned to social media.",
     count: 0,
+    extratext: "",
 };
 
 var CRevolutionary = {
@@ -375,6 +422,7 @@ var CRevolutionary = {
     tooltip: "Constantly screaming the slogan of the last political movement that shall bring it the life it deserves.",
     birth: "Your VChild drowned in digital shit. Its future in shit, it runs away into Internets screaming random slogans from random political views.",
     count: 0,
+    extratext: "",
 };
 
 
@@ -388,8 +436,15 @@ var neetposters = [Alphabet, Wizard, Photoshopper, Dramatist];
 var advancedneetposters = [Somethingist, Detective, Scriptkiddie, Veteran];
 var comboneetposters = [];
 var alchemicalposters = [];
-var interlopers = [Glowie, Lizard, CRevolutionary, CEdgey, CBlob, CSkeleton];
+var interlopers = [Glowie, Lizard, Shitposter, CRevolutionary, CEdgey, CBlob, CSkeleton];
 
-var allposters = [Bot, NPC, Shill, Philosopher, Scientist, Artist, Wagie, Politician, Expert, DIY, Patron, Alphabet, Wizard, Photoshopper, Dramatist, Somethingist, Detective, Scriptkiddie, Veteran, Devout, Glowie, Lizard, CRevolutionary, CEdgey, CBlob, CSkeleton];
+var allnormieposters = normieposters.concat(advancednormieposters);
+var allneetposters = neetposters.concat(advancedneetposters);
+var allregularposters = allnormieposters.concat(allneetposters);
+
+var moneymakers = [Wagie, Patron, Dramatist, Scriptkiddie]
+
+
+var allposters = [Bot, NPC, Shill, Philosopher, Scientist, Artist, Wagie, Politician, Expert, DIY, Patron, Alphabet, Wizard, Photoshopper, Dramatist, Somethingist, Detective, Scriptkiddie, Veteran, Devout, Glowie, Lizard, Shitposter, CRevolutionary, CEdgey, CBlob, CSkeleton];
 var rewardposters = [NPC, Philosopher, Scientist, Artist, Alphabet, Wizard, Photoshopper, Glowie]
 var disguises = [NPC, Philosopher, Scientist, Artist, Wagie, Politician, Expert, DIY, Patron, Alphabet, Wizard, Photoshopper, Dramatist, Somethingist, Detective, Scriptkiddie, Veteran];

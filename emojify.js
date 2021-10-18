@@ -1,4 +1,5 @@
-function emojify(str) {
+
+function emojify(str,bool) {
     var emoji = "buggered";
     switch (str) {
         case "internets": emoji = "📶"; break;
@@ -7,7 +8,7 @@ function emojify(str) {
         case "heat": emoji = "🔥"; break;
         case "drama": emoji = "🎭"; break;
         case "memes": emoji = "🖼️"; break;
-        case "scie": emoji = "⚗️"; break;
+        case "science": emoji = "⚗️"; break;
 
         case "Bot": emoji = "🤖"; break;
         case "NPC": emoji = "👤"; break;
@@ -63,6 +64,7 @@ function emojify(str) {
 
         case "Baby": emoji = "👶"; break;
         case "DeadBaby": emoji = "👼"; break;
+        case "Shitposter":
         case "Poo": emoji = "💩"; break;
 
         case "Cyber Revolutionary": emoji = "😱"; break;
@@ -71,6 +73,9 @@ function emojify(str) {
         case "Cyber Skeleton": emoji = "💀"; break;
 
     }
+    if(bool){
+    str = str[0].toUpperCase() + str.substring(1);
+    emoji = emoji + " " + str;}
     return emoji;
 
 }

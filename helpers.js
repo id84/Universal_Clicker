@@ -58,7 +58,7 @@ function opentab(evt, tab) {
             rendertown(true);
             break;
         case "WikiTab":
-
+            redrawwiki();
             break;
     }
     var i, tabcontent, tablinks;
@@ -82,9 +82,14 @@ function saveGame() {
     localStorage.setItem("money", money);
     localStorage.setItem("drama", drama);
     localStorage.setItem("memes", memes);
-    localStorage.setItem("scie", scie);
+    localStorage.setItem("science", science);
     localStorage.setItem("internets", internets);
+    localStorage.setItem("numticks", numticks);
 
+    //options
+    localStorage.setItem("popalerts", document.getElementById("popalertschkbx").checked);
+    localStorage.setItem("sfxpopalerts", document.getElementById("sfxalertschkbx").checked);
+    
     //save posters
     for (let i = 0; i < allposters.length; i++) {
         localStorage.setItem("postercount" + i, allposters[i].count);
@@ -105,7 +110,15 @@ function loadGame() {
     money = parseInt(localStorage.getItem("money"));
     drama = parseInt(localStorage.getItem("drama"));
     memes = parseInt(localStorage.getItem("memes"));
-    scie = parseInt(localStorage.getItem("scie"));
+    science = parseInt(localStorage.getItem("science"));
+    numticks = parseInt(localStorage.getItem("numticks"));
+
+    //load options
+
+    if (localStorage.getItem("popalerts") === "true") { document.getElementById("popalertschkbx").checked = true; }
+    else { document.getElementById("popalertschkbx").checked = false; }
+    if (localStorage.getItem("sfxpopalerts") === "true") { document.getElementById("sfxalertschkbx").checked = true; }
+    else { document.getElementById("sfxalertschkbx").checked = false; }
 
     //load poster counts
     for (let i = 0; i < allposters.length; i++) {
@@ -126,17 +139,27 @@ function loadGame() {
 
 
 function popalert(s, sfx) {
-    switch (sfx) {
-        case "alert":
-            icqalert.play();
-            break;
-        case null:
-            break;
+    if (document.getElementById("popalertschkbx").checked) {
+        if (document.getElementById("sfxalertschkbx").checked) {
+            switch (sfx) {
+                default:
+                case "alert":
+                    icqalert.play();
+                    break;
+                case null:
+                    break;
+            }
+        }
+        document.getElementById("popuptext").innerHTML = s + "<br><br>";
+        document.getElementById("popup").style.display = "block";
     }
+}
 
+function reviewalert(s) {
     document.getElementById("popuptext").innerHTML = s + "<br><br>";
     document.getElementById("popup").style.display = "block";
 }
+
 
 function loggerize(tlog) {
     var now = new Date();
@@ -147,4 +170,33 @@ function loggerize(tlog) {
 
     tlog = ds + tlog + "<p>";
     document.getElementById("logpanel").innerHTML = tlog + document.getElementById("logpanel").innerHTML;
+}
+
+
+
+function fillposters() {
+    for (let i = 0; i < allposters.length; i++) {
+        allposters[i].count += 100;
+    }
+
+}
+
+
+
+
+function optionclick(o) {
+    switch (o) {
+
+    }
+
+}
+
+
+function getpopulation(poparray) {
+
+var pop = 0;
+for (let i = 0; i < poparray.length; i++) {
+    pop += poparray[i].count;
+}
+return pop;
 }

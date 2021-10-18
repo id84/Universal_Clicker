@@ -12,12 +12,12 @@ function wikiarticle(s) {
             ele.innerHTML = "<br><span style=\"font-weight: bold\";>Resources</span><br><p>" +
                 "Resources represent abstract requirements to take certain actions and more importantly add more posters to your Network. !!NOT FULLY IMPLEMENTED!!<p>" +
                 emojify("internets") + "Internets; This represents general \"being in the know\" and general experience interacting with it.<p>" +
-                emojify("heat") + "Heat; Being on Internets and doing certain things on will attract attention, sometime unwanted attention. You don't want too much of it.<p>" +
-                emojify("fame") + "Fame; Fame is mostly positive attention you draw. A key resources to get out of dodge and have a large Network.<p>" +
+                emojify("heat") + "Heat; Being on Internets and doing certain things on will attract attention, sometimes unwanted attention. You don't want too much of it.<p>" +
+                emojify("fame") + "Fame; Fame is the positive attention you draw. A key resource to get out of dodge and have a large Network.<p>" +
                 emojify("money") + "Money; Digital Money makes the Digital World go around... at least one day. This resource can be used to pay Shills or buy later upgrades (at some point in future).<p>" +
-                emojify("drama") + "Drama; Remember Reality Shows? Remember people debasing themselves for fame. Yeah, they are on Internets. Numbering in millions.<p>" +
-                emojify("memes") + "Memes; A transmission medium for ideas, emotions, jokes and propaganda. In a sense it is a currency for the bored.<p>" +
-                emojify("scie") + "Science; Social sciences, hard sciences, soft sciences, long sciences, tight sciences... all sorts of Science. It is not like it is a safe harbour in a mad world, but closest thing to one.<p>" +
+                emojify("drama") + "Drama; Remember Reality Shows? Remember people debasing themselves for fame. They are on Internets now. Numbering in millions.<p>" +
+                emojify("memes") + "Memes; A transmission medium for ideas, emotions, jokes and propaganda. In a sense it is a currency for the bored. But not Art, absolutely not.<p>" +
+                emojify("science") + "Science; Social sciences, hard sciences, soft sciences, long sciences, tight sciences... all sorts of Science. You will need these to make sense of the world... hopefully.<p>" +
                 "";
             break;
         case "Population":
@@ -43,8 +43,57 @@ function wikiarticle(s) {
                 "<b>More to come;</b> probably.";
                 
             break;
+            case "Bots":
+                ele.innerHTML = "<br><span style=\"font-weight: bold\";>"+emojify("Bot",1)+"</span><br><p>" +
+                    Bot.tooltip + "<p>"+
+                    "Costs " + Bot.c1rate + emojify(Bot.c1type, 1) + "<br>" +
+                    "Produces " + Bot.p1rate + emojify(Bot.p1type, 1) + "/s<br><br>" +
+                    "Your Bots are level " + Bot.level + "/" +Bot.maxlevel + ".<br>"+
+                    "Bots will remain undetected until you have more than " + Bot.power1 + "<br>"+
+                    "Bots have " + Bot.power2 +"% chance avoiding detection";
+                break;
+            case "NPC":
+                ele.innerHTML = "<br><span style=\"font-weight: bold\";>"+emojify("NPC",1)+"</span><br><p>" +
+                    NPC.tooltip + "<p>"+
+                    "Costs " + NPC.c1rate + emojify(NPC.c1type, 1) + "<br>" +
+                    "Produces " + NPC.p1rate + emojify(NPC.p1type, 1) + "/s<br><br>"+
+                    "Your NPCs are level " + Bot.level + "/" +Bot.maxlevel + ".<br>"+
+                    "NPC won't be banned until you have more than " + NPC.power1 + "<br>"+
+                    "NPCs have " + Bot.power2 +"% chance avoiding bans";
+                break;
 
+
+            
 
     }
 
 }
+
+
+
+function staticposterarticle(num) {
+
+    var p = allregularposters[num];
+    var s =  "<br><span style=\"font-weight: bold\";>"+emojify(p.name,1)+"</span><br><p>" +
+    p.tooltip + "<p>"+
+    "Costs " + p.c1rate + emojify(p.c1type, 1);
+    if (p.c2type !== 0){
+        s += ", " + p.c2rate + emojify(p.c2type, 1);
+    }
+    s += "<br> Produces " + p.p1rate + emojify(p.p1type) +"/s";
+    if (p.p2type !== 0){
+        s += ", " + p.p2rate + emojify(p.p2type, 1)+"/s";
+    }
+    if (p.extratext !== false){
+        s += "<br><br>" + p.extratext;
+    }
+
+    
+    document.getElementById("wikitext").innerHTML = s;
+}
+
+function interloperarticle(num) {
+    document.getElementById("wikitext").innerHTML = interlopers[num].extratext;
+    
+}
+

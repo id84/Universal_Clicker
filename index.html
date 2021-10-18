@@ -10,7 +10,7 @@
 
 <body onload="init();">
 
-	
+
 	<script type="text/javascript">
 
 	</script>
@@ -76,7 +76,11 @@
 				<button class="tablinks" onclick="opentab(event, 'Teststuff')" onmouseout="cleartooltip()"
 					onmouseover="tooltipstabs('Teststuff')">Test</button>
 				<button class="tablinks" onclick="opentab(event, 'WikiTab')" onmouseout="cleartooltip()"
-					onmouseover="tooltipstabs('Teststuff')"><div style="float:left; transform: rotate(-180deg);">W</div>iki</button>
+					onmouseover="tooltipstabs('Teststuff')">
+					<div style="float:left; transform: rotate(-180deg);">W</div>iki
+				</button>
+				<button class="tablinks" onclick="opentab(event, 'OptionsTab')" onmouseout="cleartooltip()"
+					onmouseover="tooltipstabs('Options')">Options</button>
 			</div>
 
 
@@ -127,6 +131,9 @@
 				<table style="width:100%" class="nicetext">
 					<tr><span id="tintrlpr">t</span></tr>
 				</table>
+				<table style="width:100%" class="nicetext">
+					<tr><span id="tevent">t</span></tr>
+				</table>
 			</div>
 
 
@@ -141,6 +148,7 @@
 							<input type="range" id="townrange" onmouseout="cleartooltip()"
 								onmouseover="tooltiprange('townrange')" oninput="townzoom()" min="200" max="1000"
 								value="200">
+							
 						</tb>
 						<tb><span id="networkdata" class="logtext"></span></tb>
 					</tr>
@@ -263,55 +271,79 @@
 			</div>
 
 			<div id="WikiTab" class="tabcontent">
-				<div class="verticalpanel nicetext"><span onclick="wikiarticle('Wiki')"><div style="float:left; transform: rotate(-180deg);">W📚</div>iki</span>
+				<div class="wikiindex nicetext"><span onclick="wikiarticle('Wiki')">
+						<div style="float:left; transform: rotate(-180deg);">W📚</div>iki
+					</span>
 					<ul id="wikipanels" class="wkul">
 						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Log')">Log</button></li>
-						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Resources')">Resources</button></li>
-						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Population')">Population</button></li>
+						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Resources')">Resources</button>
+						</li>
+						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Population')">Population</button>
+						</li>
 					</ul>
 					<ul id="wikitabs" class="wkul">
-						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Community')">Community</button></li> 
+						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Community')">Community</button>
+						</li>
 						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Research')">Research</button></li>
 						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Network')">Network</button></li>
-						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Socialize')">Socialize</button></li>
+						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Socialize')">Socialize</button>
+						</li>
 					</ul>
 					<ul id="wikievents" class="wkul"></ul>
 					<ul id="wikiresearch" class="wkul"></ul>
+						Posters
 					<ul id="wikiposters" class="wkul"></ul>
+						Interlopers
+					<ul id="wikiinterlopers" class="wkul">
+						
 
+					</ul>
 				</div>
-				<div id="wikitext" class="verticalpanel nicetext" style="display: inline-block;"><br><b>Welcome to <div style="float:none; transform: rotate(-180deg); display: inline-block;">W</div>iki!</b></span>
-				<br><br>Where all your edits will be reverted and you will be banned!
+				<div id="wikitext" class="wikitext nicetext" style="display: inline-block;"><br><b>Welcome to <div
+							style="float:none; transform: rotate(-180deg); display: inline-block;">W</div>
+						iki!</b></span>
+					<br><br>Where all your edits will be reverted and you will be banned!
+				</div>
+			</div>
+
+
+			<div id="OptionsTab" class="tabcontent">
+				<fieldset>
+					<input type="checkbox" id="popalertschkbx")>Popup Alerts
+					<input type="checkbox" id="sfxalertschkbx")>Alert Sounds
+				</fieldset>
+			</div>
+
+
+		</div>
+
+
+		<div id="popup" class="popup" onclick="popupclose()">
+			<div class="popup-content ">
+				<div><span id="popuptext" class="nicetext"></span></div>
+				<div>(click anywhere to close)</div>
 			</div>
 		</div>
 
-	</div>
 
-
-	<div id="popup" class="popup" onclick="popupclose()">
-		<div class="popup-content ">
-			<div><span id="popuptext" class="nicetext"></span></div>
-			<div>(click anywhere to close)</div>
+		<div id="minepop" class="mfpopup">
+			<div><button class="emobtn" onClick="minepopclose()">❌</button></div><br>
+			<div id="mfboard" class="board">
+			</div>
 		</div>
-	</div>
 
+		<script src="./helpers.js"></script>
+		<script src="./emojify.js"></script>
 
-	<div id="minepop" class="mfpopup">
-		<div><button class="emobtn" onClick="minepopclose()">❌</button></div><br>
-		<div id="mfboard" class="board">
-		</div>
-	</div>
-	
-<script src="./helpers.js"></script>
-<script src="./emojify.js"></script>
-<script src="./posters.js"></script>
-<script src="./research.js"></script>
-<script src="./minefield.js"></script>
-<script src="./vchild.js"></script>
-<script src="./wikiarticle.js"></script>
-<script src="./tooltips.js"></script>
-<script src="./master.js"></script>
-<script src="./init.js"></script>
+		<script src="./posters.js"></script>
+		<script src="./research.js"></script>
+		<script src="./minefield.js"></script>
+		<script src="./vchild.js"></script>
+		<script src="./wikiarticle.js"></script>
+		<script src="./tooltips.js"></script>
+		<script src="./specialintervals.js"></script>
+		<script src="./master.js"></script>
+		<script src="./init.js"></script>
 </body>
 
 </html>

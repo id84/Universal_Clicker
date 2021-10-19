@@ -2,11 +2,15 @@
 //minute ticker
 setInterval(function () {
     eventdecider();
+    if (document.getElementById("autosavechkbx").checked) {
+    loggerize("Game saved.")
+    saveGame();
+}
 }, 1000);
 //hour ticker
 setInterval(function () {
     icqalert.play();
-    loggerize("Hourly Reminder: Time is passing away at an alarming rate.");
+    loggerize("Hourly Reminder: Time is going by at an alarming rate.");
 }, 600000);
 
 

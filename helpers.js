@@ -76,6 +76,7 @@ function opentab(evt, tab) {
 
 function saveGame() {
     localStorage.clear();
+
     //save resources
     localStorage.setItem("heat", heat);
     localStorage.setItem("fame", fame);
@@ -89,6 +90,7 @@ function saveGame() {
     //options
     localStorage.setItem("popalerts", document.getElementById("popalertschkbx").checked);
     localStorage.setItem("sfxpopalerts", document.getElementById("sfxalertschkbx").checked);
+    localStorage.setItem("autosave", document.getElementById("autosavechkbx").checked);
     
     //save posters
     for (let i = 0; i < allposters.length; i++) {
@@ -117,8 +119,13 @@ function loadGame() {
 
     if (localStorage.getItem("popalerts") === "true") { document.getElementById("popalertschkbx").checked = true; }
     else { document.getElementById("popalertschkbx").checked = false; }
+
     if (localStorage.getItem("sfxpopalerts") === "true") { document.getElementById("sfxalertschkbx").checked = true; }
     else { document.getElementById("sfxalertschkbx").checked = false; }
+
+    if (localStorage.getItem("autosave") === "true") { document.getElementById("autosavechkbx").checked = true; }
+    else { document.getElementById("autosavechkbx").checked = false; }
+
 
     //load poster counts
     for (let i = 0; i < allposters.length; i++) {

@@ -12,6 +12,9 @@ function init() {
 
     document.getElementById("normierange").style.display = "none";
     document.getElementById("neetrange").style.display = "none";
+    
     document.getElementById("popalertschkbx").checked = true;
+    document.getElementById("sfxalertschkbx").checked = false;
+    document.getElementById("autosavechkbx").checked = true;
     
 }

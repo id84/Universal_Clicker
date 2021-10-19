@@ -38,18 +38,7 @@ setInterval(function () {
 	meadd = 0;
 	sadd = 0;
 
-	var s = Shill.count * Shill.p2rate;
-	if (money < s) {
-		//get yet unpaid shills (each shill drains 1 money)
-		var ps = s - money;
-		iadd -= ps * Shill.p1rate;
-		fadd -= ps;
-		//madd -= Shill.count;
-		hadd -= ps;
-		dadd -= ps;
-		madd -= ps;
-		sadd -= ps;
-	}
+
 
 
 

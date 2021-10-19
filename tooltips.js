@@ -46,22 +46,36 @@ function tooltipstabs(i) {
 	}
 	document.getElementById("hovertext").innerHTML = s;
 }
+
+function ttooltip(a) {
+	var c = allposters[a];
+	var s = "<b>" + c.name + "</b><br><br>" + c.tooltip;
+	var cb = document.getElementById("snglschbx");
+	var inter = interlopers.find(ele => ele == c);
+	
+	if (inter == allposters[a]) {
+		if (c == Glowie || c == Lizard) {
+			s = "<b>A Suspicious Poster</b>";
+			if (cb.checked && c == Glowie){
+				s = "<span style=\"\"class=\"glow\">This person is glowing!</span>";
+			}
+			} 
+			if (cb.checked && c == Lizard) {
+			 	s = "<span style=\"color:green;\">This is a Lizard!</span>";
+			}
+			s = emojify("Alert") + s;
+		}
+		
+		document.getElementById("hovertext").innerHTML = s;
+}
+
+
 function tooltip(a) {
 	switch (a) {
 		case "sunglass":
 			document.getElementById("hovertext").innerHTML = "Makes Glowies and Lizards easier to see.";
 			break;
-		case "Glowie":
-			document.getElementById("hovertext").innerHTML = "<span style=\"\"class=\"glow\">This person is glowing!</span>";
-			break;
-		case "Lizard":
-			var cb = document.getElementById("snglschbx");
-			if (cb.checked) {
-				document.getElementById("hovertext").innerHTML = "<span style=\"color:green;\">This is a Lizard!</span>";
-			} else {
-				document.getElementById("hovertext").innerHTML = Lizard.tooltip;
-			}
-			break;
+		
 		case "vpneeddna":
 			document.getElementById("hovertext").innerHTML = "Get a new VChild with random DNA!";
 			break;

@@ -1,6 +1,9 @@
 function wikiarticle(s) {
     var ele = document.getElementById("wikitext");
     switch (s) {
+        case "News":
+            ele.innerHTML = "<br><b>19.10.2021<br>Some news.";
+            break;
         case "Wiki":
             ele.innerHTML = '<br><b>Welcome to <div style="float:none; transform: rotate(-180deg); display: inline-block;">W</div>iki!</b></span><br><br>Where all your edits will be reverted and you will be banned!';
             break;
@@ -30,7 +33,7 @@ function wikiarticle(s) {
             break;
         case "Research":
             ele.innerHTML = "<br><span style=\"font-weight: bold\";>Research</span><br><p>" +
-                "Research tab lists available or already Researched items. You can clik on an already researched item to read the results. Researches cost resources. Some of them will be revealed after certain events, others will be follow ups to previous ones.";
+                "Research tab lists available or already Researched items. You can click on an already researched item to review them. Researches cost resources. Some of them will be revealed after certain events, others will be follow ups to previous ones.";
             break;
         case "Network":
             ele.innerHTML = "<br><span style=\"font-weight: bold\";>Network</span><br><p>" +
@@ -38,32 +41,46 @@ function wikiarticle(s) {
             break;
         case "Socialize":
             ele.innerHTML = "<br><span style=\"font-weight: bold\";>Socialize</span><br><p>" +
-                "Socialize tab allows you to socialize in Internets.<p>"+
-                "<b>PC Minefield;</b> Talk your heart out on social media to random strangers, but becareful where you say what. If you say something politically wrong to the wrong person you will get \"cancelled\". You can close the minefield by pressing escape key if you can't find the darned red X, but can always return to an incomplete minefield later by pressing Toggle Minefield button.<br>"+
-                "<b>More to come;</b> probably.";
+                "Socialize tab allows you to socialize in Internets.<p>" +
+                "<p><b>PC Minefield;</b> Talk your heart out on social media to random strangers, but becareful where you say what. If you say something politically wrong to the wrong person you will get \"cancelled\". You can close the minefield by pressing escape key if you can't find the darned red X, but can always return to an incomplete minefield later by pressing Toggle Minefield button." +
+                "<p><b>More to come;</b> probably.";
+            break;
+        case "Workshop":
+            ele.innerHTML = "<br><span style=\"font-weight: bold\";>Workshop</span><br><p>" +
+                "Workshop tab allows you to upgrade and maintain your Network Posters.<p>" +
+                "<p><b>Auto Bots;</b> Set the slider to maintain a minimum population of bots. When your Bots get banned if checked, Auto Bot will buy Bots to match the set slider value, if you can afford it." +
+                "<p><b>Machine Learning;</b> Since your Bots and NPCs repeat what you say, you can upgrade their Internets production by learning Machines. Because that's what machine learning is<sup>[" + getRandomInt(1000)+ " editors asked for a citation and were banned]</sup>; it is learning about machines."+
+                "<p><b>Bot & NPC Upgrades;</b> Besides learning about what to make Bots say, you can make Bots more life-like so they can avoid getting banned as well as the population of Bots that can stay hidden. Oh yea, NPCs too." +
+                "<p><b>Shill Upgrades;</b> ...";
                 
             break;
-            case "Bots":
-                ele.innerHTML = "<br><span style=\"font-weight: bold\";>"+emojify("Bot",1)+"</span><br><p>" +
-                    Bot.tooltip + "<p>"+
-                    "Costs " + Bot.c1rate + emojify(Bot.c1type, 1) + "<br>" +
-                    "Produces " + Bot.p1rate + emojify(Bot.p1type, 1) + "/s<br><br>" +
-                    "Your Bots are level " + Bot.level + "/" +Bot.maxlevel + ".<br>"+
-                    "Bots will remain undetected until you have more than " + Bot.power1 + "<br>"+
-                    "Bots have " + Bot.power2 +"% chance avoiding detection";
-                break;
-            case "NPC":
-                ele.innerHTML = "<br><span style=\"font-weight: bold\";>"+emojify("NPC",1)+"</span><br><p>" +
-                    NPC.tooltip + "<p>"+
-                    "Costs " + NPC.c1rate + emojify(NPC.c1type, 1) + "<br>" +
-                    "Produces " + NPC.p1rate + emojify(NPC.p1type, 1) + "/s<br><br>"+
-                    "Your NPCs are level " + Bot.level + "/" +Bot.maxlevel + ".<br>"+
-                    "NPC won't be banned until you have more than " + NPC.power1 + "<br>"+
-                    "NPCs have " + Bot.power2 +"% chance avoiding bans";
-                break;
+        case "Bot":
+            ele.innerHTML = "<br><span style=\"font-weight: bold\";>" + emojify("Bot", 1) + "</span><br><p>" +
+                Bot.tooltip + "<p>" +
+                "Costs " + Bot.c1rate + emojify(Bot.c1type) + "<br>" +
+                "Produces " + Bot.p1rate + emojify(Bot.p1type) + "/s<br><br>" +
+                "Your Bots are level " + Bot.level + ".<br>" +
+                "Bots will remain undetected until you have more than " + Bot.power1 + "<br>" +
+                "Bots have " + Bot.power2 + "% chance avoiding detection";
+            break;
+        case "NPC":
+            ele.innerHTML = "<br><span style=\"font-weight: bold\";>" + emojify("NPC", 1) + "</span><br><p>" +
+                NPC.tooltip + "<p>" +
+                "Costs " + NPC.c1rate + emojify(NPC.c1type) + "<br>" +
+                "Produces " + NPC.p1rate + emojify(NPC.p1type) + "/s<br><br>" +
+                "Your NPCs are level " + Bot.level + ".<br>" +
+                "NPC won't be banned until you have more than " + NPC.power1 + "<br>" +
+                "NPCs have " + Bot.power2 + "% chance avoiding bans";
+            break;
 
+        case "Shill":
+            ele.innerHTML = "<br><span style=\"font-weight: bold\";>" + emojify("Shill", 1) + "</span><br><p>" +
+                Shill.tooltip + "<p>" +
+                "Costs " + Shill.c1rate + emojify(Shill.c1type) + "<br>" +
+                "Produces " + Shill.p1rate + emojify(Shill.p1type) + "/s<br><br>" +
+                "Shills are professionals, they won't be banned. But they will start draining all your resources if not paid."
+            break;
 
-            
 
     }
 
@@ -74,26 +91,26 @@ function wikiarticle(s) {
 function staticposterarticle(num) {
 
     var p = allregularposters[num];
-    var s =  "<br><span style=\"font-weight: bold\";>"+emojify(p.name,1)+"</span><br><p>" +
-    p.tooltip + "<p>"+
-    "Costs " + p.c1rate + emojify(p.c1type, 1);
-    if (p.c2type !== 0){
-        s += ", " + p.c2rate + emojify(p.c2type, 1);
+    var s = "<br><span style=\"font-weight: bold\";>" + emojify(p.name, 1) + "</span><br><p>" +
+        p.tooltip + "<p>" +
+        "Costs " + p.c1rate + emojify(p.c1type);
+    if (p.c2type !== 0) {
+        s += ", " + p.c2rate + emojify(p.c2type);
     }
-    s += "<br> Produces " + p.p1rate + emojify(p.p1type) +"/s";
-    if (p.p2type !== 0){
-        s += ", " + p.p2rate + emojify(p.p2type, 1)+"/s";
+    s += "<br> Produces " + p.p1rate + emojify(p.p1type) + "/s";
+    if (p.p2type !== 0) {
+        s += ", " + p.p2rate + emojify(p.p2type) + "/s";
     }
-    if (p.extratext !== false){
+    if (p.extratext !== false) {
         s += "<br><br>" + p.extratext;
     }
 
-    
+
     document.getElementById("wikitext").innerHTML = s;
 }
 
 function interloperarticle(num) {
     document.getElementById("wikitext").innerHTML = interlopers[num].extratext;
-    
+
 }
 

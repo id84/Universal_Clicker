@@ -72,6 +72,16 @@ function emojify(str,bool) {
         case "Cyber Blob": emoji = "🍴"; break;
         case "Cyber Skeleton": emoji = "💀"; break;
 
+        case "Russia" : emoji = "🇷🇺"; break;
+        case "Vatican" : emoji = "🇻🇦"; break;
+        case "Pirates":
+        case "Pirateland" : emoji = "🏴‍☠️"; break;
+        case "Albania" : emoji = "🇦🇱"; break;
+        case "Australia" : emoji = "🇦🇺"; break;
+        case "China" : emoji = "🇨🇳"; break;
+        case "France" : emoji = "🇫🇷"; break;
+        
+        
     }
     if(bool){
     str = str[0].toUpperCase() + str.substring(1);
@@ -79,3 +89,7 @@ function emojify(str,bool) {
     return emoji;
 
 }
+
+var countryemojis = ["Russia", "Vatican", "Pirateland", "Albania", "Australia", "China", "France"];
+
+var chans = ["Dumbler Blog", "Twatter", "GutHub Notices", "EmojiBook Comments", "Basket Weaving Forum", "HackerChan Thread", "Leddit Thread", "TeleTube Comments", "Mosaic Makers Forum", "CoffePress Blog", "WahooCities Blog", "Dissociated Press", "Local Newspaper", "Noosphere", "Walls of a Pompeii Tavern"]

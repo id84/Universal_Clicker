@@ -13,9 +13,12 @@ var Bot = {
     p2type: 0,
     count: 0,
     power1: 25,
+    power1l : 25,
+    power1txt: "maximum number of Bots that won't trigger Bans",
     power2: 25,
-    level: 0,
-    maxlevel: 25,
+    power2l : 1,
+    power2txt: "% chance of Bots avoid triggering Bans",
+    level: 1,
 };
 
 var NPC = {
@@ -33,9 +36,12 @@ var NPC = {
     p2type: 0,
     count: 0,
     power1: 500,
+    power1l: 50,
+    power1txt: "Maximum number of NPCs that won't trigger Bans",
     power2: 50,
-    level: 0,
-    maxlevel: 50,
+    power2l: 1,
+    power2txt: "Chance of NPCs avoid triggering Bans",
+    level: 1,
 };
 
 var Shill = {
@@ -429,13 +435,13 @@ var CRevolutionary = {
 
 
 var networkposters = [Bot, NPC, Shill];
+
 var normieposters = [Philosopher, Scientist, Artist, Wagie];
 var advancednormieposters = [Politician, Expert, DIY, Patron];
-var combonormieposters = [];
+
 var neetposters = [Alphabet, Wizard, Photoshopper, Dramatist];
 var advancedneetposters = [Somethingist, Detective, Scriptkiddie, Veteran];
-var comboneetposters = [];
-var alchemicalposters = [];
+
 var interlopers = [Glowie, Lizard, Shitposter, CRevolutionary, CEdgey, CBlob, CSkeleton];
 
 var allnormieposters = normieposters.concat(advancednormieposters);
@@ -446,5 +452,8 @@ var moneymakers = [Wagie, Patron, Dramatist, Scriptkiddie]
 
 
 var allposters = [Bot, NPC, Shill, Philosopher, Scientist, Artist, Wagie, Politician, Expert, DIY, Patron, Alphabet, Wizard, Photoshopper, Dramatist, Somethingist, Detective, Scriptkiddie, Veteran, Devout, Glowie, Lizard, Shitposter, CRevolutionary, CEdgey, CBlob, CSkeleton];
+var upgradebleposters = [Bot, NPC];
+
+
 var rewardposters = [NPC, Philosopher, Scientist, Artist, Alphabet, Wizard, Photoshopper, Glowie]
 var disguises = [NPC, Philosopher, Scientist, Artist, Wagie, Politician, Expert, DIY, Patron, Alphabet, Wizard, Photoshopper, Dramatist, Somethingist, Detective, Scriptkiddie, Veteran];

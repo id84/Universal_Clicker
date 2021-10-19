@@ -69,6 +69,8 @@
 					onmouseover="tooltipstabs('ResearchTab')">Research</button>
 				<button class="tablinks" onclick="opentab(event, 'TownTab')" onmouseout="cleartooltip()"
 					onmouseover="tooltipstabs('TownTab')">Network</button>
+				<button class="tablinks" onclick="opentab(event, 'WorkshopTab')" onmouseout="cleartooltip()"
+					onmouseover="tooltipstabs('TownTab')">Workshop</button>
 				<button class="tablinks" onclick="opentab(event, 'SocializeTab')" onmouseout="cleartooltip()"
 					onmouseover="tooltipstabs('SocializeTab')">Socialize</button>
 				<button class="tablinks" onclick="opentab(event, 'VParentTab')" onmouseout="cleartooltip()"
@@ -136,6 +138,21 @@
 				</table>
 			</div>
 
+			<div id="WorkshopTab" class="tabcontent">
+
+				<fieldset>
+					<legend><input type="checkbox" id="autobotchck"> Auto Bot Buy</legend>
+					Maintain population of <span id="autospan"></span> 🤖<br>
+					<input type="range" id="autobotrange" onmouseout="cleartooltip()" oninput="redrawupgrades()" min="1"
+						max="25" value="1"></input>
+				</fieldset>
+				<fieldset>
+					<legend>Machine <button class="btn" onClick="mechanicus()">Learning</button></legend>
+					<span id=mechanicus></span>
+
+				</fieldset>
+				<div id="upgrades"></div>
+			</div>
 
 			<div id="TownTab" class="tabcontent">
 				<table>
@@ -148,7 +165,7 @@
 							<input type="range" id="townrange" onmouseout="cleartooltip()"
 								onmouseover="tooltiprange('townrange')" oninput="townzoom()" min="200" max="1000"
 								value="200">
-							
+
 						</tb>
 						<tb><span id="networkdata" class="logtext"></span></tb>
 					</tr>
@@ -268,6 +285,9 @@
 				<button class="btn" onClick="saveGame()">Save</button>
 				<button class="btn" onClick="loadGame()">Load</button>
 				<button class="btn" onClick="loggerize()">Log</button>
+				<button class="btn" onClick="wokrevent('neet1')">neet1</button>
+				<button class="btn" onClick="wokrevent('normie1')">normie1</button>
+				  </video> 
 			</div>
 
 			<div id="WikiTab" class="tabcontent">
@@ -275,27 +295,31 @@
 						<div style="float:left; transform: rotate(-180deg);">W📚</div>iki
 					</span>
 					<ul id="wikipanels" class="wkul">
+
 						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Log')">Log</button></li>
-						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Resources')">Resources</button>
-						</li>
-						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Population')">Population</button>
-						</li>
+						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Resources')">Resources</button></li>
+						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Population')">Population</button></li>
 					</ul>
 					<ul id="wikitabs" class="wkul">
-						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Community')">Community</button>
-						</li>
+						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Community')">Community</button></li>
 						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Research')">Research</button></li>
+						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Workshop')">Workshop</button></li>
 						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Network')">Network</button></li>
 						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Socialize')">Socialize</button>
 						</li>
 					</ul>
 					<ul id="wikievents" class="wkul"></ul>
 					<ul id="wikiresearch" class="wkul"></ul>
-						Posters
+					Posters
+					<ul class="wkul">
+						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Bot')">🤖 Bot</button></li>
+						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('NPC')">👤 NPC</button></li>
+						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Shill')">📣 Shill</button>
+					</ul>
 					<ul id="wikiposters" class="wkul"></ul>
-						Interlopers
+					Interlopers
 					<ul id="wikiinterlopers" class="wkul">
-						
+
 
 					</ul>
 				</div>
@@ -309,9 +333,10 @@
 
 			<div id="OptionsTab" class="tabcontent">
 				<fieldset>
-					<input type="checkbox" id="popalertschkbx")>Popup Alerts
-					<input type="checkbox" id="sfxalertschkbx")>Alert Sounds
-					<input type="checkbox" id="autosavechkbx")>Auto Save (1 min)
+					<input type="checkbox" id="popalertschkbx" )>Popup Alerts
+					<input type="checkbox" id="sfxalertschkbx" )>Alert Sounds
+					<input type="checkbox" id="autosavechkbx" )>Auto Save (1 min)
+					<input type="checkbox" id="debugalerts" )>Debug Alerts
 				</fieldset>
 				<button class="btn" onClick="saveGame()">Save Game</button>
 				<button class="btn" onClick="loadGame()">Load Game</button>
@@ -344,7 +369,10 @@
 		<script src="./vchild.js"></script>
 		<script src="./wikiarticle.js"></script>
 		<script src="./tooltips.js"></script>
+
+		<script src="./events.js"></script>
 		<script src="./specialintervals.js"></script>
+		
 		<script src="./master.js"></script>
 		<script src="./init.js"></script>
 </body>

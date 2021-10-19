@@ -15,6 +15,6 @@ function init() {
     
     document.getElementById("popalertschkbx").checked = true;
     document.getElementById("sfxalertschkbx").checked = false;
-    document.getElementById("autosavechkbx").checked = true;
+    document.getElementById("autosavechkbx").checked = false;
     
 }

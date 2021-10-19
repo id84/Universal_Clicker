@@ -101,6 +101,7 @@ user-select:none;
 		display: block;
 		position: fixed;
 		padding-left: 2%;
+		padding-right: 2%;
 		text-align: justify;
 		text-justify: inter-word;
 	}

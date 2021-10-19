@@ -262,10 +262,10 @@ var ShiposterResearch = {
     revealed: false,
     researched: false,
     unlocks: [],
-    p1type: "internets",
-    p1rate: -100,
-    p2type: "memes",
-    p2rate: -50,
+    c1type: "internets",
+    c1rate: 100,
+    c2type: "memes",
+    c2rate: 50,
 };
 Shitposter.extratext = ShiposterResearch.html;
 

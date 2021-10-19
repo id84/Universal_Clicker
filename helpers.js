@@ -60,6 +60,10 @@ function opentab(evt, tab) {
         case "WikiTab":
             redrawwiki();
             break;
+        case "WorkshopTab":
+            redrawupgrades();
+            break;
+
     }
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -86,16 +90,23 @@ function saveGame() {
     localStorage.setItem("science", science);
     localStorage.setItem("internets", internets);
     localStorage.setItem("numticks", numticks);
+    localStorage.setItem("mechanicuslevel", mechanicuslevel);
+    
 
     //options
     localStorage.setItem("popalerts", document.getElementById("popalertschkbx").checked);
     localStorage.setItem("sfxpopalerts", document.getElementById("sfxalertschkbx").checked);
     localStorage.setItem("autosave", document.getElementById("autosavechkbx").checked);
-    
+
     //save posters
     for (let i = 0; i < allposters.length; i++) {
         localStorage.setItem("postercount" + i, allposters[i].count);
     }
+    //save levels
+    for (let i = 0; i < upgradebleposters.length; i++) {
+        localStorage.setItem("posterlevel" + i, upgradebleposters[i].level);
+    }
+
     //save research
     for (let i = 0; i < allresearch.length; i++) {
         localStorage.setItem(allresearch[i].name, allresearch[i].researched);
@@ -114,6 +125,7 @@ function loadGame() {
     memes = parseInt(localStorage.getItem("memes"));
     science = parseInt(localStorage.getItem("science"));
     numticks = parseInt(localStorage.getItem("numticks"));
+    mechanicuslevel = parseInt(localStorage.getItem("mechanicuslevel"));
 
     //load options
 
@@ -132,6 +144,17 @@ function loadGame() {
         allposters[i].count = parseInt(localStorage.getItem("postercount" + i));
     }
 
+    //level up posters
+    for (let i = 0; i < upgradebleposters.length; i++) {
+        const c = upgradebleposters[i];
+
+        c.level = parseInt(localStorage.getItem("posterlevel" + i));
+        c.level++;
+		c.power1 += c.power1l * c.level;
+		c.power2 += c.power2l * c.level;
+
+    }
+
     //do research
     for (let i = 0; i < allresearch.length; i++) {
         allresearch[i].researched = localStorage.getItem(allresearch[i].name);
@@ -141,6 +164,13 @@ function loadGame() {
         if (allresearch[i].revealed === "true") { allresearch[i].revealed = true; }
         else { allresearch[i].revealed = false; }
     }
+
+    //work mechanicus
+    for (let i = 0; i < mechanicuslevel; i++) {
+        workmechanicus();
+    }    
+
+
 }
 
 
@@ -201,9 +231,9 @@ function optionclick(o) {
 
 function getpopulation(poparray) {
 
-var pop = 0;
-for (let i = 0; i < poparray.length; i++) {
-    pop += poparray[i].count;
-}
-return pop;
+    var pop = 0;
+    for (let i = 0; i < poparray.length; i++) {
+        pop += poparray[i].count;
+    }
+    return pop;
 }

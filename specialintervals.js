@@ -3,15 +3,15 @@
 setInterval(function () {
     eventdecider();
     if (document.getElementById("autosavechkbx").checked) {
-    loggerize("Game saved.")
-    saveGame();
-}
-}, 1000);
+        loggerize("Game saved.")
+        saveGame();
+    }
+}, 1000); //60000 is a minute
 //hour ticker
 setInterval(function () {
     icqalert.play();
     loggerize("Hourly Reminder: Time is going by at an alarming rate.");
-}, 600000);
+}, 3600000); //3600000 is an hour
 
 
 
@@ -54,17 +54,42 @@ function eventdecider() {
     //Bot banning events will always happen above a pop
     if (Bot.count > Bot.power1) {
         var r = getRandomInt(100);
-        var p = getRandomInt(50) / 100;
-        p = Math.floor(p * Bot.count) + Math.floor(heat / 1000);
+        var p = getRandomInt(Bot.count);
+        p += Math.floor(heat / 1000);
         if (r > Bot.power2 && p > 1) {
             workremovefromtown(0, (p))
             var log = "Mods have banned " + p + " Bots!";
+            var btn = log + "<br><br>Mods rolled " + r + " to detect against Bots " + Bot.power2 +
+                "<br><br>" + Math.floor(heat / 1000) + " of them were because of " + emojify("heat", 1);
+            log = `<button class="emobtn" onclick="reviewalert('${btn}')">${emojify("Alert")}</button>` + log;
+            loggerize(log);
+            if (document.getElementById("autobotchck").checked) {
+                var v = parseInt(document.getElementById("autobotrange").value);
+                if (Bot.count < v) {
+                    v -= Bot.count;
+                    if (buyaction(Bot, v)) {
+                        Bot.count += v
+                        loggerize("Auto Bought: " + v + " Bots");
+                    } else {
+                        loggerize("Can't afford set number of Auto Bots");
+                    }
+                }
+            }
+        }
+    }
+
+    //So does npcs 
+    if (NPC.count > NPC.power1) {
+        var r = getRandomInt(100);
+        var p = getRandomInt(50) / 100;
+        p = Math.floor((p - (NPC.level * 10)) + Math.floor(heat / 5000));
+        if (r > NPC.power2 && p > 1) {
+            workremovefromtown(1, (p))
+            var log = "Mods have banned " + p + " NPCs!";
             log = `<button class="emobtn" onclick="reviewalert('${log}')">${emojify("Alert")}</button>` + log;
             loggerize(log);
         }
     }
-    //So does npcs and shills
-
 
     //check for heat events
 
@@ -100,9 +125,11 @@ function glowieevent() {
                 break;
             case heat > 0 && 1000 > heat:
                 //Glowies will convert NPCs silently
-                var r = getRandomInt(Glowie.count) + Glowie.count;
-                NPC.count -= r;
-                Glowie.count += r;
+                if (NPC.count > Glowie.count) {
+                    var r = getRandomInt(Glowie.count) + Glowie.count;
+                    NPC.count -= r;
+                    Glowie.count += r;
+                }
                 break;
             case heat > 1000 && 10000 > heat:
                 //Glowies convert NEETs into shitposters silently
@@ -125,7 +152,7 @@ function glowieevent() {
                     }
                     var s = `Glowies offshored ${vd} Posters on the suspicion of having offshore accounts.<br>`;
                     var bts = `<button class="emobtn" onclick="reviewalert('${s}${log}')">${emojify("Alert")}</button>`;
-                    loggerize (bts + s);
+                    loggerize(bts + s);
                     popalert(s + log);
                 }
                 break;

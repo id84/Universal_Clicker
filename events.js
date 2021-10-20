@@ -63,10 +63,10 @@ function wokrevent(e) {
                         var p = neetpop / normpop;
                         var m = Math.floor(memes * p);
 
-                        var log = "Meme wars erupt across the Network! ";
+                        var log = "Memeouts erupt across the Network! ";
                         var btn = log + "<br><br>" + emojify("memes",1) + " have been ";
                         if (m < memes) {
-                            log += "Normies devalued Memes! They solved the secrets of their Turquise Tasselled Wobbegongs, NEETs are outraged!";
+                            log += "Normies solved the secrets of Turquise Tasselled Wobbegongs favourite movie, NEETs are outraged!";
                             btn += "devalued by " + m + " as a result.<br>";
                             memes = m;
                         } else {

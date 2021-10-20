@@ -33,11 +33,14 @@ function eventdecider() {
                 glowieevent();
                 break;
             case 2:
+                wokrevent("neet1"); //move over to decideevent
             case 3:
                 skeletonevent();
                 break;
             case 4:
+                wokrevent("normie1"); 
             case 5:
+                wokrevent("memeout");
             case 6:
                 Crevolutionaryevent();
                 break;

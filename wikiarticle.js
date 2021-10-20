@@ -51,7 +51,7 @@ function wikiarticle(s) {
             ele.innerHTML = "<br><span style=\"font-weight: bold\";>Workshop</span><br><p>" +
                 "Workshop tab allows you to upgrade and maintain your Network Posters.<p>" +
                 "<p><b>Auto Bots;</b> Set the slider to maintain a minimum population of bots. When your Bots get banned if checked, Auto Bot will buy Bots to match the set slider value, if you can afford it." +
-                "<p><b>Machine Learning;</b> Since your Bots and NPCs repeat what you say, you can upgrade their Internets production by learning Machines. Because that's what machine learning is<sup>[" + getRandomInt(1000)+ " editors asked for a citation and were banned]</sup>; it is learning about machines."+
+                "<p><b>Machine Learning;</b> Since your Bots and NPCs repeat what you say, you can upgrade their Internets production by learning Machines. Because that's what machine learning is<sup>[" + getRandomInt(1000)+ " editors asked for a citation and were banned]</sup>; it is learning about machines.<br>Mechanicus level will also improve Internets gains by clicking and adds Science at level 5, Fame at 20, Memes at 50 to click gains."+
                 "<p><b>Bot & NPC Upgrades;</b> Besides learning about what to make Bots say, you can make Bots more life-like so they can avoid getting banned as well as the population of Bots that can stay hidden. Oh yea, NPCs too." +
                 "<p><b>Shill Upgrades;</b> ...";
                 

@@ -6,7 +6,7 @@ setInterval(function () {
         loggerize("Game saved.")
         saveGame();
     }
-}, 1000); //60000 is a minute
+}, 60000); //60000 is a minute
 //hour ticker
 setInterval(function () {
     icqalert.play();

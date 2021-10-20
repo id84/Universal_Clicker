@@ -33,7 +33,9 @@ function wikiarticle(s) {
             break;
         case "Research":
             ele.innerHTML = "<br><span style=\"font-weight: bold\";>Research</span><br><p>" +
-                "Research tab lists available or already Researched items. You can click on an already researched item to review them. Researches cost resources. Some of them will be revealed after certain events, others will be follow ups to previous ones.";
+                "Research tab lists available or already Researched items. You can click on an already researched item to review them.<br>"+
+                "Researches cost resources. Some of them will be revealed after certain events, others will be follow ups to previous ones.<br>"+
+                "Researches related to getting rid of Interlopers are revealed when you click on them in Network tab.";
             break;
         case "Network":
             ele.innerHTML = "<br><span style=\"font-weight: bold\";>Network</span><br><p>" +

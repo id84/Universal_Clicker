@@ -14,7 +14,7 @@ function wikiarticle(s) {
         case "Resources":
             ele.innerHTML = "<br><span style=\"font-weight: bold\";>Resources</span><br><p>" +
                 "Resources represent abstract requirements to take certain actions and more importantly add more posters to your Network. !!NOT FULLY IMPLEMENTED!!<p>" +
-                emojify("internets") + "Internets; This represents general \"being in the know\" and general experience interacting with it.<p>" +
+                emojify("internets") + "Internets; This represents general \"being in the know\" and general experience interacting with it. Any click wins you 1 Internets, no matter what you click on.<p>" +
                 emojify("heat") + "Heat; Being on Internets and doing certain things on will attract attention, sometimes unwanted attention. You don't want too much of it.<p>" +
                 emojify("fame") + "Fame; Fame is the positive attention you draw. A key resource to get out of dodge and have a large Network.<p>" +
                 emojify("money") + "Money; Digital Money makes the Digital World go around... at least one day. This resource can be used to pay Shills or buy later upgrades (at some point in future).<p>" +

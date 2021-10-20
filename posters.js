@@ -19,6 +19,7 @@ var Bot = {
     power2l : 1,
     power2txt: "% chance of Bots avoid triggering Bans",
     level: 1,
+    levelcost: 2000,
 };
 
 var NPC = {
@@ -37,11 +38,12 @@ var NPC = {
     count: 0,
     power1: 500,
     power1l: 50,
-    power1txt: "Maximum number of NPCs that won't trigger Bans",
+    power1txt: "maximum number of NPCs that won't trigger Bans",
     power2: 50,
     power2l: 1,
-    power2txt: "Chance of NPCs avoid triggering Bans",
+    power2txt: "% chance of NPCs avoid triggering Bans",
     level: 1,
+    levelcost: 2000,
 };
 
 var Shill = {
@@ -67,7 +69,7 @@ var Philosopher = {
     tooltip: "Internet philosophers will think of most daring things nobody else ever did yet",
     revealed: false,
     c1type: "internets",
-    c1rate: 100,
+    c1rate: 250,
     c2type: 0,
     c2rate: 0,
     p1rate: 10,
@@ -84,7 +86,7 @@ var Scientist = {
     tooltip: "Engage in deep conversations about how round the Earth is",
     revealed: false,
     c1type: "internets",
-    c1rate: 100,
+    c1rate: 250,
     c2type: 0,
     c2rate: 0,
     p1rate: 1,
@@ -102,7 +104,7 @@ var Artist = {
     tooltip: "Get in the art circles. The TITLATING world of ARTS is filled INSPIRATION and TRASH",
     revealed: false,
     c1type: "internets",
-    c1rate: 100,
+    c1rate: 250,
     c2type: 0,
     c2rate: 0,
     p1rate: 1,
@@ -119,7 +121,7 @@ var Wagie = {
     tooltip: "Wage Worker. They have a fixed income and not much else, so they will spend it to fill the void",
     revealed: false,
     c1type: "internets",
-    c1rate: 100,
+    c1rate: 250,
     c2type: 0,
     c2rate: 0,
     p1rate: -100,
@@ -258,7 +260,7 @@ var Dramatist = {
     tooltip: "An offshoot of common Trolls of the yore, they finance people to watch them ruin their lifes online",
     revealed: false,
     c1type: "internets",
-    c1rate: 500,
+    c1rate: 250,
     c2type: "fame",
     c2rate: 100,
     p1rate: 10,

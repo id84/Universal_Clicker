@@ -47,6 +47,7 @@ function wokrevent(e) {
                 }
                 break;
             case "memeout":
+                if (memes > 0){
                 //Needs Meme resource
                 var norm = findexistingnormies();
                 var neets = findexistingneets();
@@ -81,6 +82,7 @@ function wokrevent(e) {
                         popalert(btn);
 
                     }
+                }
                 break;
     }
 }

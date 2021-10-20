@@ -3,6 +3,11 @@
 
 <head>
 	<meta charset="UTF-8">
+
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="0">
+
 	<title>Universal</title>
 	<link rel="stylesheet" href="style.css">
 
@@ -286,7 +291,7 @@
 				<button class="btn" onClick="loadGame()">Load</button>
 				<button class="btn" onClick="loggerize()">Log</button>
 				<button class="btn" onClick="wokrevent('memeout')">event</button>
-				  </video> 
+				</video>
 			</div>
 
 			<div id="WikiTab" class="tabcontent">
@@ -296,11 +301,14 @@
 					<ul id="wikipanels" class="wkul">
 
 						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Log')">Log</button></li>
-						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Resources')">Resources</button></li>
-						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Population')">Population</button></li>
+						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Resources')">Resources</button>
+						</li>
+						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Population')">Population</button>
+						</li>
 					</ul>
 					<ul id="wikitabs" class="wkul">
-						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Community')">Community</button></li>
+						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Community')">Community</button>
+						</li>
 						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Research')">Research</button></li>
 						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Workshop')">Workshop</button></li>
 						<li class="wkli"><button class="wkbtn" onclick="wikiarticle('Network')">Network</button></li>
@@ -371,7 +379,7 @@
 
 		<script src="./events.js"></script>
 		<script src="./specialintervals.js"></script>
-		
+
 		<script src="./master.js"></script>
 		<script src="./init.js"></script>
 </body>

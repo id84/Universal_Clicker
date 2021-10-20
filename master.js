@@ -24,7 +24,12 @@ var mechanicuslevel = 1;
 var townarr = [];
 
 
-document.addEventListener("click", function(){internets++;})
+document.addEventListener("click", function(){
+	internets += mechanicuslevel
+	if (mechanicuslevel >= 5){science += mechanicuslevel;}
+	if (mechanicuslevel >= 25){fame += mechanicuslevel;}
+	if (mechanicuslevel >= 50){memes += mechanicuslevel;}
+	;})
 
 
 //Heartbeat

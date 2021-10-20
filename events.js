@@ -26,7 +26,7 @@ function wokrevent(e) {
             break;
             default:
             case "normie1":
-                //Needs NEETs to work
+                //Needs Normies to work
                 var norm = findexistingnormies();
                 if (norm.length >= 1) {
                     var c = getRandomInt(countryemojis.length);
@@ -45,6 +45,42 @@ function wokrevent(e) {
                     loggerize(log);
                     popalert(btn);
                 }
+                break;
+            case "memeout":
+                //Needs Meme resource
+                var norm = findexistingnormies();
+                var neets = findexistingneets();
+                    if (norm.length >= 1 && neets.length >=1) {
+                        var neetpop = 0; 
+                        var normpop = 0;
+                        norm.forEach(element => {
+                            normpop += element.count
+                        });
+                        neets.forEach(element => {
+                            neetpop += element.count
+                        });
+
+                        var p = neetpop / normpop;
+                        var m = Math.floor(memes * p);
+
+                        var log = "Meme wars erupt across the Network! ";
+                        var btn = log + "<br><br>" + emojify("memes",1) + " have been ";
+                        if (m < memes) {
+                            log += "Normies devalued Memes! They solved the secrets of their Turquise Tasselled Wobbegongs, NEETs are outraged!";
+                            btn += "devalued by " + m + " as a result.<br>";
+                            memes = m;
+                        } else {
+                            log += "NEETs have defended their Memes, Normies are confused about the political leanings of purple Gerenuks."
+                            btn += "protected and their rarity increased by " + m + "!<br>";
+                            memes += m;
+                        }
+                         btn += log + "<br><br>";
+                        log = `<button class="emobtn" onclick="reviewalert('${btn}')">${emojify("Alert")}</button>` + log;
+
+                        loggerize(log);
+                        popalert(btn);
+
+                    }
                 break;
     }
 }

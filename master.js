@@ -261,14 +261,18 @@ function redrawupgrades() {
 	//Bot autobuy
 	document.getElementById("autobotrange").max = Bot.power1;
 	document.getElementById("autospan").innerHTML = document.getElementById("autobotrange").value;
+	
+	//mechanicus
 	var mt = getmechanicuscost();
+	var ms = "You gain per click";
 	document.getElementById("mechanicus").innerHTML = "Your current Level is: " + mechanicuslevel + "<br> It will cost: " + mt.c1rate + emojify(mt.c1type);
 	if (mt.c2type !== 0){ 
 		document.getElementById("mechanicus").innerHTML += " and " + mt.c2rate + emojify(mt.c2type);
 	}
-
-
-
+	ms += "<br>" + mechanicuslevel + emojify("internets",0);
+	if (mechanicuslevel >= 5){ms += mechanicuslevel + emojify("science",0);}
+	if (mechanicuslevel >= 25){ms += mechanicuslevel + emojify("fame",0);}
+	if (mechanicuslevel >= 50){ms += mechanicuslevel + emojify("memes",0)}
 
 
 

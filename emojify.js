@@ -81,7 +81,8 @@ function emojify(str,bool) {
         case "China" : emoji = "🇨🇳"; break;
         case "France" : emoji = "🇫🇷"; break;
         
-        
+        case "Mouse":
+        case "Click": emoji = "🖱️"; break;
     }
     if(bool){
     str = str[0].toUpperCase() + str.substring(1);

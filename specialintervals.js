@@ -3,7 +3,7 @@
 setInterval(function () {
     eventdecider();
     if (document.getElementById("autosavechkbx").checked) {
-        loggerize("Game saved.")
+        loggerize("Game saved.");
         saveGame();
     }
 }, 60000); //60000 is a minute
@@ -24,6 +24,7 @@ function eventdecider() {
     eventticks++;
     //we will try for a poster event every 5 ticks, doesn't matter if it fails or not
     if (eventticks > 5) {
+        eventticks = 0
         var r = getRandomInt(10);
         switch (r) {
             case 0:
@@ -46,9 +47,9 @@ function eventdecider() {
                 break;
             case 7:
             case 8:
-            case 9:
                 lizardattract();
                 break;
+            case 9:
             case 10:
                 lizardevent();
                 break;
@@ -59,11 +60,12 @@ function eventdecider() {
         var r = getRandomInt(100);
         var p = getRandomInt(Bot.count);
         p += Math.floor(heat / 1000);
+        if (Bot.power2 > 100){r + (heat/1000)};
         if (r > Bot.power2 && p > 1) {
             workremovefromtown(0, (p))
             var log = "Mods have banned " + p + " Bots!";
             var btn = log + "<br><br>Mods rolled " + r + " to detect against Bots " + Bot.power2 +
-                "<br><br>" + Math.floor(heat / 1000) + " of them were because of " + emojify("heat", 1);
+                "<br><br>" + Math.floor(heat / 1000) + " added to mods roll because of " + emojify("heat", 1);
             log = `<button class="emobtn" onclick="reviewalert('${btn}')">${emojify("Alert")}</button>` + log;
             loggerize(log);
             if (document.getElementById("autobotchck").checked) {
@@ -86,10 +88,13 @@ function eventdecider() {
         var r = getRandomInt(100);
         var p = getRandomInt(50) / 100;
         p = Math.floor((p - (NPC.level * 10)) + Math.floor(heat / 5000));
+        if (NPC.power2 > 100){r + (heat/10000)};
         if (r > NPC.power2 && p > 1) {
             workremovefromtown(1, (p))
             var log = "Mods have banned " + p + " NPCs!";
-            log = `<button class="emobtn" onclick="reviewalert('${log}')">${emojify("Alert")}</button>` + log;
+            var btn = log + "<br><br>Mods rolled " + r + " to detect against Bots " + Bot.power2 +
+                "<br><br>" + Math.floor(heat / 10000) + " added to mods roll because of " + emojify("heat", 1);
+            log = `<button class="emobtn" onclick="reviewalert('${btn}')">${emojify("Alert")}</button>` + log;
             loggerize(log);
         }
     }
@@ -99,6 +104,7 @@ function eventdecider() {
     //glowies will glow
     heat += Glowie.count * 5;
 
+    //interlopers have their own tick
 
 
 }
@@ -200,7 +206,6 @@ function skeletonevent() {
                 popalert(log);
                 var bts = '<button class="emobtn" onclick="reviewalert(' + "'" + log + "'" + ')">' + emojify("Alert") + "</button>";
                 loggerize(bts + "Skeletons have spooked " + nspk + " away from Network!");
-                eventticks = 0;
                 redrawscoreboard();
                 redrawpop();
                 rendertown(true);
@@ -240,7 +245,6 @@ function lizardevent() {
                     loggerize(bts + dt * 2 + " Lizards were exposed!");
                 }
             }
-            eventticks = 0;
             redrawscoreboard();
             redrawpop();
             rendertown(true);
@@ -267,7 +271,6 @@ function Crevolutionaryevent() {
                 if (ent[r].count > 0) { ent[r].count = ent[r].count - 1; Veteran.count += 1; }
             }
         }
-        eventticks = 0;
     }
 }
 

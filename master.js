@@ -24,12 +24,13 @@ var mechanicuslevel = 1;
 var townarr = [];
 
 
-document.addEventListener("click", function(){
+document.addEventListener("click", function () {
 	internets += mechanicuslevel
-	if (mechanicuslevel >= 5){science += mechanicuslevel;}
-	if (mechanicuslevel >= 25){fame += mechanicuslevel;}
-	if (mechanicuslevel >= 50){memes += mechanicuslevel;}
-	;})
+	if (mechanicuslevel >= 5) { science += mechanicuslevel; }
+	if (mechanicuslevel >= 25) { fame += mechanicuslevel; }
+	if (mechanicuslevel >= 50) { memes += mechanicuslevel; }
+	;
+})
 
 
 //Heartbeat
@@ -104,6 +105,9 @@ setInterval(function () {
 			var ex = networkposters[i].p1rate;
 			ex *= networkposters[i].count * mechanicuslevel;
 			iadd += ex - networkposters[i].count; //this is ugly
+			if (mechanicuslevel >= 5) { sadd += networkposters[i].count * mechanicuslevel; }
+			if (mechanicuslevel >= 25) { fadd += networkposters[i].count * mechanicuslevel; }
+			if (mechanicuslevel >= 50) { meadd += networkposters[i].count * mechanicuslevel; }
 		}
 	}
 
@@ -177,7 +181,7 @@ function redrawscoreboard() {
 		"<tr><th  style=" + '"width:70%"' + ">" + fame.toLocaleString('en-GB') + "</th><th  style=" + '"width:10%"' + "> " + emojify("fame") + "</th><th  style=" + '"width:20%"' + ">" + fadd.toLocaleString('en-GB') + "/s</th></tr>" +
 		"<tr><th  style=" + '"width:70%"' + ">" + money.toLocaleString('en-GB') + "</th><th  style=" + '"width:10%"' + "> " + emojify("money") + "</th><th  style=" + '"width:20%"' + ">" + madd.toLocaleString('en-GB') + "/s</th></tr>" +
 		"<tr><th  style=" + '"width:70%"' + ">" + drama.toLocaleString('en-GB') + "</th><th  style=" + '"width:10%"' + "> " + emojify("drama") + "</th><th  style=" + '"width:20%"' + ">" + dadd.toLocaleString('en-GB') + "/s</th></tr>" +
-		"<tr><th  style=" + '"width:70%"' + ">" + memes.toLocaleString('en-GB') + "</th><th  style=" + '"width:10%"' + "> " + emojify("memes") + "</th><th  style=" + '"width:20%"' + ">" + meadd + "/s</th></tr>" +
+		"<tr><th  style=" + '"width:70%"' + ">" + memes.toLocaleString('en-GB') + "</th><th  style=" + '"width:10%"' + "> " + emojify("memes") + "</th><th  style=" + '"width:20%"' + ">" + meadd.toLocaleString('en-GB') + "/s</th></tr>" +
 		"<tr><th  style=" + '"width:70%"' + ">" + science.toLocaleString('en-GB') + "</th><th  style=" + '"width:10%"' + "> " + emojify("science") + "</th><th  style=" + '"width:20%"' + ">" + sadd.toLocaleString('en-GB') + "/s</th></tr>" +
 		"</table>";
 }
@@ -245,9 +249,8 @@ function redrawupgrades() {
 	for (let i = 0; i < upgradebleposters.length; i++) {
 		const element = upgradebleposters[i];
 		if (element.revealed === true) {
-			html += "<fieldset><legend>" + element.name + " Upgrades</legend>" +
-				"<button class=\"btn\" onclick=upgradeclick(" + i + ")>" + "Upgrade" + emojify(element.name, 1) + "</button>" +
-				"Current Level: " + element.level + " Costs: " + (element.level * element.p1rate * element.levelcost) + emojify(element.c1type) +
+			html += "<fieldset><legend>" + "Upgrade <button class=\"btn\" onclick=upgradeclick(" + i + ")>" + emojify(element.name, 1) + "s</button></legend>" +
+				"Current Level: " + element.level + " Costs: " + (element.level * element.p1rate * element.levelcost).toLocaleString('en-GB') + emojify(element.c1type) +
 				"<br>Upgrading will improve;<br>" +
 				element.power1 + " (+" + element.power1l + ")" + " " + element.power1txt + "<br>";
 			if (element.power2 !== "none") {
@@ -261,19 +264,19 @@ function redrawupgrades() {
 	//Bot autobuy
 	document.getElementById("autobotrange").max = Bot.power1;
 	document.getElementById("autospan").innerHTML = document.getElementById("autobotrange").value;
-	
+
 	//mechanicus
 	var mt = getmechanicuscost();
-	var ms = "You gain per click";
-	document.getElementById("mechanicus").innerHTML = "Your current Level is: " + mechanicuslevel + "<br> It will cost: " + mt.c1rate + emojify(mt.c1type);
-	if (mt.c2type !== 0){ 
-		document.getElementById("mechanicus").innerHTML += " and " + mt.c2rate + emojify(mt.c2type);
+	var ms = "<br>" + emojify("Bot", 0) + emojify("NPC") + emojify("Shill") + " and " + emojify("Mouse", 0) + " gains;";
+	document.getElementById("mechanicus").innerHTML = "Your current Level is: " + mechanicuslevel + "<br> It will cost: " + mt.c1rate.toLocaleString('en-GB') + emojify(mt.c1type);
+	if (mt.c2type !== 0) {
+		document.getElementById("mechanicus").innerHTML += " and " + mt.c2rate.toLocaleString('en-GB') + emojify(mt.c2type);
 	}
-	ms += "<br>" + mechanicuslevel + emojify("internets",0);
-	if (mechanicuslevel >= 5){ms += mechanicuslevel + emojify("science",0);}
-	if (mechanicuslevel >= 25){ms += mechanicuslevel + emojify("fame",0);}
-	if (mechanicuslevel >= 50){ms += mechanicuslevel + emojify("memes",0)}
-
+	ms += "<br>" + mechanicuslevel + emojify("internets", 0);
+	if (mechanicuslevel >= 5) { ms += emojify("science", 0); }
+	if (mechanicuslevel >= 25) { ms += emojify("fame", 0); }
+	if (mechanicuslevel >= 50) { ms += emojify("memes", 0) }
+	document.getElementById("mechanicus").innerHTML += ms;
 
 
 	document.getElementById("upgrades").innerHTML = html;
@@ -481,7 +484,10 @@ function upgradeclick(i) {
 	if (buyaction(t, 1)) {
 		c.level++;
 		c.power1 += c.power1l;
+		
 		c.power2 += c.power2l;
+		//power 2 100 caps
+		if (c.name == "Bot" || c.name == "NPC" && c.power2 > 100){ c.power2 = 100;}
 		redrawupgrades();
 	} else {
 		popalert("You cannot afford this!")
@@ -500,7 +506,7 @@ function getmechanicuscost() {
 	switch (true) {
 		case mechanicuslevel <= 5:
 			mt.c1type = "internets";
-			mt.c1rate = 1000 * mechanicuslevel;
+			mt.c1rate = 10000 * mechanicuslevel;
 			mt.c2type = 0
 			mt.c2rate = 0
 			break;
@@ -510,6 +516,12 @@ function getmechanicuscost() {
 			mt.c1rate = 50000 * mechanicuslevel;
 			mt.c2type = "science";
 			mt.c2rate = 10000 * mechanicuslevel;
+			break;
+		case 25 < mechanicuslevel <= 50:
+			mt.c1type = "science";
+			mt.c1rate = 100000 * mechanicuslevel;
+			mt.c2type = "memes";
+			mt.c2rate = 50000 * mechanicuslevel;
 			break;
 		default:
 			alert("max mechanicus")
@@ -527,12 +539,12 @@ function mechanicus() {
 		mechanicuslevel++;
 		workmechanicus();
 		redrawupgrades();
-	} else { popalert("Can't afford Mechanicus Upgrade!","alert") }
+	} else { popalert("Can't afford Mechanicus Upgrade!", "alert") }
 
 }
 
 function workmechanicus() {
-//save game thing for later features
+	//save game thing for later features
 }
 
 

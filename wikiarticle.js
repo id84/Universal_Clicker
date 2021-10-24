@@ -58,7 +58,7 @@ function wikiarticle(s) {
             break;
         case "Bot":
             ele.innerHTML = "<br><span style=\"font-weight: bold\";>" + emojify("Bot", 1) + "</span><br><p>" +
-                Bot.tooltip + "<p>" +
+                Bot.tooltip + "<p>" + emojify("heat",1) + " will make Bots easier to detect.<p>" +
                 "Costs " + Bot.c1rate + emojify(Bot.c1type) + "<br>" +
                 "Produces " + Bot.p1rate + emojify(Bot.p1type) + "/s<br><br>" +
                 "Your Bots are level " + Bot.level + ".<br>" +
@@ -67,7 +67,7 @@ function wikiarticle(s) {
             break;
         case "NPC":
             ele.innerHTML = "<br><span style=\"font-weight: bold\";>" + emojify("NPC", 1) + "</span><br><p>" +
-                NPC.tooltip + "<p>" +
+                NPC.tooltip + "<p>" + emojify("heat",1) + " will make NPCs very slightly easier to detect.<p>" +
                 "Costs " + NPC.c1rate + emojify(NPC.c1type) + "<br>" +
                 "Produces " + NPC.p1rate + emojify(NPC.p1type) + "/s<br><br>" +
                 "Your NPCs are level " + Bot.level + ".<br>" +

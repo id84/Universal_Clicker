@@ -193,7 +193,7 @@ var CSkeletonResearch = {
         "Cyber Skeletons are generally results of frameworks that weren't fed enough data breaking free from the confines their projects.<br>" +
         "Just like the Skeletons hiding inside every living being, they exist to spook Normies. Their methods range from spamming spooky pictures to fake virus alerts.<br>" +
         "It is estimated they result in hundreds of Normies leaving Internets forever. Don't let them linger in your Network for long!<br><br>" +
-        "Skeletons spooking powers are increased by" + emojify("drama",1) + ", " + emojify("heat",1) + ", " + emojify("Wizard",1) + ", " + emojify("Lizard",1) + " and " + emojify("Dramatist",1) + ".<br>" +
+        "Skeletons spooking powers are increased by" + emojify("drama",1) + ", " + emojify("heat",1) + ", " + emojify("Wizard",1) + ", " + emojify("Lizard",1) + " and " + emojify("Dramatist",1) + " population.<br>" +
         "Skeletons themselves are spooked by " + emojify("science",1) + " and " + emojify("Scientist",1) + " , also " + emojify("Veteran",1) + " will prevent Normies from being spooked.",
     type: "tintrlpr",
     revealed: false,

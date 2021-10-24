@@ -5,11 +5,21 @@ function getRandomInt(max) {
 function sunglasschbx() {
     var cb = document.getElementById("snglschbx");
     if (cb.checked == true) {
-        document.getElementById("maincontainer").style.background = "#000000";
+        var ele = document.querySelectorAll( 'body *' );
+        for (i = 0; i < ele.length; i++) {
+            if (ele[i].id != "interloperspan"){
+            ele[i].classList.add("sunglass");
+          } 
+        }
 
     }
     else {
-        document.getElementById("maincontainer").style.background = "#FFFFFF";
+        var ele = document.querySelectorAll( 'body *' );
+        for (i = 0; i < ele.length; i++) {
+
+            ele[i].classList.remove("sunglass");
+
+          } 
     }
     rendertown(true);
 }

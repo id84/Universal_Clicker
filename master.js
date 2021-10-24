@@ -168,7 +168,8 @@ function redrawwiki() {
 		var s = "<li class=\"wkli\"><button class=\"wkbtn\" onclick=\"interloperarticle(" + i + ")\">" + emojify(element.name, 1) + "</button></li>";
 		document.getElementById("wikiinterlopers").innerHTML += s;
 	}
-
+	//oh god no
+	nightmode();
 
 
 }
@@ -305,12 +306,12 @@ function rendertown(r) {
 
 				switch (allposters[i].name) {
 					case "Glowie":
-						s = "<span class=\"glow\" onmouseout=\"cleartooltip()\" onmouseover=\"ttooltip(\'" + i + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify("Random") + "</span>";
+						s = "<span id=\"interloperspan\" class=\"glow\" onmouseout=\"cleartooltip()\" onmouseover=\"ttooltip(\'" + i + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify("Random") + "</span>";
 						break;
 					case "Lizard":
 						var cb = document.getElementById("snglschbx");
 						if (cb.checked) {
-							s = "<span onmouseout=\"cleartooltip()\" onmouseover=\"ttooltip(\'" + i + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify("Lizard") + "</span>";
+							s = "<span id=\"interloperspan\" onmouseout=\"cleartooltip()\" onmouseover=\"ttooltip(\'" + i + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify("Lizard") + "</span>";
 						} else {
 							s = "<span onmouseout=\"cleartooltip()\" onmouseover=\"ttooltip(\'" + i + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify("Random") + "</span>";
 						}
@@ -553,6 +554,27 @@ function retromeup() {
 		//popalert(emojify("Alert") + "Warning!"+ emojify("Alert") + "<br><br>Playing in \"Retro\" may cause eyestrain and hipsterism!<br><br>", "alert")
 	} else {
 		document.getElementById("maincontainer").classList.remove("crt");
+	}
+}
+
+function nightmode() {
+	if (document.getElementById("nightmodechkbx").checked) {
+		document.getElementById("maincontainer").classList.add("nightmode");
+		document.getElementById("popup").classList.add("nightmode");
+		var x = document.getElementsByClassName("wkbtn");
+		for (i = 0; i < x.length; i++) {
+			x[i].classList.add("nightmode");
+		}
+
+		//popalert(emojify("Alert") + "Warning!"+ emojify("Alert") + "<br><br>Playing in \"Retro\" may cause eyestrain and hipsterism!<br><br>", "alert")
+	} else {
+		document.getElementById("maincontainer").classList.remove("nightmode");
+		document.getElementById("popup").classList.remove("nightmode");
+
+		var x = document.getElementsByClassName("wkbtn");
+		for (i = 0; i < x.length; i++) {
+			x[i].classList.remove("nightmode");
+		}
 	}
 }
 

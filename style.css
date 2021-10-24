@@ -1,3 +1,7 @@
+body{
+	background-color:lightslategray;
+}
+
 ul {
 	list-style-type: none;
 	margin: 30px 0;
@@ -62,7 +66,7 @@ fieldset {
 		overflow-x: hidden;
 		border-radius: 15px;
 		border: solid #1f628d 2px;
-		
+		background-color: #FFFFFF;
 -webkit-touch-callout:none;
 -webkit-user-select:none;
 -moz-user-select:none;
@@ -70,7 +74,16 @@ fieldset {
 user-select:none;
 		
 	}
-	
+	.maincontainer{
+		top:0;
+		left:0;
+		bottom:0;
+		right:0;
+		height:100%;
+		width:100%;
+		color: black;
+		background-color: white;
+	}
 	.verticalpanel{
 		float:left;
 		height: 450px;
@@ -164,8 +177,8 @@ user-select:none;
 	
 	.tab {
 		overflow: hidden;
-		border: 1px solid #ccc;
-		background-color: #f1f1f1;
+		background-color: #1f628d;
+
 	}
 	
 	.tab button {
@@ -177,14 +190,15 @@ user-select:none;
 		padding: 14px 16px;
 		transition: 0.3s;
 		font-size: 17px;
+		color: blanchedalmond;
 	}
 
 	.tab button:hover {
-		background-color: #ddd;
+		background-color: #0d3f5e;
 	}
 
 	.tab button.active {
-		background-color: #ccc;
+		background-color: #103247;
 	}
 
 	.tabcontent {
@@ -234,7 +248,7 @@ display:block;
 		border-radius: 16px;
 		text-shadow: 2px 2px 3px #666666;
 		box-shadow: 1px 1px 3px #666666;
-		color: #ffffff;
+		color:blanchedalmond;
 		font-size: 16px;
 		padding: 7px 14px 7px 14px;
 		border: solid #1f628d 2px;
@@ -247,7 +261,7 @@ display:block;
 		border-radius: 12px;
 		text-shadow: 2px 2px 3px #666666;
 		box-shadow: 1px 1px 3px #666666;
-		color: #ffffff;
+
 		font-size: 40px;
 		padding: 5px 10px 5px 10px;
 		border: solid #1f628d 2px;
@@ -273,21 +287,21 @@ display:block;
 	}
 	.nicetext {
 		
-		color: #000000;
+
 		font-size: 24px;
 	}
 	.scoretext {
-		color: #000000;
+
 		font-size: 20px;
 	}
 	
 	.logtext {
-		color: #000000;
+
 		font-size: 16px;
 
 	}
 	.largertext {
-		color: #000000;
+
 		font-size: 26px;
 		cursor: pointer;
 		
@@ -495,7 +509,6 @@ height: 100%;
 display: flex;
 justify-content: center;
 align-items: center;
-color: white;
 border: 2px solid #BBB;
 user-select: none;
 font-size:x-large;
@@ -582,3 +595,17 @@ padding:3px;
 	  .crt {
 		filter: blur(0.5px);
 	  }
+
+	.invert {
+		filter: invert(100%);
+	}
+
+	.nightmode {
+		background-color: #000000;
+		color: #fff8ce;
+	}
+
+	.sunglass{
+		filter: saturate(75%) blur(0.3px);
+		background-color: #000000;
+	}

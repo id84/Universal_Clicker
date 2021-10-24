@@ -550,7 +550,7 @@ function workmechanicus() {
 function retromeup() {
 	if (document.getElementById("retrochkbx").checked) {
 		document.getElementById("maincontainer").classList.add("crt");
-		popalert(emojify("Alert") + "Warning!"+ emojify("Alert") + "<br><br>Playing in \"Retro\" may cause eyestrain and hipsterism!<br><br>", "alert")
+		//popalert(emojify("Alert") + "Warning!"+ emojify("Alert") + "<br><br>Playing in \"Retro\" may cause eyestrain and hipsterism!<br><br>", "alert")
 	} else {
 		document.getElementById("maincontainer").classList.remove("crt");
 	}

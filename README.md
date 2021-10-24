@@ -10,6 +10,9 @@ Minefield; Largely based on "How To Build A Minesweeper Clone With JavaScript" f
 
 Tons of CSS from W3 Schools; https://www.w3schools.com/
 
+CRT Effect Based on;
+http://aleclownes.com/2017/02/01/crt-display.html
+
 Sound encoding, because it sounds like a cool idea to have more stuff than linking actual sound files; https://base64.guru/converter/encode/audio
 
 

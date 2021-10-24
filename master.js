@@ -484,10 +484,10 @@ function upgradeclick(i) {
 	if (buyaction(t, 1)) {
 		c.level++;
 		c.power1 += c.power1l;
-		
+
 		c.power2 += c.power2l;
 		//power 2 100 caps
-		if (c.name == "Bot" || c.name == "NPC" && c.power2 > 100){ c.power2 = 100;}
+		if (c.name == "Bot" || c.name == "NPC" && c.power2 > 100) { c.power2 = 100; }
 		redrawupgrades();
 	} else {
 		popalert("You cannot afford this!")
@@ -547,7 +547,14 @@ function workmechanicus() {
 	//save game thing for later features
 }
 
-
+function retromeup() {
+	if (document.getElementById("retrochkbx").checked) {
+		document.getElementById("maincontainer").classList.add("crt");
+		popalert(emojify("Alert") + "Warning!"+ emojify("Alert") + "<br><br>Playing in \"Retro\" may cause eyestrain and hipsterism!<br><br>", "alert")
+	} else {
+		document.getElementById("maincontainer").classList.remove("crt");
+	}
+}
 
 //This will be deprecated... some time... in future
 function buyaction(a, rv) {

@@ -97,7 +97,7 @@ function saveGame() {
     localStorage.setItem("popalerts", document.getElementById("popalertschkbx").checked);
     localStorage.setItem("sfxpopalerts", document.getElementById("sfxalertschkbx").checked);
     localStorage.setItem("autosave", document.getElementById("autosavechkbx").checked);
-
+    localStorage.setItem("retro", document.getElementById("retrochkbx").checked);
     //save posters
     for (let i = 0; i < allposters.length; i++) {
         localStorage.setItem("postercount" + i, allposters[i].count);
@@ -112,7 +112,7 @@ function saveGame() {
         localStorage.setItem(allresearch[i].name, allresearch[i].researched);
         localStorage.setItem("researchreveal" + i, allresearch[i].revealed);
     }
-
+    loggerize("Game Saved!")
 }
 
 function loadGame() {
@@ -138,6 +138,8 @@ function loadGame() {
     if (localStorage.getItem("autosave") === "true") { document.getElementById("autosavechkbx").checked = true; }
     else { document.getElementById("autosavechkbx").checked = false; }
 
+    if (localStorage.getItem("retro") === "true") { document.getElementById("retrochkbx").checked = true; retromeup();}
+    else { document.getElementById("retrochkbx").checked = false; }
 
     //load poster counts
     for (let i = 0; i < allposters.length; i++) {
@@ -170,7 +172,7 @@ function loadGame() {
         workmechanicus();
     }    
 
-
+    loggerize("Game Loaded!")
 }
 
 

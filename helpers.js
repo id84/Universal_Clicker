@@ -5,21 +5,19 @@ function getRandomInt(max) {
 function sunglasschbx() {
     var cb = document.getElementById("snglschbx");
     if (cb.checked == true) {
-        var ele = document.querySelectorAll( 'body *' );
+        var ele = document.querySelectorAll('body *');
         for (i = 0; i < ele.length; i++) {
-            if (ele[i].id != "interloperspan"){
-            ele[i].classList.add("sunglass");
-          } 
+            if (ele[i].id === "glowiespan") {
+                ele[i].classList.add("glow")
+            }
         }
 
     }
     else {
-        var ele = document.querySelectorAll( 'body *' );
+        var ele = document.querySelectorAll('body *');
         for (i = 0; i < ele.length; i++) {
-
-            ele[i].classList.remove("sunglass");
-
-          } 
+            ele[i].classList.remove("glow")
+        }
     }
     rendertown(true);
 }
@@ -101,13 +99,15 @@ function saveGame() {
     localStorage.setItem("internets", internets);
     localStorage.setItem("numticks", numticks);
     localStorage.setItem("mechanicuslevel", mechanicuslevel);
-    
+
 
     //options
     localStorage.setItem("popalerts", document.getElementById("popalertschkbx").checked);
     localStorage.setItem("sfxpopalerts", document.getElementById("sfxalertschkbx").checked);
     localStorage.setItem("autosave", document.getElementById("autosavechkbx").checked);
     localStorage.setItem("retro", document.getElementById("retrochkbx").checked);
+    localStorage.setItem("nghtmode", document.getElementById("nightmodechkbx").checked);
+    
     //save posters
     for (let i = 0; i < allposters.length; i++) {
         localStorage.setItem("postercount" + i, allposters[i].count);
@@ -148,8 +148,11 @@ function loadGame() {
     if (localStorage.getItem("autosave") === "true") { document.getElementById("autosavechkbx").checked = true; }
     else { document.getElementById("autosavechkbx").checked = false; }
 
-    if (localStorage.getItem("retro") === "true") { document.getElementById("retrochkbx").checked = true; retromeup();}
+    if (localStorage.getItem("retro") === "true") { document.getElementById("retrochkbx").checked = true; retromeup(); }
     else { document.getElementById("retrochkbx").checked = false; }
+
+    if (localStorage.getItem("nghtmode") === "true") { document.getElementById("nightmodechkbx").checked = true; nightmode(); }
+    else { document.getElementById("nightmodechkbx").checked = false; }
 
     //load poster counts
     for (let i = 0; i < allposters.length; i++) {
@@ -162,8 +165,8 @@ function loadGame() {
 
         c.level = parseInt(localStorage.getItem("posterlevel" + i));
         c.level++;
-		c.power1 += c.power1l * c.level;
-		c.power2 += c.power2l * c.level;
+        c.power1 += c.power1l * c.level;
+        c.power2 += c.power2l * c.level;
 
     }
 
@@ -180,7 +183,7 @@ function loadGame() {
     //work mechanicus
     for (let i = 0; i < mechanicuslevel; i++) {
         workmechanicus();
-    }    
+    }
 
     loggerize("Game Loaded!")
 }

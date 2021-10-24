@@ -379,14 +379,13 @@ width:200px;
 		left: 50%;
 		/* bring your own prefixes */
 		transform: translate(-50%, -50%);
-	}
-	.popup-content {
 		background-color: #fefefe;
 		margin: 5% auto; /* 15% from the top and centered */
 		padding: 20px;
 		border: 1px solid #888;
 		width: 80%; /* Could be more or less, depending on screen size */
 	}
+
 
 	.mfpopup {
 		display: none;
@@ -398,8 +397,7 @@ width:200px;
 		background: rgba(200, 230, 225, 0.5);
 		justify-content: center;
 		align-items: center;
-		
-		top: 50%;
+		/*top: 50%;*/
 		left: 50%;
 		/* bring your own prefixes */
 		transform: translate(-50%, -50%);

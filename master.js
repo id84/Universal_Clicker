@@ -306,7 +306,7 @@ function rendertown(r) {
 
 				switch (allposters[i].name) {
 					case "Glowie":
-						s = "<span id=\"interloperspan\" class=\"glow\" onmouseout=\"cleartooltip()\" onmouseover=\"ttooltip(\'" + i + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify("Random") + "</span>";
+						s = "<span id=\"glowiespan\" class=\"glow\" onmouseout=\"cleartooltip()\" onmouseover=\"ttooltip(\'" + i + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify("Random") + "</span>";
 						break;
 					case "Lizard":
 						var cb = document.getElementById("snglschbx");
@@ -575,6 +575,7 @@ function nightmode() {
 		for (i = 0; i < x.length; i++) {
 			x[i].classList.remove("nightmode");
 		}
+
 	}
 }
 

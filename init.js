@@ -17,4 +17,5 @@ function init() {
     document.getElementById("sfxalertschkbx").checked = false;
     document.getElementById("autosavechkbx").checked = false;
     document.getElementById("retrochkbx").checked = false;
+    document.getElementById("nightmodechkbx").checked = false;
 }

@@ -36,8 +36,7 @@ fieldset {
 		float:left;
 		box-sizing: border-box;
 		margin:0;
-		/*border-radius: 15px;
-		border: solid #1f628d 1px;*/
+		border: solid #1f628d 1px;
 	}
 	.rightpanel{
 		/*height: 100%;*/
@@ -45,7 +44,7 @@ fieldset {
 		float:right;
 		box-sizing: border-box;
 		margin:0;
-		border-radius: 15px;
+
 		border: solid #1f628d 1px;
 	}
 	.centerpanel{
@@ -56,8 +55,8 @@ fieldset {
 		box-sizing: border-box;
 		overflow-y: hidden;
 		overflow-x: hidden;
-		border-radius: 15px;
-		border: solid #1f628d 2px;
+		
+		
 		background-color: #FFFFFF;
 -webkit-touch-callout:none;
 -webkit-user-select:none;
@@ -71,6 +70,7 @@ user-select:none;
 		left:0;
 		bottom:0;
 		right:0;
+		position: fixed;
 		/*height:100%;*/
 		width:100%;
 		color: black;
@@ -118,8 +118,8 @@ user-select:none;
 	}
 	.logpanel{
 		width:20%;
-		height:200px;
-		max-height:25%;
+		height:225px;
+		max-height:30%;
 		float:left;
 		overflow-y: scroll;
 		overflow-x: hidden;
@@ -130,7 +130,7 @@ user-select:none;
 		max-width: 30%;
 		display:inline-block;
 		height:25%;
-		min-height:25%;
+		min-height:30%;
 		box-sizing: border-box;
 		padding: 0px 25px 0px 50px;
 		text-align: right;
@@ -154,12 +154,12 @@ user-select:none;
 	.tooltippanel{
 		height: 125px;
 		
-		padding: 5px 15px 5px 15px;
+		padding: 5px 15px 5px 15px;	
 		overflow-y: hidden;
 		overflow-x: hidden;
 		clear:both;
 		 box-sizing: border-box;
-		border-radius: 8px;
+		 border-radius: 15px;
 		border: solid #1f628d 2px;
 	}
 	
@@ -168,8 +168,8 @@ user-select:none;
 		height: 550px;
 		width: 100%;
 		box-sizing: border-box;
-		/*border-radius: 8px;
-		border: solid #1f628d 2px;*/
+		border-radius: 8px;
+		border: solid #1f628d 2px;
 		overflow: hidden;
 	}
 	

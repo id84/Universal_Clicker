@@ -41,7 +41,7 @@ var NPC = {
     power1txt: "maximum number of NPCs that won't trigger Bans",
     power2: 50,
     power2l: 1,
-    power2txt: "difficulty to Bot detection.",
+    power2txt: "difficulty to NPC detection.",
     level: 1,
     levelcost: 500,
 };

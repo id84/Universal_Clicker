@@ -293,6 +293,9 @@ function rendertown(r) {
 	townarr = [];
 	document.getElementById("townspan").innerHTML = "";
 	document.getElementById("townspan").innerHTML = "";
+	var cb = document.getElementById("snglschbx");
+
+
 	for (let i = 0; i < allposters.length; i++) {
 		tpop += allposters[i].count;
 	}
@@ -306,10 +309,14 @@ function rendertown(r) {
 
 				switch (allposters[i].name) {
 					case "Glowie":
+						if (cb.checked){
 						s = "<span id=\"glowiespan\" class=\"glow\" onmouseout=\"cleartooltip()\" onmouseover=\"ttooltip(\'" + i + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify("Random") + "</span>";
+					}else {
+						s = "<span id=\"glowiespan\"  onmouseout=\"cleartooltip()\" onmouseover=\"ttooltip(\'" + i + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify("Random") + "</span>";
+					}
 						break;
 					case "Lizard":
-						var cb = document.getElementById("snglschbx");
+						
 						if (cb.checked) {
 							s = "<span id=\"interloperspan\" onmouseout=\"cleartooltip()\" onmouseover=\"ttooltip(\'" + i + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify("Lizard") + "</span>";
 						} else {

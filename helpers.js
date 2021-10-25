@@ -4,21 +4,13 @@ function getRandomInt(max) {
 
 function sunglasschbx() {
     var cb = document.getElementById("snglschbx");
-    if (cb.checked == true) {
-        var ele = document.querySelectorAll('body *');
-        for (i = 0; i < ele.length; i++) {
-            if (ele[i].id === "glowiespan") {
-                ele[i].classList.add("glow")
-            }
-        }
+    var nts = document.getElementById("townpanel");
+if (cb.checked) {
+    nts.classList.add("sunglass");
+} else {
+    nts.classList.remove("sunglass");
+}
 
-    }
-    else {
-        var ele = document.querySelectorAll('body *');
-        for (i = 0; i < ele.length; i++) {
-            ele[i].classList.remove("glow")
-        }
-    }
     rendertown(true);
 }
 

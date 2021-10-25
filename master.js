@@ -23,14 +23,40 @@ var mechanicuslevel = 1;
 
 var townarr = [];
 
+const effecti = new KeyframeEffect(document.getElementById("thi2"),[{transform: "rotateY(360deg)"}], {duration: 500,  easing: "linear"});
+const effects = new KeyframeEffect(document.getElementById("ths2"),[{transform: "rotateY(360deg)"}], {duration: 500,  easing: "linear"});
+const effectf = new KeyframeEffect(document.getElementById("thf2"),[{transform: "rotateY(360deg)"}], {duration: 500,  easing: "linear"});
+const effectme = new KeyframeEffect(document.getElementById("thme2"),[{transform: "rotateY(360deg)"}], {duration: 500,  easing: "linear"});
+
+const animationi = new Animation(effecti, document.timeline);
+const animations = new Animation(effects, document.timeline);
+const animationf = new Animation(effectf, document.timeline);
+const animationme = new Animation(effectme, document.timeline);
 
 document.addEventListener("click", function () {
-	internets += mechanicuslevel
-	if (mechanicuslevel >= 5) { science += mechanicuslevel; }
-	if (mechanicuslevel >= 25) { fame += mechanicuslevel; }
-	if (mechanicuslevel >= 50) { memes += mechanicuslevel; }
-	;
+	internets += mechanicuslevel;
+	animationi.play();
+
+	if (mechanicuslevel >= 5) {
+		science += mechanicuslevel;
+		animations.play();
+	}
+	if (mechanicuslevel >= 25) {
+		fame += mechanicuslevel;
+		animationf.play();
+	}
+	if (mechanicuslevel >= 50) {
+		memes += mechanicuslevel;
+		animationme.play();
+	}
+
 })
+
+
+
+
+
+
 
 
 //Heartbeat
@@ -176,15 +202,41 @@ function redrawwiki() {
 
 
 function redrawscoreboard() {
-	document.getElementById("scorepanel").innerHTML = "<table class=" + '"scoretext"' + ">" +
-		"<tr><th  style=" + '"width:70%"' + ">" + internets.toLocaleString('en-GB') + "</th><th  style=" + '"width:10%"' + "> " + emojify("internets") + "</th><th  style=" + '"width:20%"' + ">" + iadd.toLocaleString('en-GB') + "/s</th></tr>" +
-		"<tr><th  style=" + '"width:70%"' + ">" + heat.toLocaleString('en-GB') + "</th><th  style=" + '"width:10%"' + "> " + emojify("heat") + "</th><th  style=" + '"width:20%"' + ">" + hadd.toLocaleString('en-GB') + "/s</th></tr>" +
-		"<tr><th  style=" + '"width:70%"' + ">" + fame.toLocaleString('en-GB') + "</th><th  style=" + '"width:10%"' + "> " + emojify("fame") + "</th><th  style=" + '"width:20%"' + ">" + fadd.toLocaleString('en-GB') + "/s</th></tr>" +
-		"<tr><th  style=" + '"width:70%"' + ">" + money.toLocaleString('en-GB') + "</th><th  style=" + '"width:10%"' + "> " + emojify("money") + "</th><th  style=" + '"width:20%"' + ">" + madd.toLocaleString('en-GB') + "/s</th></tr>" +
-		"<tr><th  style=" + '"width:70%"' + ">" + drama.toLocaleString('en-GB') + "</th><th  style=" + '"width:10%"' + "> " + emojify("drama") + "</th><th  style=" + '"width:20%"' + ">" + dadd.toLocaleString('en-GB') + "/s</th></tr>" +
-		"<tr><th  style=" + '"width:70%"' + ">" + memes.toLocaleString('en-GB') + "</th><th  style=" + '"width:10%"' + "> " + emojify("memes") + "</th><th  style=" + '"width:20%"' + ">" + meadd.toLocaleString('en-GB') + "/s</th></tr>" +
-		"<tr><th  style=" + '"width:70%"' + ">" + science.toLocaleString('en-GB') + "</th><th  style=" + '"width:10%"' + "> " + emojify("science") + "</th><th  style=" + '"width:20%"' + ">" + sadd.toLocaleString('en-GB') + "/s</th></tr>" +
-		"</table>";
+	//dear god why did I make it like this
+	var cell = document.getElementById("scoreboard1").children;
+	cell[0].innerHTML = internets.toLocaleString();
+	cell[1].innerHTML = emojify("internets", 0);
+	cell[2].innerHTML = iadd.toLocaleString() + "/s</tr>";
+
+	cell = document.getElementById("scoreboard2").children;
+	cell[0].innerHTML = heat.toLocaleString();
+	cell[1].innerHTML = emojify("heat", 0);
+	cell[2].innerHTML = hadd.toLocaleString() + "/s<br>";
+
+	cell = document.getElementById("scoreboard3").children;
+	cell[0].innerHTML = fame.toLocaleString();
+	cell[1].innerHTML = emojify("fame", 0);
+	cell[2].innerHTML = fadd.toLocaleString() + "/s<br>";
+
+	cell = document.getElementById("scoreboard4").children;
+	cell[0].innerHTML = money.toLocaleString();
+	cell[1].innerHTML = emojify("money", 0);
+	cell[2].innerHTML = madd.toLocaleString() + "/s<br>";
+
+	cell = document.getElementById("scoreboard5").children;
+	cell[0].innerHTML = drama.toLocaleString();
+	cell[1].innerHTML = emojify("drama", 0);
+	cell[2].innerHTML = dadd.toLocaleString() + "/s<br>";
+
+	cell = document.getElementById("scoreboard6").children;
+	cell[0].innerHTML = memes.toLocaleString();
+	cell[1].innerHTML = emojify("memes", 0);
+	cell[2].innerHTML = meadd.toLocaleString() + "/s<br>";
+
+	cell = document.getElementById("scoreboard7").children;
+	cell[0].innerHTML = science.toLocaleString();
+	cell[1].innerHTML = emojify("science", 0);
+	cell[2].innerHTML = sadd.toLocaleString() + "/s<br>";
 }
 
 function redrawpop() {
@@ -309,14 +361,14 @@ function rendertown(r) {
 
 				switch (allposters[i].name) {
 					case "Glowie":
-						if (cb.checked){
-						s = "<span id=\"glowiespan\" class=\"glow\" onmouseout=\"cleartooltip()\" onmouseover=\"ttooltip(\'" + i + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify("Random") + "</span>";
-					}else {
-						s = "<span id=\"glowiespan\"  onmouseout=\"cleartooltip()\" onmouseover=\"ttooltip(\'" + i + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify("Random") + "</span>";
-					}
+						if (cb.checked) {
+							s = "<span id=\"glowiespan\" class=\"glow\" onmouseout=\"cleartooltip()\" onmouseover=\"ttooltip(\'" + i + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify("Random") + "</span>";
+						} else {
+							s = "<span id=\"glowiespan\"  onmouseout=\"cleartooltip()\" onmouseover=\"ttooltip(\'" + i + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify("Random") + "</span>";
+						}
 						break;
 					case "Lizard":
-						
+
 						if (cb.checked) {
 							s = "<span id=\"interloperspan\" onmouseout=\"cleartooltip()\" onmouseover=\"ttooltip(\'" + i + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify("Lizard") + "</span>";
 						} else {
@@ -324,7 +376,7 @@ function rendertown(r) {
 						}
 						break;
 					default:
-						if (allposters[i].type === "interloper") { s = "<span onmouseout=\"cleartooltip()\" onmouseover=\"ttooltip(\'" + i + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify(allposters[i].name) + "</span>"; break; }
+						if (allposters[i].type === "interloper") { s = "<span id=\"interloperspan\" onmouseout=\"cleartooltip()\" onmouseover=\"ttooltip(\'" + i + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify(allposters[i].name) + "</span>"; break; }
 						s = "<span onmouseout=\"cleartooltip()\" onmouseover=\"ttooltip(\'" + i + "\')\" onclick=removefromtown(\"" + i.toString() + "\")>" + emojify(allposters[i].name) + "</span>";
 						break;
 				}

@@ -18,4 +18,9 @@ function init() {
     document.getElementById("autosavechkbx").checked = false;
     document.getElementById("retrochkbx").checked = false;
     document.getElementById("nightmodechkbx").checked = false;
+
+    document.getElementById("thi2").style.animationPlayState = "paused";
+    document.getElementById("thf2").style.animationPlayState = "paused";
+    document.getElementById("thme2").style.animationPlayState = "paused";
+    document.getElementById("ths2").style.animationPlayState = "paused";
 }

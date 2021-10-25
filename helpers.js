@@ -4,15 +4,23 @@ function getRandomInt(max) {
 
 function sunglasschbx() {
     var cb = document.getElementById("snglschbx");
-    var nts = document.getElementById("townpanel");
+    var nts = document.getElementById("towndiv");
 if (cb.checked) {
+ 
     nts.classList.add("sunglass");
+
+
 } else {
     nts.classList.remove("sunglass");
 }
 
     rendertown(true);
 }
+
+
+
+
+
 
 function popupclose() {
     document.getElementById("popup").style.display = "none";
@@ -279,3 +287,12 @@ function nightmode() {
         document.getElementById("maincontainer").style.backgroundColor = "white";
 	}
 }
+
+
+
+
+function classremove(element,cls) {
+	element.classList.remove(cls)
+}
+
+  

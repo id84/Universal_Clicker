@@ -590,7 +590,7 @@ padding:3px;
 	  }
 
 	  .crt {
-		filter: blur(0.5px);
+		filter: blur(0.3px) saturate(125%) ;
 	  }
 
 	.invert {
@@ -598,7 +598,7 @@ padding:3px;
 	}
 
 	.nightmode {
-		background-color: rgba(0, 0, 0, 0.8);
+		background-color: rgba(10, 10, 10, 0.8);
 		color: #fff8ce;
 	}
 

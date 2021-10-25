@@ -555,39 +555,7 @@ function workmechanicus() {
 	//save game thing for later features
 }
 
-function retromeup() {
-	if (document.getElementById("retrochkbx").checked) {
-		document.getElementById("maincontainer").classList.add("crt");
-		//popalert(emojify("Alert") + "Warning!"+ emojify("Alert") + "<br><br>Playing in \"Retro\" may cause eyestrain and hipsterism!<br><br>", "alert")
-	} else {
-		document.getElementById("maincontainer").classList.remove("crt");
-	}
-}
 
-function nightmode() {
-	if (document.getElementById("nightmodechkbx").checked) {
-		document.getElementById("maincontainer").classList.add("nightmode");
-		document.getElementById("popup").classList.add("nightmode");
-		var x = document.getElementsByClassName("wkbtn");
-		for (i = 0; i < x.length; i++) {
-
-				x[i].classList.add("nightmode");
-
-			
-		}
-
-		//popalert(emojify("Alert") + "Warning!"+ emojify("Alert") + "<br><br>Playing in \"Retro\" may cause eyestrain and hipsterism!<br><br>", "alert")
-	} else {
-		document.getElementById("maincontainer").classList.remove("nightmode");
-		document.getElementById("popup").classList.remove("nightmode");
-
-		var x = document.getElementsByClassName("wkbtn");
-		for (i = 0; i < x.length; i++) {
-			x[i].classList.remove("nightmode");
-		}
-
-	}
-}
 
 //This will be deprecated... some time... in future
 function buyaction(a, rv) {

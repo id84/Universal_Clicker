@@ -267,8 +267,7 @@ function nightmode() {
 
 			
 		}
-        document.body.style.backgroundColor = "black";
-		
+        document.getElementById("maincontainer").style.backgroundColor = "black";
 	} else {
 		document.getElementById("maincontainer").classList.remove("nightmode");
 		document.getElementById("popup").classList.remove("nightmode");
@@ -277,6 +276,6 @@ function nightmode() {
 		for (i = 0; i < x.length; i++) {
 			x[i].classList.remove("nightmode");
 		}
-        document.body.style.backgroundColor = "white";
+        document.getElementById("maincontainer").style.backgroundColor = "white";
 	}
 }

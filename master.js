@@ -570,7 +570,10 @@ function nightmode() {
 		document.getElementById("popup").classList.add("nightmode");
 		var x = document.getElementsByClassName("wkbtn");
 		for (i = 0; i < x.length; i++) {
-			x[i].classList.add("nightmode");
+
+				x[i].classList.add("nightmode");
+
+			
 		}
 
 		//popalert(emojify("Alert") + "Warning!"+ emojify("Alert") + "<br><br>Playing in \"Retro\" may cause eyestrain and hipsterism!<br><br>", "alert")

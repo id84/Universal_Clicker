@@ -244,3 +244,39 @@ function getpopulation(poparray) {
     }
     return pop;
 }
+
+
+
+function retromeup() {
+	if (document.getElementById("retrochkbx").checked) {
+		document.getElementById("maincontainer").classList.add("crt");
+
+	} else {
+		document.getElementById("maincontainer").classList.remove("crt");
+	}
+}
+
+function nightmode() {
+	if (document.getElementById("nightmodechkbx").checked) {
+		document.getElementById("maincontainer").classList.add("nightmode");
+		document.getElementById("popup").classList.add("nightmode");
+		var x = document.getElementsByClassName("wkbtn");
+		for (i = 0; i < x.length; i++) {
+
+				x[i].classList.add("nightmode");
+
+			
+		}
+        document.body.style.backgroundColor = "black";
+		
+	} else {
+		document.getElementById("maincontainer").classList.remove("nightmode");
+		document.getElementById("popup").classList.remove("nightmode");
+
+		var x = document.getElementsByClassName("wkbtn");
+		for (i = 0; i < x.length; i++) {
+			x[i].classList.remove("nightmode");
+		}
+        document.body.style.backgroundColor = "white";
+	}
+}

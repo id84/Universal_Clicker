@@ -1,6 +1,4 @@
-body{
-	background-color:lightslategray;
-}
+
 
 ul {
 	list-style-type: none;
@@ -30,25 +28,19 @@ fieldset {
 	padding: 6px 8px 6px 8px;
 }
 
-	div.container {
-		width: 100%;
-		border: 1px solid gray;
-		font-family: 'Lato', sans-serif;
-		font-size: 18px;
 
-	}
 	
 	.leftpanel{
-		height: 100%;
+		/*height: 100%;*/
 		width:100%;
 		float:left;
 		box-sizing: border-box;
 		margin:0;
-		border-radius: 15px;
-		border: solid #1f628d 1px;
+		/*border-radius: 15px;
+		border: solid #1f628d 1px;*/
 	}
 	.rightpanel{
-		height: 100%;
+		/*height: 100%;*/
 		width:20%;
 		float:right;
 		box-sizing: border-box;
@@ -79,10 +71,16 @@ user-select:none;
 		left:0;
 		bottom:0;
 		right:0;
-		height:100%;
+		/*height:100%;*/
 		width:100%;
 		color: black;
 		background-color: white;
+
+		height:100vh;
+		min-height:100%;
+		max-height:100%;
+
+		
 	}
 	.verticalpanel{
 		float:left;
@@ -170,8 +168,8 @@ user-select:none;
 		height: 550px;
 		width: 100%;
 		box-sizing: border-box;
-		border-radius: 8px;
-		border: solid #1f628d 2px;
+		/*border-radius: 8px;
+		border: solid #1f628d 2px;*/
 		overflow: hidden;
 	}
 	
@@ -379,14 +377,15 @@ width:200px;
 		left: 50%;
 		/* bring your own prefixes */
 		transform: translate(-50%, -50%);
-		background-color: #fefefe;
+
+	}
+	.popup-content {
 		margin: 5% auto; /* 15% from the top and centered */
 		padding: 20px;
 		border: 1px solid #888;
 		width: 80%; /* Could be more or less, depending on screen size */
+		background-color: inherit;
 	}
-
-
 	.mfpopup {
 		display: none;
 		position: fixed;
@@ -397,7 +396,7 @@ width:200px;
 		background: rgba(200, 230, 225, 0.5);
 		justify-content: center;
 		align-items: center;
-		/*top: 50%;*/
+		top: 50%;
 		left: 50%;
 		/* bring your own prefixes */
 		transform: translate(-50%, -50%);
@@ -599,7 +598,7 @@ padding:3px;
 	}
 
 	.nightmode {
-		background-color: #000000;
+		background-color: rgba(0, 0, 0, 0.8);
 		color: #fff8ce;
 	}
 

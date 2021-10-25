@@ -43,7 +43,7 @@ var NPC = {
     power2l: 1,
     power2txt: "% chance of NPCs avoid triggering Bans",
     level: 1,
-    levelcost: 2000,
+    levelcost: 500,
 };
 
 var Shill = {

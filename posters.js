@@ -17,7 +17,7 @@ var Bot = {
     power1txt: "maximum number of Bots that won't trigger Bans",
     power2: 25,
     power2l : 1,
-    power2txt: "% chance of Bots avoid triggering Bans",
+    power2txt: "difficulty to Bot detection.",
     level: 1,
     levelcost: 2000,
 };
@@ -41,7 +41,7 @@ var NPC = {
     power1txt: "maximum number of NPCs that won't trigger Bans",
     power2: 50,
     power2l: 1,
-    power2txt: "% chance of NPCs avoid triggering Bans",
+    power2txt: "difficulty to Bot detection.",
     level: 1,
     levelcost: 500,
 };

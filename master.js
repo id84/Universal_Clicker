@@ -570,14 +570,14 @@ function getmechanicuscost() {
 			mt.c2type = 0
 			mt.c2rate = 0
 			break;
-			break;
-		case 5 < mechanicuslevel <= 25:
+			
+		case 5 < mechanicuslevel && mechanicuslevel <= 25:
 			mt.c1type = "internets";
 			mt.c1rate = 50000 * mechanicuslevel;
 			mt.c2type = "science";
 			mt.c2rate = 10000 * mechanicuslevel;
 			break;
-		case 25 < mechanicuslevel <= 50:
+		case 25 < mechanicuslevel && mechanicuslevel <= 50:
 			mt.c1type = "science";
 			mt.c1rate = 100000 * mechanicuslevel;
 			mt.c2type = "memes";
